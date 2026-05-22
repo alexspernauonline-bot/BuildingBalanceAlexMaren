@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1625464583205107017}
   - component: {fileID: 1610393157186826697}
   - component: {fileID: 4464383929491536092}
+  - component: {fileID: -2959273820815068786}
   m_Layer: 0
   m_Name: Gegner
   m_TagString: Untagged
@@ -238,3 +239,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-2959273820815068786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4914732853392295029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8de22513a25e7d94d8b9e49dfc51740f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBehavior
+  impulseStrength: 0
+  isAsleep: 0
+  speed: 0
