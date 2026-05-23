@@ -9541,6 +9541,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f77857fadeed294688139c9a6ed8189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  speed: 10
+  turnSpeed: 0
 --- !u!43 &650106488
 Mesh:
   m_ObjectHideFlags: 0
@@ -16460,7 +16462,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -9.7
+      value: -6.39
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16468,7 +16470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -78.67
+      value: -48.01
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalRotation.w
