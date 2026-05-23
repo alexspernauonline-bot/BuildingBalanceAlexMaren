@@ -9542,7 +9542,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   speed: 10
-  turnSpeed: 0
+  turnSpeed: 10
 --- !u!43 &650106488
 Mesh:
   m_ObjectHideFlags: 0
@@ -30950,7 +30950,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraBehavior
   player: {fileID: 646759666}
-  offset: {x: -3, y: 1, z: 3}
+  offset: {x: -3, y: 1, z: -3}
 --- !u!43 &1821429533
 Mesh:
   m_ObjectHideFlags: 0
