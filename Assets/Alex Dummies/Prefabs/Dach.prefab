@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8964447471603335229}
   - component: {fileID: 155429689173064386}
   - component: {fileID: -3726589051241059133}
-  - component: {fileID: 48193961169915283}
+  - component: {fileID: 5540166138419393574}
   m_Layer: 0
   m_Name: Dach
   m_TagString: Untagged
@@ -119,8 +119,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &48193961169915283
-BoxCollider:
+--- !u!64 &5540166138419393574
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,6 +137,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.20803565, y: 0.5000001, z: 0.5106321}
-  m_Center: {x: 0.0037757456, y: -5.66992e-10, z: 0.005316317}
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8745458769056519180, guid: ced9aebffa3ca7943b1db40707324428, type: 3}
