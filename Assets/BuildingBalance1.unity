@@ -829,21 +829,65 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 115452856959233479, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
+    - target: {fileID: 460583023421930639, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1314161784120347741, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
       propertyPath: m_Constraints
       value: 116
       objectReference: {fileID: 0}
+    - target: {fileID: 1314161784120347741, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1757745568444522848, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
+    - target: {fileID: 1879208772759860543, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927165515838402010, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
+    - target: {fileID: 2374082030960320388, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
     - target: {fileID: 4266329925170614904, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
       propertyPath: m_Name
       value: Turm
       objectReference: {fileID: 0}
+    - target: {fileID: 5822268430990797904, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7236730284013161025, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8079540093652643990, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_AngularDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8081581131644406800, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
     - target: {fileID: 9055480085639028760, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: -22.203
       objectReference: {fileID: 0}
     - target: {fileID: 9055480085639028760, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.671
+      value: 2.48
       objectReference: {fileID: 0}
     - target: {fileID: 9055480085639028760, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40273,6 +40317,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 42943060932053365, guid: b00489bbb8dc7414f9a882b2cca2fd6e, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
     - target: {fileID: 2320171231419217217, guid: b00489bbb8dc7414f9a882b2cca2fd6e, type: 3}
       propertyPath: myWeightType
       value: 1
@@ -40950,7 +40998,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1901382878}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

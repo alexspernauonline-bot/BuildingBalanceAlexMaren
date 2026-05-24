@@ -7,25 +7,48 @@ public class WeightScaleManager : MonoBehaviour
     public ScaleSide leftSide;
     public ScaleSide rightSide;
 
+    // It keeps track of whether the game is already won.
+    private bool hasWon = false;
     // Update is called once every single frame of the game.
     void Update()
     {
+        if (hasWon == true)
+        {
+            return;
+        }
+        float left = leftSide.currentWeight;
+        float right = rightSide.currentWeight;
         // We look at the 'currentWeight' variable from the scripts on both sides.
-        if (leftSide.currentWeight > rightSide.currentWeight)
+        if (left > right)
         {
             Debug.Log("The LEFT side is heavier!");
-
-            // In the future, you can add code here to visually rotate or move the scale down on the left.
         }
-        else if (rightSide.currentWeight > leftSide.currentWeight)
+        else if (right > left)
         {
             Debug.Log("The RIGHT side is heavier!");
-
-            // In the future, you can add code here to visually rotate or move the scale down on the right.
         }
-        else
+        else // If left is NOT greater than right, and right is NOT greater than left... they must be equal!
         {
-            Debug.Log("The scale is perfectly BALANCED.");
+            // 2. Are they equal because they are perfectly balanced, or because they are empty?
+            if (left > 0 && right > 0)
+            {
+                TriggerWinCondition();
+            }
+            else
+            {
+                Debug.Log("The scale is empty.");
+            }
+        }
+        void TriggerWinCondition()
+        {
+            // 3. Lock the game so this function can't be called again
+            hasWon = true;
+
+            // 4. Celebrate!
+            Debug.Log(" YOU WIN! The scale is perfectly balanced! ");
+
+            // Later, you can add code right here to play a victory sound, 
+            // load the next level, or show a UI screen.
         }
     }
 }
