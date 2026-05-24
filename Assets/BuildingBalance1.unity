@@ -38368,6 +38368,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CameraBehavior
   player: {fileID: 646759666}
   offset: {x: -3, y: 1, z: -3}
+  turnSpeed: 4
+  minTurnAngle: -90
+  maxTurnAngle: 0
 --- !u!43 &1821429533
 Mesh:
   m_ObjectHideFlags: 0
