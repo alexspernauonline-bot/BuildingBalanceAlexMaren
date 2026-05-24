@@ -39,15 +39,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
         }
-        /* Dash funktion bauen
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            speed *= 2;
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            speed = 20;
-        }*/
     }
 
 
