@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3505934362678148813}
   - component: {fileID: 7066942272236838494}
   - component: {fileID: 3657194901418307916}
+  - component: {fileID: 7294692826982023654}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -140,3 +141,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7294692826982023654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811378600282867623}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
+  myWeightType: 0
