@@ -70,7 +70,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -5083101151178401063, guid: ced9aebffa3ca7943b1db40707324428, type: 3}
+  - {fileID: 2100000, guid: 14785d4cf9c87d540ad20ddcb5ccd4bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -154,6 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
+  redMaterialPreset: {fileID: 2100000, guid: 413c53984eb3c2e4394bd3d3e7dd5b6b, type: 2}
+  greenMaterialPreset: {fileID: 2100000, guid: 14785d4cf9c87d540ad20ddcb5ccd4bc, type: 2}
+  blueMaterialPreset: {fileID: 2100000, guid: 38fd2fd70dfe9ef4a81d9834bfcd7766, type: 2}
   myWeightType: 0
 --- !u!114 &4270902943906573285
 MonoBehaviour:

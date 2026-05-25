@@ -9,6 +9,7 @@ public class ColorWeight : MonoBehaviour
         Medium,
         Heavy
     }
+    
 
     //Damit kann man das Gewicht im Inspector auswählen, bevor das Spiel startet.
     public BlockType myWeightType;
@@ -26,18 +27,19 @@ public class ColorWeight : MonoBehaviour
         // überprüft, welches Gewicht ausgewählt wurde, und weiset die Farbe und Masse zu.
         if (myWeightType == BlockType.Light)
         {
-            rb.mass = 1f;                                //setzt die Masse auf 1
-            meshRenderer.material.color = Color.green;   //setzt die Farbe auf Grün
+            rb.mass = 1f;                                                         //setzt die Masse auf 1
+            meshRenderer.material = Resources.Load<Material>("greenMaterial");   //setzt die Farbe auf Grün
+
         }
         else if (myWeightType == BlockType.Medium)
         {
-            rb.mass = 5f;                                //setzt die Masse auf 5
-            meshRenderer.material.color = Color.blue;   //setzt die Farbe auf Blau
+            rb.mass = 5f;                                                       //setzt die Masse auf 5
+            meshRenderer.material = Resources.Load<Material>("blueMaterial");   //setzt die Farbe auf Blau
         }
         else if (myWeightType == BlockType.Heavy)
         {
-            rb.mass = 10f;                               //setzt die Masse auf 10
-            meshRenderer.material.color = Color.red;    //setzt die Farbe auf Rot
+            rb.mass = 10f;                                                      //setzt die Masse auf 10
+            meshRenderer.material = Resources.Load<Material>("redMaterial");    //setzt die Farbe auf Rot
         }
     }
 }
