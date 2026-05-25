@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class RespawnTrigger : MonoBehaviour
 {
+    //Methode wird aufgerufen, wenn ein Collider in den Trigger eintritt
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy"))
