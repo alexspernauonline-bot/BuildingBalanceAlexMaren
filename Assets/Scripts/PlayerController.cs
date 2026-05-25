@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * finalSpeed * verticalInput);
 
         // GameObject entlang der Y-Achse rotieren
-        //PROBLEM: Objekt rotiert, Kamera allerdings nicht
         if (verticalInput > 0)
         {
             transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);

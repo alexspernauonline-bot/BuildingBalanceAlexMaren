@@ -2430,6 +2430,38 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 6.6116695, y: 1, z: 7.5}
   m_Center: {x: 18.305836, y: 0.5, z: -16.25}
+--- !u!1 &143584639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 143584640}
+  m_Layer: 0
+  m_Name: FocalPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &143584640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143584639}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 8.057091, y: 0, z: -40.29066}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1817421273}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &148268143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6701,7 +6733,7 @@ GameObject:
   - component: {fileID: 357616899}
   - component: {fileID: 357616898}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Audio Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38337,7 +38369,7 @@ GameObject:
   - component: {fileID: 1817421272}
   - component: {fileID: 1817421274}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38402,12 +38434,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817421270}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0001874112, y: 0.9971183, z: -0.07582556, w: -0.0023801422}
-  m_LocalPosition: {x: -24.966156, y: 1.9201448, z: -46.457314}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -33.023247, y: 1.9201448, z: -6.1666527}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 143584640}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1817421274
 MonoBehaviour:
@@ -47539,8 +47571,8 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 357616900}
-  - {fileID: 1817421273}
   - {fileID: 1046560954}
+  - {fileID: 143584640}
   - {fileID: 1674969215}
   - {fileID: 969995597}
   - {fileID: 1194806201}
