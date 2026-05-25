@@ -2,36 +2,40 @@ using UnityEngine;
 
 public class ScaleSide : MonoBehaviour
 {
-    // This stores the total weight currently on this side.
-
+    
+    //Speichert das Gesamtgewicht, das sich derzeit auf dieser Seite befindet.
     public float currentWeight = 0f;
 
-    // runs automatically when another object enters the Trigger zone.
+    
+    //Läuft automatisch, wenn ein anderes Objekt in die Trigger-Zone eintritt.
     private void OnTriggerEnter(Collider other)
     {
-        // We check if the object that entered the zone has a Rigidbody (physics) component attached.
+        
+        //Checkt ob das Objekt, das in die Zone eingetreten ist, eine Rigidbody-Komponente (Physik) hat.
         Rigidbody rb = other.GetComponent<Rigidbody>();
 
         // If 'rb' is NOT null, it means we found a Rigidbody.
+        // Wenn rb nicht null ist, bedeutet das eine Rigidbody-Komponente wurde gefunden.
         if (rb != null)
         {
-            // We take the mass of that object and add it to our total.
+            
+            //Masse dieses Objekts und addierert zu dem Gesamtgewicht.
             currentWeight += rb.mass;
         }
     }
 
-    // This runs automatically when an object falls out or is taken out of the Trigger zone.
+    // Läuft automatisch, wenn ein Objekt aus der Trigger-Zone herausfällt oder entfernt wird.
     private void OnTriggerExit(Collider other)
     {
         Rigidbody rb = other.GetComponent<Rigidbody>();
 
         if (rb != null)
         {
-            // We subtract the mass because the object is no longer on the scale.
+            // Wir subtrahieren die Masse, weil das Objekt nicht mehr auf der Waage liegt.
             currentWeight -= rb.mass;
 
-            // This is a safety measure. Physics engines can sometimes be slightly inaccurate.
-            // Mathf.Max ensures our scale's weight never accidentally bugs out and drops below 0.
+            // Das ist eine Sicherheitsmaßnahme. Physik-Engines können manchmal leicht ungenau sein.
+            // Mathf.Max stellt sicher, dass das Gewicht unserer Waage niemals versehentlich unter 0 fällt.
             currentWeight = Mathf.Max(0f, currentWeight);
         }
     }

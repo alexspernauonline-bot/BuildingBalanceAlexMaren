@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class ColorWeight : MonoBehaviour
 {
-    // 1. We create a custom list of categories using an 'enum'.
-    // Think of this as creating your own custom dropdown menu.
+    //Hier sind die drei möglichen Gewichtstypen definiert.
     public enum BlockType
     {
         Light,
@@ -11,35 +10,34 @@ public class ColorWeight : MonoBehaviour
         Heavy
     }
 
-    // 2. This variable makes our custom dropdown show up in the Unity Inspector.
+    //Damit kann man das Gewicht im Inspector auswählen, bevor das Spiel startet.
     public BlockType myWeightType;
 
-    // Start is called exactly once, the moment the object appears in the game.
     void Start()
     {
-
+        //Randomiserung des Gewichtstyps, damit jedes Mal, wenn das Spiel gestartet wird, die Blöcke unterschiedliche Gewichte und Farben haben.
         int randomPick = Random.Range(0, 3);
         myWeightType = (BlockType)randomPick;
-        // 3. We grab the physics (Rigidbody) and visual (MeshRenderer) components attached to this block.
+        // greift auf die Physik (Rigidbody) und die visuelle (MeshRenderer) Komponenten zu, die an diesem Block angehängt sind.
         Rigidbody rb = GetComponent<Rigidbody>();
         
         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
-        // 4. We check what you selected in the dropdown, and assign the color and mass to match!
+        // überprüft, welches Gewicht ausgewählt wurde, und weiset die Farbe und Masse zu.
         if (myWeightType == BlockType.Light)
         {
-            rb.mass = 1f;                                // Set weight to 1
-            meshRenderer.material.color = Color.green;   // Set color to Green
+            rb.mass = 1f;                                //setzt die Masse auf 1
+            meshRenderer.material.color = Color.green;   //setzt die Farbe auf Grün
         }
         else if (myWeightType == BlockType.Medium)
         {
-            rb.mass = 5f;                                // Set weight to 5
-            meshRenderer.material.color = Color.blue;  // Set color to Blue
+            rb.mass = 5f;                                //setzt die Masse auf 5
+            meshRenderer.material.color = Color.blue;  //setzt die Farbe auf Blau
         }
         else if (myWeightType == BlockType.Heavy)
         {
-            rb.mass = 10f;                               // Set weight to 10
-            meshRenderer.material.color = Color.red;     // Set color to Red
+            rb.mass = 10f;                               //setzt die Masse auf 10
+            meshRenderer.material.color = Color.red;     //setzt die Farbe auf Rot
         }
     }
 }
