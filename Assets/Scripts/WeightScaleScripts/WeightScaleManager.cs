@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class WeightScaleManager : MonoBehaviour
 {
-    // These create empty slots in the Unity Inspector. 
-    // We will drag our LeftSide and RightSide objects into these slots.
+   //Zuweisungen von den Waagschalen im Unity Inspektor.
+    
     public ScaleSide leftSide;
     public ScaleSide rightSide;
 
-    // It keeps track of whether the game is already won.
+    // Es wird verfolgt, ob das Spiel bereits gewonnen wurde.
     private bool hasWon = false;
     // Update is called once every single frame of the game.
     void Update()
@@ -16,9 +16,11 @@ public class WeightScaleManager : MonoBehaviour
         {
             return;
         }
+
+        //Variablen 'left' und 'right' speichern die aktuellen Gewichte von beiden Seiten der Waage.
         float left = leftSide.currentWeight;
         float right = rightSide.currentWeight;
-        // We look at the 'currentWeight' variable from the scripts on both sides.
+        // Vergleicht die Gewichte, um zu sehen, welche Seite schwerer ist.
         if (left > right)
         {
             Debug.Log("The LEFT side is heavier!");
@@ -27,9 +29,9 @@ public class WeightScaleManager : MonoBehaviour
         {
             Debug.Log("The RIGHT side is heavier!");
         }
-        else // If left is NOT greater than right, and right is NOT greater than left... they must be equal!
+        else // Wenn links NICHT größer als rechts ist, und rechts NICHT größer als links... müssen sie gleich sein!
         {
-            // 2. Are they equal because they are perfectly balanced, or because they are empty?
+            // Sind sie gleich, weil sie perfekt ausbalanciert sind, oder weil sie leer sind?
             if (left > 0 && right > 0)
             {
                 TriggerWinCondition();
@@ -41,14 +43,14 @@ public class WeightScaleManager : MonoBehaviour
         }
         void TriggerWinCondition()
         {
-            // 3. Lock the game so this function can't be called again
+            // Sperrt das Spiel, damit diese Funktion nicht erneut aufgerufen werden kann.
             hasWon = true;
 
-            // 4. Celebrate!
+            // Spieler hat gewonnen, hier die Belohnung oder den nächsten Schritt auslösen.
             Debug.Log(" YOU WIN! The scale is perfectly balanced! ");
 
-            // Later, you can add code right here to play a victory sound, 
-            // load the next level, or show a UI screen.
+            // Später können wir hier Code hinzufügen, um einen Sieges-Sound abzuspielen,
+            // das nächste Level zu laden oder einen UI-Bildschirm anzuzeigen.
         }
     }
 }

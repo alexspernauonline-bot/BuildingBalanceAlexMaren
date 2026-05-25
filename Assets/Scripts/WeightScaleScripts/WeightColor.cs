@@ -32,12 +32,12 @@ public class ColorWeight : MonoBehaviour
         else if (myWeightType == BlockType.Medium)
         {
             rb.mass = 5f;                                //setzt die Masse auf 5
-            meshRenderer.material.color = Color.blue;  //setzt die Farbe auf Blau
+            meshRenderer.material.color = Color.blue;   //setzt die Farbe auf Blau
         }
         else if (myWeightType == BlockType.Heavy)
         {
             rb.mass = 10f;                               //setzt die Masse auf 10
-            meshRenderer.material.color = Color.red;     //setzt die Farbe auf Rot
+            meshRenderer.material.color = Color.red;    //setzt die Farbe auf Rot
         }
     }
 }
