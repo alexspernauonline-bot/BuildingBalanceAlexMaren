@@ -6775,8 +6775,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357616897}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2404241, y: 0.0057442803, z: -0.0014228234, w: 0.97064996}
-  m_LocalPosition: {x: -6.39, y: 6.4453726, z: -48.695312}
+  m_LocalRotation: {x: 0.24042358, y: 0.006108079, z: -0.0015129343, w: 0.9706477}
+  m_LocalPosition: {x: -6, y: 6.5353727, z: -48.195312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11691,6 +11691,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4890575759789965822, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
   m_PrefabInstance: {fileID: 591853031}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &600234411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600234412}
+  m_Layer: 0
+  m_Name: respawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &600234412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600234411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6, y: 2, z: -41}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &602524943
 Mesh:
   m_ObjectHideFlags: 0
@@ -15257,8 +15288,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757540849}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24042411, y: 0.0057442794, z: -0.001422823, w: 0.9706499}
-  m_LocalPosition: {x: -6.39, y: 6.4453726, z: -48.695312}
+  m_LocalRotation: {x: 0.24042356, y: 0.006108078, z: -0.001512934, w: 0.97064775}
+  m_LocalPosition: {x: -6, y: 6.5353727, z: -48.195312}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21540,15 +21571,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.39
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.91
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -41.5
+      value: -41
       objectReference: {fileID: 0}
     - target: {fileID: 1446243316642842426, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_LocalRotation.w
@@ -23565,6 +23596,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca65e8bc36c36614cb165ec7f954b818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
+  respawnPoint: {fileID: 600234411}
 --- !u!43 &1123235723
 Mesh:
   m_ObjectHideFlags: 0
@@ -47769,3 +47801,4 @@ SceneRoots:
   - {fileID: 1709926474}
   - {fileID: 780175734}
   - {fileID: 2084524456}
+  - {fileID: 600234412}
