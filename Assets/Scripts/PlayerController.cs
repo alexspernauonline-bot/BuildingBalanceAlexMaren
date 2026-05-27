@@ -2,45 +2,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //Definiert Geschwindigkeit
-    public float speed = 10;
-    private float finalSpeed;
+    public ThirdPersonMovement playerCam;
 
-    // Definiert Rotations Geschwindigkeit
-    public float turnSpeed;
-
-    // Update is called once per frame
-    void Update()
+    void OnCollisionEnter(Collision collider)
     {
-        // Curser-Tasten rechts u links abfragen (Wert zwischen -1 u 1)
-        float horizontalInput = Input.GetAxis("Horizontal");
-        // Curser-Tasten oben u unten abfragen (Wert zwischen -1 u 1)
-        float verticalInput = Input.GetAxis("Vertical");
-
-        //Dash Funktion (Über Space? Sicher?)
-        if (Input.GetKey(KeyCode.Space))
+        if (collider.gameObject.CompareTag("Boden"))
         {
-            finalSpeed = speed * 2;
-        }
-        else
-        {
-            finalSpeed = speed;
-        }
-
-        // GameObject entlang der X-Achse verschieben
-        transform.Translate(Vector3.right * Time.deltaTime * finalSpeed * horizontalInput);
-
-        // GameObject entlang der Z-Achse verschieben
-        transform.Translate(Vector3.forward * Time.deltaTime * finalSpeed * verticalInput);
-
-        // GameObject entlang der Y-Achse rotieren
-        if (verticalInput > 0)
-        {
-            transform.Rotate(Vector3.up, turnSpeed * Time.deltaTime * horizontalInput);
+            playerCam.PlayerIsGrounded();
         }
     }
-
-
 }
 
 

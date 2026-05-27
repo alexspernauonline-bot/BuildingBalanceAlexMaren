@@ -6,6 +6,8 @@ public class ThirdPersonMovement : MonoBehaviour
     public Transform camera;
 
     public float speed = 6f;
+    public float jumpForce = 5f;
+    private bool isGrounded = true;
 
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
@@ -29,9 +31,31 @@ public class ThirdPersonMovement : MonoBehaviour
         Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
         if(horizontalInput != 0f || verticalInput != 0f)
         {
-            playerRb.transform.Translate(moveDirection.normalized * speed * Time.deltaTime);
+            //Sprint-Funktion auf linker Shift/Hochstell-Taste
+            float finalSpeed;
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                finalSpeed = speed * 2;
+            }
+            else
+            {
+                finalSpeed = speed;
+            }
+            
+            playerRb.transform.Translate(moveDirection.normalized * finalSpeed * Time.deltaTime);
         }
-        
 
+        //Hüpf-Funktion auf Leertaste
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            isGrounded = false;
+        }
+    }
+
+    public bool PlayerIsGrounded()
+    {
+        isGrounded = true;
+        return isGrounded;
     }
 }
