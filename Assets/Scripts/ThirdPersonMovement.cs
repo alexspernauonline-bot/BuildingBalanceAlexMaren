@@ -21,7 +21,7 @@ public class ThirdPersonMovement : MonoBehaviour
     void Start()
     {
         //Mauszeiger wird unsichtbar
-        Cursor.visible = false;
+        //Cursor.visible = false;
     }
 
     // Update is called once per frame
