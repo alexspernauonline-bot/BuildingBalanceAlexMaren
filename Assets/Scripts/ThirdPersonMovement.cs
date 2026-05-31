@@ -22,20 +22,22 @@ public class ThirdPersonMovement : MonoBehaviour
     {
         //Richtungsvektor für Bewegung, normalized damit auch diagonale Bewegung gleich schnell ist + Variablen für Spielersteuerung WASD
         movementInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical")).normalized;
-        //targetDirection = new Vector3(transform.position.x, 0, transform.position.z);
+        
+        //Winkel der Bewegung basierend auf User-Input
+        targetAngle = Mathf.Atan2(movementInput.x, movementInput.z) * Mathf.Rad2Deg;
 
-        //playerRb.transform.rotation = Quaternion.Slerp(playerRb.transform.rotation, Quaternion.LookRotation(-targetDirection), rotationSpeed * Time.deltaTime);
+        //Bewegungs-Vektor
+        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-        //Gleichmäßige Drehbewegung des Spielers
-        if (movementInput.magnitude > 0)
+        //Drehbewegung der Spielfigur basierend auf Kamera-Rotation
+        if (moveDirection.x != 0 || moveDirection.z != 0 )
         {
-            targetAngle = Mathf.Atan2(movementInput.x, movementInput.z) * Mathf.Rad2Deg + camera.rotation.eulerAngles.y; //gezielter World-space Winkel des Spielers basierend auf Kamera (in Richtung Kamera) und User-Input
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime); //für gleichmäßige Drehung
-            transform.rotation = Quaternion.Euler(0, angle, 0); //tatsächliche Rotation
+            playerRb.transform.rotation = Quaternion.Euler(playerRb.transform.rotation.eulerAngles.x, 
+                                            Camera.main.transform.rotation.eulerAngles.y, //y-Rotation der Kamera bestimmt Rotation des Spielers
+                                            playerRb.rotation.eulerAngles.z);
         }
 
         //Bewegung des Spielers in Kamera-Richtung
-        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward; //Kamera-Richtung
         if (movementInput.magnitude > 0) //Bewegung wird nur bei Player-Input ausgeführt
         {
             //Sprint-Funktion auf linker Shift/Hochstell-Taste
