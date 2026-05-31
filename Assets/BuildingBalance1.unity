@@ -492,6 +492,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cube (37)
       objectReference: {fileID: 0}
+    - target: {fileID: 5164842602508164579, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6038826018222052699, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -20203,6 +20207,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4890575759789965822, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
   m_PrefabInstance: {fileID: 973499198}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &977385015
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977385016}
+  m_Layer: 0
+  m_Name: PlacementManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977385016
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977385015}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.30672, y: 0.39473, z: -52.27668}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978069747
 GameObject:
   m_ObjectHideFlags: 0
@@ -39932,7 +39967,7 @@ GameObject:
   - component: {fileID: 1859412229}
   - component: {fileID: 1859412234}
   - component: {fileID: 1859412233}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: rightSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45153,6 +45188,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boden_Prefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5164842602508164579, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6038826018222052699, guid: 6f72bb3ebdb9a9a49ab1cd61a12eb068, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -47783,3 +47822,4 @@ SceneRoots:
   - {fileID: 2084524456}
   - {fileID: 600234412}
   - {fileID: 431639088}
+  - {fileID: 977385016}
