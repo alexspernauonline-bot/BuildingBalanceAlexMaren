@@ -7,15 +7,22 @@ public class ThirdPersonMovement : MonoBehaviour
 
     public float speed = 6f;
     public float jumpForce = 5f;
-    private bool isGrounded = true;
     public float rotationSpeed = 5f;
 
-    private Vector3 movementInput;
-    private float targetAngle;
-    private Vector3 targetDirection;
+    private bool isGrounded = true;
+    private bool hasSpaceBeenPressed = false;
 
-    public float turnSmoothTime = 0.1f;
-    private float turnSmoothVelocity;
+    private Vector3 movementInput;
+    private Vector3 targetDirection;
+    private Vector3 moveDirection;
+
+    private float targetAngle;
+
+    void Start()
+    {
+        //Mauszeiger wird unsichtbar
+        Cursor.visible = false;
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,12 +34,21 @@ public class ThirdPersonMovement : MonoBehaviour
         targetAngle = Mathf.Atan2(movementInput.x, movementInput.z) * Mathf.Rad2Deg;
 
         //Bewegungs-Vektor
-        Vector3 moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+        moveDirection = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
 
-        //Drehbewegung der Spielfigur basierend auf Kamera-Rotation
-        if (moveDirection.x != 0 || moveDirection.z != 0 )
+        //Abfrage von Leertaste
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            playerRb.transform.rotation = Quaternion.Euler(playerRb.transform.rotation.eulerAngles.x, 
+            hasSpaceBeenPressed = true;
+        }
+    }
+
+    void FixedUpdate()
+    {
+        //Drehbewegung der Spielfigur basierend auf Kamera-Rotation
+        if (moveDirection.x != 0 || moveDirection.z != 0)
+        {
+            playerRb.transform.rotation = Quaternion.Euler(playerRb.transform.rotation.eulerAngles.x,
                                             Camera.main.transform.rotation.eulerAngles.y, //y-Rotation der Kamera bestimmt Rotation des Spielers
                                             playerRb.rotation.eulerAngles.z);
         }
@@ -52,14 +68,19 @@ public class ThirdPersonMovement : MonoBehaviour
             }
 
             //tatsächliche Bewegung
-            playerRb.transform.Translate(moveDirection.normalized * finalSpeed * Time.deltaTime);
+            playerRb.transform.Translate(moveDirection.normalized * finalSpeed * Time.fixedDeltaTime);
         }
 
         //Hüpf-Funktion auf Leertaste
-        if (Input.GetKeyDown(KeyCode.Space)&& isGrounded)
+        if (hasSpaceBeenPressed)
         {
-            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isGrounded = false;
+            if (isGrounded)
+            {
+                playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                isGrounded = false;
+            }
+            
+            hasSpaceBeenPressed = false;
         }
     }
 
