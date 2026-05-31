@@ -6973,7 +6973,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 357616897}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.0066645253, y: 0.9759122, z: -0.2159723, w: 0.030114932}
+=======
+  m_LocalRotation: {x: 0.006743739, y: 0.9759011, z: -0.21596988, w: 0.030472875}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: -25.566856, y: 5.1844, z: -36.936188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -15470,7 +15474,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757540849}
   serializedVersion: 2
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.0066645257, y: 0.9759122, z: -0.21597232, w: 0.030114932}
+=======
+  m_LocalRotation: {x: 0.0067437403, y: 0.9759011, z: -0.21596988, w: 0.030472875}
+>>>>>>> Stashed changes
   m_LocalPosition: {x: -25.566856, y: 5.1844, z: -36.936188}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21899,12 +21907,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3944539005691498111, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3944539005691498111, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_Constraints
       value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 3944539005691498111, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_Interpolate
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3944539005691498111, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4859144722563144931, guid: ecc4b940a60b2ec419855f49c7bf39ed, type: 3}
       propertyPath: m_IsTrigger
