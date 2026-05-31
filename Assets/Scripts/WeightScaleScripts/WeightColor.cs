@@ -28,21 +28,18 @@ public class ColorWeight : MonoBehaviour
         if (myWeightType == BlockType.Light)
         {
             rb.mass = 1f;                                                         //setzt die Masse auf 1
-            meshRenderer.material = Resources.Load<Material>("greenMaterial");   //setzt die Farbe auf Grün
-            //meshRenderer.material = RoundManager.Instance.lightMaterial;
+            meshRenderer.material = GameManager.Instance.lightMaterial;
 
         }
         else if (myWeightType == BlockType.Medium)
         {
             rb.mass = 5f;                                                       //setzt die Masse auf 5
-            meshRenderer.material = Resources.Load<Material>("blueMaterial");   //setzt die Farbe auf Blau
-            //meshRenderer.material = RoundManager.Instance.mediumMaterial;
+            meshRenderer.material = GameManager.Instance.mediumMaterial;
         }
         else if (myWeightType == BlockType.Heavy)
         {
-            rb.mass = 10f;                                                      //setzt die Masse auf 10
-            meshRenderer.material = Resources.Load<Material>("redMaterial");    //setzt die Farbe auf Rot
-            //meshRenderer.material = RoundManager.Instance.heavyMaterial;
+           rb.mass = 10f;                                                      //setzt die Masse auf 10
+           meshRenderer.material = GameManager.Instance.heavyMaterial;
         }
     }
 }

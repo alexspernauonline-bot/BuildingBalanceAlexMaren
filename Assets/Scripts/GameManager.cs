@@ -1,11 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     //VORSICHT ! Dieser Skript ist noch nicht aktiv. Erst Implimentieren wenn die Platzierlogik existiert.
-    /*
+  
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
-    public static RoundManager Instance;
+    public static GameManager Instance;
 
     // Hier speichern wir das fertige Ergebnis für diese Runde
     public Material lightMaterial;
@@ -37,7 +38,7 @@ public class GameManager : MonoBehaviour
     public void AssignRandomColors()
     {
         // 1. Wir packen alle drei Materialien in eine Liste (unseren "Beutel")
-        // Beachte: Hier nutze ich wieder Resources.Load, wie wir es vorher besprochen haben.
+        
         List<Material> availableMaterials = new List<Material>
         {
             Resources.Load<Material>("redMaterial"), 
@@ -60,5 +61,5 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
-    */
+    
 }
