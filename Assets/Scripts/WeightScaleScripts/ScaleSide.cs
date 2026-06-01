@@ -5,8 +5,7 @@ public class ScaleSide : MonoBehaviour
     
     //Speichert das Gesamtgewicht, das sich derzeit auf dieser Seite befindet.
     public float currentWeight = 0f;
-
- 
+   
     private void OnCollisionEnter(Collision collision)
     {
         // Bei OnCollisionEnter holen wir uns den Rigidbody über collision.gameObject
@@ -17,6 +16,8 @@ public class ScaleSide : MonoBehaviour
             // Masse dieses Objekts addieren
             currentWeight += rb.mass;
             Debug.Log(gameObject.name + " Gewicht erhöht auf: " + currentWeight);
+            //Gibt dem Game Manager den Befehl das Gewicht neu zu Prüfen
+            GameManager.Instance.CheckBalance();
         }
     }
 
@@ -33,6 +34,8 @@ public class ScaleSide : MonoBehaviour
             // Sicherheitsmaßnahme gegen Rundungsfehler
             currentWeight = Mathf.Max(0f, currentWeight);
             Debug.Log(gameObject.name + " Gewicht verringert auf: " + currentWeight);
+            //Gibt dem Game Manager den Befehl das Gewicht neu zu Prüfen
+            GameManager.Instance.CheckBalance();
         }
     }
 }

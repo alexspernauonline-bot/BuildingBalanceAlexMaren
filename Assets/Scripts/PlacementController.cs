@@ -15,7 +15,7 @@ public class PlacementController : MonoBehaviour
             // ZUSTAND A: Wir tragen gerade einen Block und wollen ihn absetzen
             if (currentBlock != null)
             {
-                currentBlock.transform.position = hit.point + Vector3.up * 1.5f;
+                currentBlock.transform.position = hit.point + Vector3.up * 0.75f;
 
                 if (Input.GetKeyDown(KeyCode.R))
                 {

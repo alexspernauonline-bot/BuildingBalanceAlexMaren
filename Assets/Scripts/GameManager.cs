@@ -13,6 +13,16 @@ public class GameManager : MonoBehaviour
     public Material mediumMaterial;
     public Material heavyMaterial;
 
+    //Aktuelle Gewichte der Waagschalen
+    public float weightLeft = 0f;
+    public float weightRight = 0f;
+    // Referenzen zu den Waagschalen, damit wir sie später ansprechen können
+    public ScaleSide leftScale;
+    public ScaleSide rightScale;
+    //Rätsel-Einstellungen
+    public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
+    private bool isBalanced = false;
+
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blöcke spawnen.
     void Awake()
     {
@@ -23,17 +33,6 @@ public class GameManager : MonoBehaviour
         }
 
         AssignRandomColors();
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void AssignRandomColors()
     {
@@ -61,5 +60,52 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
-    
+    // DIESE METHODE WIRD VON DEN WAAGSCHALEN AUFGERUFEN
+    public void UpdateScaleWeight(string scaleSide, float newWeight)
+    {
+        // 1. Gewicht der passenden Seite zuweisen
+        if (scaleSide == "Left")
+        {
+            weightLeft = newWeight;
+        }
+        else if (scaleSide == "Right")
+        {
+            weightRight = newWeight;
+        }
+
+        // Aufruf der Balance-Check-Methode
+        CheckBalance();
+    }
+    public void CheckBalance()
+    {
+        // Sicherheits-Check: Sind beide Waagschalen im Inspector zugewiesen?
+        if (leftScale == null || rightScale == null) return;
+        //Gewichte reinholen
+        float weightLeft = leftScale.currentWeight;
+        float weightRight = rightScale.currentWeight;
+        // Wir berechnen die absolute Differenz zwischen links und rechts
+        float difference = Mathf.Abs(weightLeft - weightRight);
+
+        // Wenn die Differenz innerhalb unserer Toleranz liegt UND überhaupt Gewicht draufliegt
+        if (difference <= tolerance && (weightLeft > 0 || weightRight > 0))
+        {
+            if (!isBalanced)
+            {
+                isBalanced = true;
+                Debug.Log(" DIE WAAGE IST RECHNERISCH BALANCIERT!");
+
+                // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
+                // z.B. GetComponent<PlayableDirector>().Play();
+            }
+        }
+        else
+        {
+            if (isBalanced)
+            {
+                isBalanced = false;
+                Debug.Log(" Waage wieder aus dem Gleichgewicht geraten.");
+            }
+        }
+    }
+
 }
