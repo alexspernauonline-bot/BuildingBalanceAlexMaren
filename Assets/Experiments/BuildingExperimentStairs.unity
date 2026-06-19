@@ -7324,7 +7324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7423811c1d6e52847bfed3d5a26e0e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraContoller
-  speedRotation: 100
+  target: {fileID: 0}
+  rotationSpeed: 80
+  zoomSpeed: 5
+  minZoom: 3
+  maxZoom: 15
+  minVerticalAngle: 10
+  maxVerticalAngle: 80
 --- !u!64 &834156805
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -8529,6 +8535,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ed63dae0c5947a4095062d24fd364e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlacementController
+  dragLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  smoothSpeed: 15
+  liftHeight: 0.5
 --- !u!4 &891992351
 Transform:
   m_ObjectHideFlags: 0
@@ -12020,7 +12031,7 @@ GameObject:
   - component: {fileID: 1368262982}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12111,7 +12122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7423811c1d6e52847bfed3d5a26e0e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraContoller
-  speedRotation: 10
+  target: {fileID: 1836353085}
+  rotationSpeed: 80
+  zoomSpeed: 5
+  minZoom: 3
+  maxZoom: 15
+  minVerticalAngle: 10
+  maxVerticalAngle: 80
 --- !u!1001 &1370622576
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13933,7 +13950,7 @@ Transform:
   m_GameObject: {fileID: 1671278837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.5, y: 0.545, z: -46.694}
+  m_LocalPosition: {x: -25.46, y: 0.545, z: -50.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -14323,7 +14340,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7423811c1d6e52847bfed3d5a26e0e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraContoller
-  speedRotation: 100
+  target: {fileID: 0}
+  rotationSpeed: 80
+  zoomSpeed: 5
+  minZoom: 3
+  maxZoom: 15
+  minVerticalAngle: 10
+  maxVerticalAngle: 80
 --- !u!1001 &1848287539
 PrefabInstance:
   m_ObjectHideFlags: 0
