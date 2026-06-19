@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlacementController : MonoBehaviour
 {
+    /*
     private GameObject currentBlock = null;
     private Rigidbody currentRb = null;
 
@@ -59,4 +60,5 @@ public class PlacementController : MonoBehaviour
             }
         }
     }
+    */
 }

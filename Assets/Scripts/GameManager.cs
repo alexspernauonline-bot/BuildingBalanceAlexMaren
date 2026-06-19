@@ -60,29 +60,13 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
-    // DIESE METHODE WIRD VON DEN WAAGSCHALEN AUFGERUFEN
-    public void UpdateScaleWeight(string scaleSide, float newWeight)
-    {
-        // 1. Gewicht der passenden Seite zuweisen
-        if (scaleSide == "Left")
-        {
-            weightLeft = newWeight;
-        }
-        else if (scaleSide == "Right")
-        {
-            weightRight = newWeight;
-        }
-
-        // Aufruf der Balance-Check-Methode
-        CheckBalance();
-    }
     public void CheckBalance()
     {
         // Sicherheits-Check: Sind beide Waagschalen im Inspector zugewiesen?
         if (leftScale == null || rightScale == null) return;
         //Gewichte reinholen
-        float weightLeft = leftScale.currentWeight;
-        float weightRight = rightScale.currentWeight;
+        weightLeft = leftScale.currentWeight;
+        weightRight = rightScale.currentWeight;
         // Wir berechnen die absolute Differenz zwischen links und rechts
         float difference = Mathf.Abs(weightLeft - weightRight);
 
@@ -107,5 +91,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
 }
