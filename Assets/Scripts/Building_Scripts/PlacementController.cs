@@ -5,13 +5,19 @@ public class PlacementController : MonoBehaviour
     [SerializeField] private float smoothSpeed = 15f;
     [SerializeField] private float liftHeight = 0.75f;
     [SerializeField] private float ghostTransparency = 0.4f; // 40% Sichtbarkeit für den Geist
+    [SerializeField] private LayerMask interactableLayer;// Layer, auf dem die Blöcke liegen, die wir aufheben können
+
 
     private GameObject currentBlock = null;
     private Rigidbody currentRb = null;
     private MeshRenderer currentRenderer = null;
     private Color originalColor;
     private Vector3 targetPosition;
-
+    void Start()
+    {
+        
+     interactableLayer = LayerMask.GetMask("placableBlock"); // zuweisung vom Layer.. Hier weiß dann der Raycast, welchen Layer er checken soll.
+    }
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -59,7 +65,7 @@ public class PlacementController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
                 {
                     if (hit.collider.CompareTag("Block"))
                     {
