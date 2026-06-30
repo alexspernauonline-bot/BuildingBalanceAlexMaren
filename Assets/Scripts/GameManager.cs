@@ -3,14 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Erzeugt eine Liste für die Renderer (die visuellen Hüllen) deiner Turm-Blöcke
-    [SerializeField] private MeshRenderer[] towerRenderers;
-    [SerializeField] private GameObject[] puzzlePrefabs;
-    [SerializeField] private Transform spawnArea;
-
-    // Das Material, das die Farben verstecken soll
-    [SerializeField] private Material mysteryMaterial;
-
+    //VORSICHT ! Dieser Skript ist noch nicht aktiv. Erst Implimentieren wenn die Platzierlogik existiert.
+  
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
 
@@ -40,25 +34,6 @@ public class GameManager : MonoBehaviour
 
         AssignRandomColors();
     }
-    void Start()
-    {
-        // 1. Zufällige Zahl zwischen 0 und 5 ziehen
-        int randomIndex = Random.Range(0, puzzlePrefabs.Length);
-
-        // 2. Den kompletten Turm am Spawn-Punkt erschaffen
-        GameObject spawnedTower = Instantiate(puzzlePrefabs[randomIndex], spawnArea.position, spawnArea.rotation);
-
-        // 3. Dem neuen Turm seine Gewichte und Farben zuweisen
-        SetupTower(spawnedTower);
-        // Wir setzen alle Turm-Blöcke auf das Mystery-Material, damit die Farben nicht sofort sichtbar sind
-        foreach (MeshRenderer renderer in towerRenderers)
-        {
-            // So liest du das aktuelle Material aus (z.B. um es in einer Variablen zu speichern)
-            Material originalMat = renderer.material;
-
-            renderer.material = Resources.Load<Material>("mysteryMaterial");
-        }
-    }
     public void AssignRandomColors()
     {
         // 1. Wir packen alle drei Materialien in eine Liste (unseren "Beutel")
@@ -85,43 +60,6 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
-    //ex
-    private void SetupTower(GameObject towerObject)
-    {
-        // Sucht ALLE Blöcke im gesamten Turm auf einmal zusammen
-        BlockIdentifier[] allBlocksInTower = towerObject.GetComponentsInChildren<BlockIdentifier>();
-
-        foreach (BlockIdentifier block in allBlocksInTower)
-        {
-            MeshRenderer renderer = block.GetComponentInChildren<MeshRenderer>();
-            Rigidbody rb = block.GetComponent<Rigidbody>();
-
-            // Prüfen, welcher Ausweis vorgezeigt wird
-            if (block.myCategory == BlockWeightCategory.Light)
-            {
-                if (renderer != null) renderer.material = lightMaterial;
-                if (rb != null) rb.mass = 1f; // Beispielgewicht
-                block.trueMaterial = lightMaterial;
-            }
-            else if (block.myCategory == BlockWeightCategory.Medium)
-            {
-                if (renderer != null) renderer.material = mediumMaterial;
-                if (rb != null) rb.mass = 5f;
-                block.trueMaterial = mediumMaterial;
-            }
-            else if (block.myCategory == BlockWeightCategory.Heavy)
-            {
-                if (renderer != null) renderer.material = heavyMaterial;
-                if (rb != null) rb.mass = 10f;
-                block.trueMaterial = heavyMaterial;
-            }
-
-            // HIER könntest du jetzt als letzten Schritt das Material des Renderers 
-            // direkt wieder mit deinem "mysteryMaterial" (z.B. Grau) überschreiben, 
-            // damit der Spieler die Farbe nicht sieht!
-        }
-    }
-    //ex
     public void CheckBalance()
     {
         // Sicherheits-Check: Sind beide Waagschalen im Inspector zugewiesen?
