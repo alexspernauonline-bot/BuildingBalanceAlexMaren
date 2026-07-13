@@ -5,13 +5,19 @@ public class GameManager : MonoBehaviour
 {
     //Nur zum Testen von Turm Spawns 
     [SerializeField] private bool testModeSequential = false;
+
     // speichern von Prefabs für die verschiedenen Rätsel-Türme
     [SerializeField] private GameObject[] puzzlePrefabs;
     //Lösungs Turm SpawnPunkt
-    [SerializeField] private Transform spawnArea;
+    [SerializeField] private Transform towerSpawnArea;
 
     // Das Material, das die Farben von der Lösung verdeckt
     [SerializeField] private Material mysteryMaterial;
+
+    //Blöcke zum platzieren für den Spieler
+    [SerializeField] private GameObject[] playerBlockPrefabs; // Das Prefab für den greifbaren Block
+    [SerializeField] private Transform playerBlockSpawnArea; // Wo die Blöcke hinfallen sollen
+    [SerializeField] private int amountOfBlocksToSpawn = 8;  // Wie viele Blöcke spawnen sollen
 
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
@@ -68,12 +74,55 @@ public class GameManager : MonoBehaviour
             Debug.Log(" SPIELER-MODUS AKTIV: Spawne zufälligen Turm Nr. " + towerIndex);
         }
 
-        // 2. Den kompletten Turm am Spawn-Punkt erschaffen
-        // WICHTIG: Hier steht jetzt "towerIndex", damit er das Ergebnis von oben nutzt!
-        GameObject spawnedTower = Instantiate(puzzlePrefabs[towerIndex], spawnArea.position, spawnArea.rotation);
+        // Den kompletten Turm am Spawn-Punkt erschaffen
+        // "towerIndex", damit er das Ergebnis von oben nutzt!
+        GameObject spawnedTower = Instantiate(puzzlePrefabs[towerIndex], towerSpawnArea.position, towerSpawnArea.rotation);
 
-        // 3. Dem neuen Turm seine Gewichte und Farben zuweisen
+        // Dem neuen Turm seine Gewichte und Farben zuweisen
         SetupTower(spawnedTower);
+
+        // Spawnt den Vorrat an Spieler-Blöcken
+       
+        for (int i = 0; i < amountOfBlocksToSpawn; i++)
+        {
+            //  Wähle zufällig eine Form aus deiner Liste (z.B. Zylinder oder Quader)
+            int randomShape = Random.Range(0, playerBlockPrefabs.Length);
+
+            // Position berechnen, damit sie nicht ineinander stecken
+            Vector3 spawnPos = playerBlockSpawnArea.position + new Vector3(0, i * 1.5f, 0);
+
+            //  Den existierenden Baustein erschaffen
+            GameObject newBlock = Instantiate(playerBlockPrefabs[randomShape], spawnPos, Quaternion.identity);
+
+           
+            // Layer setzen, damit der Raycast ihn erkennt
+            int layerZahl = LayerMask.NameToLayer("placableBlock");
+            newBlock.layer = layerZahl;
+
+            foreach (Transform child in newBlock.GetComponentsInChildren<Transform>(true))
+            {
+                child.gameObject.layer = layerZahl;
+            }
+            // Das Skript hinzufügen, das die Gewichtskategorie wechseln kann
+            PlayerBlockSwitcher switcher = newBlock.AddComponent<PlayerBlockSwitcher>();
+
+            // welches Gewicht der Block in seinem Prefab gespeichert
+            BlockIdentifier identifier = newBlock.GetComponent<BlockIdentifier>();
+
+            if (identifier != null)
+            {
+                // Wir stellen den Schalter auf das Original-Gewicht ein
+                switcher.currentCategory = identifier.myCategory;
+
+                // Wir konfigurieren Farbe und Masse basierend auf diesem Original-Gewicht!
+                ConfigurePlayerBlock(newBlock, identifier.myCategory);
+            }
+            else
+            {
+                // Nur zur Sicherheit, falls mal ein Ausweis fehlt
+                ConfigurePlayerBlock(newBlock, BlockWeightCategory.Light);
+            }
+        }
     }
 
     public void AssignRandomColors()
@@ -138,6 +187,41 @@ public class GameManager : MonoBehaviour
                 renderer.material = mysteryMaterial;
             }
           
+        }
+    }
+
+    // Das Placement-System übergibt hier den frisch gespawnten Block und dessen gewünschte Gewichtsklasse
+    public void ConfigurePlayerBlock(GameObject playerBlock, BlockWeightCategory category)
+    {
+        MeshRenderer renderer = playerBlock.GetComponentInChildren<MeshRenderer>();
+        Rigidbody rb = playerBlock.GetComponent<Rigidbody>();
+
+        // WICHTIG: Das Spieler-Skript (z.B. für die Waage) braucht evtl. auch den Identifier
+        BlockIdentifier identifier = playerBlock.GetComponent<BlockIdentifier>();
+        if (identifier != null)
+        {
+            identifier.myCategory = category;
+        }
+
+        if (category == BlockWeightCategory.Light)
+        {
+            if (renderer != null) renderer.material = lightMaterial;
+            if (rb != null) rb.mass = 1f; // Muss exakt denselben Wert haben wie in SetupTower!
+        }
+        else if (category == BlockWeightCategory.Medium)
+        {
+            if (renderer != null) renderer.material = mediumMaterial;
+            if (rb != null) rb.mass = 5f;
+        }
+        else if (category == BlockWeightCategory.Heavy)
+        {
+            if (renderer != null) renderer.material = heavyMaterial;
+            if (rb != null) rb.mass = 10f;
+        }
+        // Wenn sich die Masse ändert diesen Block nicht mehr schlafen zu lassen, damit die Waage den neuen Druck spürt.
+        if (rb != null)
+        {
+            rb.WakeUp();
         }
     }
     //ex
