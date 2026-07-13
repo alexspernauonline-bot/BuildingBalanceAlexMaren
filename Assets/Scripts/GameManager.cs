@@ -3,12 +3,14 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    // Erzeugt eine Liste für die Renderer (die visuellen Hüllen) deiner Turm-Blöcke
-   
+    //Nur zum Testen von Turm Spawns 
+    [SerializeField] private bool testModeSequential = false;
+    // speichern von Prefabs für die verschiedenen Rätsel-Türme
     [SerializeField] private GameObject[] puzzlePrefabs;
+    //Lösungs Turm SpawnPunkt
     [SerializeField] private Transform spawnArea;
 
-    // Das Material, das die Farben verstecken soll
+    // Das Material, das die Farben von der Lösung verdeckt
     [SerializeField] private Material mysteryMaterial;
 
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
@@ -42,16 +44,38 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        // 1. Zufällige Zahl zwischen 0 und 5 ziehen
-        int randomIndex = Random.Range(0, puzzlePrefabs.Length);
+        //Nur fürs Testen 
+        int towerIndex = 0;
+
+        //Prüfen ob Test Modus an ist
+        if (testModeSequential == true)
+        {
+            //TEST-MODUS
+            towerIndex = PlayerPrefs.GetInt("TowerIndex", 0);
+
+            int nextIndex = towerIndex + 1;
+            if (nextIndex >= puzzlePrefabs.Length) nextIndex = 0;
+
+            PlayerPrefs.SetInt("TowerIndex", nextIndex);
+            PlayerPrefs.Save();
+
+            Debug.Log(" TEST-MODUS AKTIV: Spawne Turm Nr. " + towerIndex);
+        }
+        else
+        {
+            //SPIELER-MODUS (Zufall)
+            towerIndex = Random.Range(0, puzzlePrefabs.Length);
+            Debug.Log(" SPIELER-MODUS AKTIV: Spawne zufälligen Turm Nr. " + towerIndex);
+        }
 
         // 2. Den kompletten Turm am Spawn-Punkt erschaffen
-        GameObject spawnedTower = Instantiate(puzzlePrefabs[randomIndex], spawnArea.position, spawnArea.rotation);
+        // WICHTIG: Hier steht jetzt "towerIndex", damit er das Ergebnis von oben nutzt!
+        GameObject spawnedTower = Instantiate(puzzlePrefabs[towerIndex], spawnArea.position, spawnArea.rotation);
 
         // 3. Dem neuen Turm seine Gewichte und Farben zuweisen
         SetupTower(spawnedTower);
-        
     }
+
     public void AssignRandomColors()
     {
         // 1. Wir packen alle drei Materialien in eine Liste (unseren "Beutel")
