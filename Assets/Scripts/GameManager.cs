@@ -4,7 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     // Erzeugt eine Liste für die Renderer (die visuellen Hüllen) deiner Turm-Blöcke
-    [SerializeField] private MeshRenderer[] towerRenderers;
+   
     [SerializeField] private GameObject[] puzzlePrefabs;
     [SerializeField] private Transform spawnArea;
 
@@ -50,14 +50,7 @@ public class GameManager : MonoBehaviour
 
         // 3. Dem neuen Turm seine Gewichte und Farben zuweisen
         SetupTower(spawnedTower);
-        // Wir setzen alle Turm-Blöcke auf das Mystery-Material, damit die Farben nicht sofort sichtbar sind
-        foreach (MeshRenderer renderer in towerRenderers)
-        {
-            // So liest du das aktuelle Material aus (z.B. um es in einer Variablen zu speichern)
-            Material originalMat = renderer.material;
-
-            renderer.material = Resources.Load<Material>("mysteryMaterial");
-        }
+        
     }
     public void AssignRandomColors()
     {
@@ -115,10 +108,12 @@ public class GameManager : MonoBehaviour
                 if (rb != null) rb.mass = 10f;
                 block.trueMaterial = heavyMaterial;
             }
-
-            // HIER könntest du jetzt als letzten Schritt das Material des Renderers 
-            // direkt wieder mit deinem "mysteryMaterial" (z.B. Grau) überschreiben, 
-            // damit der Spieler die Farbe nicht sieht!
+            //Lösung wird mit grau übermalt
+            if (renderer != null && mysteryMaterial != null)
+            {
+                renderer.material = mysteryMaterial;
+            }
+          
         }
     }
     //ex

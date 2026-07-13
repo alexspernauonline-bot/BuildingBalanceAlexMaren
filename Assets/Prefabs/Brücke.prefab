@@ -118,7 +118,6 @@ GameObject:
   - component: {fileID: 3037177420073799660}
   - component: {fileID: 5462750269335377667}
   - component: {fileID: 7325781230962816625}
-  - component: {fileID: 5032864763355242940}
   - component: {fileID: 3655417963830196309}
   - component: {fileID: 3895877476448632072}
   m_Layer: 0
@@ -230,19 +229,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5032864763355242940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4398856457544336286}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
-  myWeightType: 0
 --- !u!114 &3655417963830196309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BlockIdentifier
   myCategory: 0
+  trueMaterial: {fileID: 0}
 --- !u!1 &6483104270389733674
 GameObject:
   m_ObjectHideFlags: 0
