@@ -9033,7 +9033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc9250acb83a7884f8ee8281d8a38ae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  testModeSequential: 1
+  testModeSequential: 0
   puzzlePrefabs:
   - {fileID: 4266329925170614904, guid: 71725a29a48896449a11682bef32c9f4, type: 3}
   - {fileID: 8643502007923208000, guid: 89ac6d6411ad0cd49b6694b9bfd86674, type: 3}
