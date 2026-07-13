@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8564521123807885802}
   - component: {fileID: 440420093893969840}
   - component: {fileID: 7097062072307345603}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Quader
   m_TagString: Block
   m_Icon: {fileID: 0}

@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4975270163887833151}
   - component: {fileID: 4427400989681279925}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider_Basis (2)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4559342610402826488}
   - component: {fileID: 4582805769290395254}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider_Basis
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 7325781230962816625}
   - component: {fileID: 3655417963830196309}
   - component: {fileID: 3895877476448632072}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "Br\xFCcke"
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5086452353930757578}
   - component: {fileID: 7492979420812669049}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Collider_Basis (1)
   m_TagString: Block
   m_Icon: {fileID: 0}

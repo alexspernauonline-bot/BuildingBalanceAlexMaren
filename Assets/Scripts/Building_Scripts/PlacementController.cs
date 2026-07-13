@@ -1,16 +1,22 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PlacementController : MonoBehaviour
 {
     [SerializeField] private float smoothSpeed = 15f;
     [SerializeField] private float liftHeight = 0.75f;
-    [SerializeField] private float ghostTransparency = 0.4f; // 40% Sichtbarkeit für den Geist
+    [SerializeField] private float ghostTransparency = 0.4f; // 40% Sichtbarkeit fÃ¼r den Geist
+    [SerializeField] private LayerMask interactableLayer;// Layer, auf dem die BlÃ¶cke liegen, die wir aufheben kÃ¶nnen
 
     private GameObject currentBlock = null;
     private Rigidbody currentRb = null;
     private MeshRenderer currentRenderer = null;
     private Color originalColor;
     private Vector3 targetPosition;
+    void Start()
+    {
+
+        interactableLayer = LayerMask.GetMask("placableBlock"); // zuweisung vom Layer.. Hier weiï¿½ dann der Raycast, welchen Layer er checken soll.
+    }
 
     void Update()
     {
@@ -35,7 +41,7 @@ public class PlacementController : MonoBehaviour
             // Absetzen mit Linksklick
             if (Input.GetMouseButtonDown(0))
             {
-                // 1. Transparenz wieder rückgängig machen (Original-Farbe wiederherstellen)
+                // 1. Transparenz wieder rÃ¼ckgÃ¤ngig machen (Original-Farbe wiederherstellen)
                 if (currentRenderer != null)
                 {
                     currentRenderer.material.color = originalColor;
@@ -59,7 +65,7 @@ public class PlacementController : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity))
+                if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
                 {
                     if (hit.collider.CompareTag("Block"))
                     {
@@ -91,14 +97,14 @@ public class PlacementController : MonoBehaviour
                         // 2. Material auf transparent schalten
                         if (currentRenderer != null)
                         {
-                            // Wir merken uns die echte Farbe für später
+                            // Wir merken uns die echte Farbe fÃ¼r spÃ¤ter
                             originalColor = currentRenderer.material.color;
 
                             // Wir setzen den Alpha-Wert runter
                             Color ghostColor = originalColor;
                             ghostColor.a = ghostTransparency;
 
-                            // Wichtig für Unity-Standard-Shader: Rendering Mode auf Transparent zwingen
+                            // Wichtig fÃ¼r Unity-Standard-Shader: Rendering Mode auf Transparent zwingen
                             currentRenderer.material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
                             currentRenderer.material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
                             currentRenderer.material.SetInt("_ZWrite", 0);
