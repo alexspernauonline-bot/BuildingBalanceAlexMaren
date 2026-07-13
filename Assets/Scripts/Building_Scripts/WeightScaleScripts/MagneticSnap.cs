@@ -27,8 +27,6 @@ public class MagneticSnap: MonoBehaviour
 
                     transform.rotation = Quaternion.Euler(snappedX, snappedY, snappedZ);
 
-                    rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
                     rb.linearVelocity = Vector3.zero;
                     rb.angularVelocity = Vector3.zero;
 

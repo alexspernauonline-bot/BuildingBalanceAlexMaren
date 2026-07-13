@@ -16,8 +16,10 @@ public class GameManager : MonoBehaviour
 
     //Blöcke zum platzieren für den Spieler
     [SerializeField] private GameObject[] playerBlockPrefabs; // Das Prefab für den greifbaren Block
-    [SerializeField] private Transform playerBlockSpawnArea; // Wo die Blöcke hinfallen sollen
+    [SerializeField] private BoxCollider spawnVolume; // Wo die Blöcke hinfallen sollen
+
     [SerializeField] private int amountOfBlocksToSpawn = 8;  // Wie viele Blöcke spawnen sollen
+
 
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
@@ -80,48 +82,72 @@ public class GameManager : MonoBehaviour
 
         // Dem neuen Turm seine Gewichte und Farben zuweisen
         SetupTower(spawnedTower);
-
         // Spawnt den Vorrat an Spieler-Blöcken
-       
-        for (int i = 0; i < amountOfBlocksToSpawn; i++)
+        if (spawnVolume != null)
         {
-            //  Wähle zufällig eine Form aus deiner Liste (z.B. Zylinder oder Quader)
-            int randomShape = Random.Range(0, playerBlockPrefabs.Length);
+            Bounds bounds = spawnVolume.bounds;
 
-            // Position berechnen, damit sie nicht ineinander stecken
-            Vector3 spawnPos = playerBlockSpawnArea.position + new Vector3(0, i * 1.5f, 0);
-
-            //  Den existierenden Baustein erschaffen
-            GameObject newBlock = Instantiate(playerBlockPrefabs[randomShape], spawnPos, Quaternion.identity);
-
-           
-            // Layer setzen, damit der Raycast ihn erkennt
-            int layerZahl = LayerMask.NameToLayer("placableBlock");
-            newBlock.layer = layerZahl;
-
-            foreach (Transform child in newBlock.GetComponentsInChildren<Transform>(true))
+            for (int i = 0; i < amountOfBlocksToSpawn; i++)
             {
-                child.gameObject.layer = layerZahl;
-            }
-            // Das Skript hinzufügen, das die Gewichtskategorie wechseln kann
-            PlayerBlockSwitcher switcher = newBlock.AddComponent<PlayerBlockSwitcher>();
+                int shapeIndex;
+                if (i < playerBlockPrefabs.Length)
+                {
+                    // Die ersten Blöcke gehen strikt die Liste durch (0, 1, 2...)
+                    shapeIndex = i;
+                }
+                else
+                {
+                    // Alle restlichen Blöcke werden zufällig aufgefüllt
+                    shapeIndex = Random.Range(0, playerBlockPrefabs.Length);
+                }
 
-            // welches Gewicht der Block in seinem Prefab gespeichert
-            BlockIdentifier identifier = newBlock.GetComponent<BlockIdentifier>();
+                // Zufällige Position exakt innerhalb der Grenzen des BoxColliders suchen
+                float randomX = Random.Range(bounds.min.x, bounds.max.x);
+                float fixedY = spawnVolume.transform.position.y + (i * 0.5f);
+                float randomZ = Random.Range(bounds.min.z, bounds.max.z);
 
-            if (identifier != null)
-            {
-                // Wir stellen den Schalter auf das Original-Gewicht ein
-                switcher.currentCategory = identifier.myCategory;
+                Vector3 spawnPos = new Vector3(randomX, fixedY, randomZ);
 
-                // Wir konfigurieren Farbe und Masse basierend auf diesem Original-Gewicht!
-                ConfigurePlayerBlock(newBlock, identifier.myCategory);
+                // Random.Range(0, 4) würfelt eine 0, 1, 2 oder 3. 
+                // Multipliziert mit 90 ergibt das exakt: 0, 90, 180 oder 270.
+                float rotX = Random.Range(0, 4) * 90f;
+                float rotY = Random.Range(0, 4) * 90f;
+                float rotZ = Random.Range(0, 4) * 90f;
+                Quaternion startRotation = Quaternion.Euler(rotX, rotY, rotZ);
+
+                // Block erschaffen (mit zufälliger Start-Drehung, damit es natürlicher wirkt!)
+                GameObject newBlock = Instantiate(playerBlockPrefabs[shapeIndex], spawnPos, startRotation);
+
+                int layerZahl = LayerMask.NameToLayer("placableBlock");
+                newBlock.layer = layerZahl;
+                foreach (Transform child in newBlock.GetComponentsInChildren<Transform>(true))
+                {
+                    child.gameObject.layer = layerZahl;
+                }
+
+                // Das Skript hinzufügen, das die Gewichtskategorie wechseln kann
+                PlayerBlockSwitcher switcher = newBlock.AddComponent<PlayerBlockSwitcher>();
+
+                // welches Gewicht der Block in seinem Prefab gespeichert
+                BlockIdentifier identifier = newBlock.GetComponent<BlockIdentifier>();
+                if (identifier != null)
+                {
+                    // Wir stellen den Schalter auf das Original-Gewicht ein
+                    switcher.currentCategory = identifier.myCategory;
+
+                    // Wir konfigurieren Farbe und Masse basierend auf diesem Original-Gewicht!
+                    ConfigurePlayerBlock(newBlock, identifier.myCategory);
+                }
+                else
+                {
+                    // Nur zur Sicherheit, falls mal ein Ausweis fehlt
+                    ConfigurePlayerBlock(newBlock, BlockWeightCategory.Light);
+                }
             }
-            else
-            {
-                // Nur zur Sicherheit, falls mal ein Ausweis fehlt
-                ConfigurePlayerBlock(newBlock, BlockWeightCategory.Light);
-            }
+        }
+        else
+        {
+            Debug.LogError("Fehler: Du hast keinen BoxCollider in das Feld 'Spawn Volume' gezogen!");
         }
     }
 
