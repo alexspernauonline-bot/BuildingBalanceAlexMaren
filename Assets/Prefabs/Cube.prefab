@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4127541899788367489}
   - component: {fileID: 1372979707211305732}
   - component: {fileID: -2619454757925020108}
-  - component: {fileID: -5512666357553644177}
-  - component: {fileID: 4270902943906573285}
+  - component: {fileID: 3423430123722056573}
+  - component: {fileID: 5999568702225689277}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Block
@@ -142,7 +142,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-5512666357553644177
+--- !u!114 &3423430123722056573
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,14 +151,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 180496886290586532}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
+  m_Script: {fileID: 11500000, guid: a93eb3247b69e6043beac324117a9f26, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
-  redMaterialPreset: {fileID: 2100000, guid: 413c53984eb3c2e4394bd3d3e7dd5b6b, type: 2}
-  greenMaterialPreset: {fileID: 2100000, guid: 14785d4cf9c87d540ad20ddcb5ccd4bc, type: 2}
-  blueMaterialPreset: {fileID: 2100000, guid: 38fd2fd70dfe9ef4a81d9834bfcd7766, type: 2}
-  myWeightType: 0
---- !u!114 &4270902943906573285
+  m_EditorClassIdentifier: Assembly-CSharp::BlockIdentifier
+  myCategory: 1
+  trueMaterial: {fileID: 0}
+--- !u!114 &5999568702225689277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

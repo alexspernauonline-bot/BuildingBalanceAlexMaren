@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class WeightScaleManager : MonoBehaviour
 {
+    /*
    //Zuweisungen von den Waagschalen im Unity Inspektor.
     
     public ScaleSide leftSide;
@@ -18,7 +19,7 @@ public class WeightScaleManager : MonoBehaviour
             return;
         }
     }
-    
+    */
     
     /*
     //Variablen 'left' und 'right' speichern die aktuellen Gewichte von beiden Seiten der Waage.

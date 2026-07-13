@@ -1,11 +1,46 @@
 using UnityEngine;
 
-public class PhysicalSnap : MonoBehaviour
+public class MagneticSnap: MonoBehaviour
 {
     private bool hasSnapped = false;
     private Rigidbody rb;
 
     void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!hasSnapped && collision.gameObject.CompareTag("Block"))
+        {
+            if (collision.contactCount > 0)
+            {
+                Vector3 currentRotation = transform.rotation.eulerAngles;
+                ContactPoint contact = collision.GetContact(0);
+
+                if (contact.normal.y > 0.7f) 
+                {
+                    float snappedX = Mathf.Round(currentRotation.x / 90f) * 90f;
+                    float snappedZ = Mathf.Round(currentRotation.z / 90f) * 90f;
+                    float snappedY = currentRotation.y;
+
+                    transform.rotation = Quaternion.Euler(snappedX, snappedY, snappedZ);
+
+                    rb.linearVelocity = Vector3.zero;
+                    rb.angularVelocity = Vector3.zero;
+
+                    hasSnapped = true;
+                }
+            }
+        }
+    }
+    /*
+    {
+    private bool hasSnapped = false;
+    private Rigidbody rb;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
@@ -45,4 +80,5 @@ public class PhysicalSnap : MonoBehaviour
             }
         }
     }
+    */
 }

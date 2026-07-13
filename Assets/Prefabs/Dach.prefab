@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 8964447471603335229}
   - component: {fileID: 155429689173064386}
   - component: {fileID: -3726589051241059133}
-  - component: {fileID: -3922630550258917002}
   - component: {fileID: -8547516832315753313}
   - component: {fileID: 3993163716543868989}
-  m_Layer: 0
+  - component: {fileID: -5435988164520229136}
+  m_Layer: 7
   m_Name: Dach
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -121,19 +121,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-3922630550258917002
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6040923772572333788}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
-  myWeightType: 0
 --- !u!114 &-8547516832315753313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,3 +155,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -8745458769056519180, guid: ced9aebffa3ca7943b1db40707324428, type: 3}
+--- !u!114 &-5435988164520229136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040923772572333788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93eb3247b69e6043beac324117a9f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BlockIdentifier
+  myCategory: 1
+  trueMaterial: {fileID: 0}
