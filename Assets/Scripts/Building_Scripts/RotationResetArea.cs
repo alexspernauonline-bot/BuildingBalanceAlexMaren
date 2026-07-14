@@ -5,7 +5,7 @@ public class RotationResetArea : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Reagiert nur auf deine Spieler-Blöcke
-        if (collision.gameObject.CompareTag("Block"))
+        if (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock"))
         {
             Rigidbody rb = collision.rigidbody;
             if (rb != null)

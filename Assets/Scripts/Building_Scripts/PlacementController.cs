@@ -67,11 +67,11 @@ public class PlacementController : MonoBehaviour
             {
                 if (Physics.Raycast(ray, out RaycastHit hit, Mathf.Infinity, interactableLayer))
                 {
-                    if (hit.collider.CompareTag("Block"))
+                    if (hit.collider.CompareTag("Block") || hit.collider.CompareTag("TowerBlock"))
                     {
                         GameObject clickedObject = hit.collider.gameObject;
 
-                        if (clickedObject.transform.parent != null && clickedObject.transform.parent.CompareTag("Block"))
+                        if (clickedObject.transform.parent != null && (clickedObject.transform.parent.CompareTag("Block") || clickedObject.transform.parent.CompareTag("TowerBlock")))
                         {
                             currentBlock = clickedObject.transform.parent.gameObject;
                         }

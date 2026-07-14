@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Block
   - Boden
+  - Scale
+  - TowerBlock
+  - TargetTower
   layers:
   - Default
   - TransparentFX

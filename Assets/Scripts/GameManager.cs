@@ -2,27 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
+
 {
-    //Nur zum Testen von Turm Spawns 
-    [SerializeField] private bool testModeSequential = false;
-
-    // speichern von Prefabs für die verschiedenen Rätsel-Türme
-    [SerializeField] private GameObject[] puzzlePrefabs;
-    //Lösungs Turm SpawnPunkt
-    [SerializeField] private Transform towerSpawnArea;
-
     // Das Material, das die Farben von der Lösung verdeckt
     [SerializeField] private Material mysteryMaterial;
 
-    //Blöcke zum platzieren für den Spieler
-    [SerializeField] private GameObject[] playerBlockPrefabs; // Das Prefab für den greifbaren Block
-    [SerializeField] private BoxCollider spawnVolume; // Wo die Blöcke hinfallen sollen
-
-    [SerializeField] private int amountOfBlocksToSpawn = 8;  // Wie viele Blöcke spawnen sollen
-
-
     // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
+   
 
     // Hier speichern wir das fertige Ergebnis für diese Runde
     public Material lightMaterial;
@@ -35,8 +22,16 @@ public class GameManager : MonoBehaviour
     // Referenzen zu den Waagschalen, damit wir sie später ansprechen können
     public ScaleSide leftScale;
     public ScaleSide rightScale;
+
     //Rätsel-Einstellungen
     public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
+
+    //Tower Transition Manager
+    public TowerTransitionManager transitionManager;
+    // Wie lange die Waage im Gleichgewicht bleiben muss timer
+    public float requiredBalanceTime = 3.0f;
+    private float currentBalanceTime = 0f;
+    private bool isTransitioning = false;
 
     private bool isBalanced = false;
 
@@ -51,114 +46,19 @@ public class GameManager : MonoBehaviour
 
         AssignRandomColors();
     }
-    void Start()
+
+    // GEFIXT: Update-Methode hinzugefügt, damit die Waage jeden Frame geprüft wird
+    void Update()
     {
-        //Nur fürs Testen 
-        int towerIndex = 0;
-
-        //Prüfen ob Test Modus an ist
-        if (testModeSequential == true)
-        {
-            //TEST-MODUS
-            towerIndex = PlayerPrefs.GetInt("TowerIndex", 0);
-
-            int nextIndex = towerIndex + 1;
-            if (nextIndex >= puzzlePrefabs.Length) nextIndex = 0;
-
-            PlayerPrefs.SetInt("TowerIndex", nextIndex);
-            PlayerPrefs.Save();
-
-            Debug.Log(" TEST-MODUS AKTIV: Spawne Turm Nr. " + towerIndex);
-        }
-        else
-        {
-            //SPIELER-MODUS (Zufall)
-            towerIndex = Random.Range(0, puzzlePrefabs.Length);
-            Debug.Log(" SPIELER-MODUS AKTIV: Spawne zufälligen Turm Nr. " + towerIndex);
-        }
-
-        // Den kompletten Turm am Spawn-Punkt erschaffen
-        // "towerIndex", damit er das Ergebnis von oben nutzt!
-        GameObject spawnedTower = Instantiate(puzzlePrefabs[towerIndex], towerSpawnArea.position, towerSpawnArea.rotation);
-
-        // Dem neuen Turm seine Gewichte und Farben zuweisen
-        SetupTower(spawnedTower);
-        // Spawnt den Vorrat an Spieler-Blöcken
-        if (spawnVolume != null)
-        {
-            Bounds bounds = spawnVolume.bounds;
-
-            for (int i = 0; i < amountOfBlocksToSpawn; i++)
-            {
-                int shapeIndex;
-                if (i < playerBlockPrefabs.Length)
-                {
-                    // Die ersten Blöcke gehen strikt die Liste durch (0, 1, 2...)
-                    shapeIndex = i;
-                }
-                else
-                {
-                    // Alle restlichen Blöcke werden zufällig aufgefüllt
-                    shapeIndex = Random.Range(0, playerBlockPrefabs.Length);
-                }
-
-                // Zufällige Position exakt innerhalb der Grenzen des BoxColliders suchen
-                float randomX = Random.Range(bounds.min.x, bounds.max.x);
-                float fixedY = spawnVolume.transform.position.y + (i * 0.5f);
-                float randomZ = Random.Range(bounds.min.z, bounds.max.z);
-
-                Vector3 spawnPos = new Vector3(randomX, fixedY, randomZ);
-
-                // Random.Range(0, 4) würfelt eine 0, 1, 2 oder 3. 
-                // Multipliziert mit 90 ergibt das exakt: 0, 90, 180 oder 270.
-                float rotX = Random.Range(0, 4) * 90f;
-                float rotY = Random.Range(0, 4) * 90f;
-                float rotZ = Random.Range(0, 4) * 90f;
-                Quaternion startRotation = Quaternion.Euler(rotX, rotY, rotZ);
-
-                // Block erschaffen (mit zufälliger Start-Drehung, damit es natürlicher wirkt!)
-                GameObject newBlock = Instantiate(playerBlockPrefabs[shapeIndex], spawnPos, startRotation);
-
-                int layerZahl = LayerMask.NameToLayer("placableBlock");
-                newBlock.layer = layerZahl;
-                foreach (Transform child in newBlock.GetComponentsInChildren<Transform>(true))
-                {
-                    child.gameObject.layer = layerZahl;
-                }
-
-                // Das Skript hinzufügen, das die Gewichtskategorie wechseln kann
-                PlayerBlockSwitcher switcher = newBlock.AddComponent<PlayerBlockSwitcher>();
-
-                // welches Gewicht der Block in seinem Prefab gespeichert
-                BlockIdentifier identifier = newBlock.GetComponent<BlockIdentifier>();
-                if (identifier != null)
-                {
-                    // Wir stellen den Schalter auf das Original-Gewicht ein
-                    switcher.currentCategory = identifier.myCategory;
-
-                    // Wir konfigurieren Farbe und Masse basierend auf diesem Original-Gewicht!
-                    ConfigurePlayerBlock(newBlock, identifier.myCategory);
-                }
-                else
-                {
-                    // Nur zur Sicherheit, falls mal ein Ausweis fehlt
-                    ConfigurePlayerBlock(newBlock, BlockWeightCategory.Light);
-                }
-            }
-        }
-        else
-        {
-            Debug.LogError("Fehler: Du hast keinen BoxCollider in das Feld 'Spawn Volume' gezogen!");
-        }
+        CheckBalance();
     }
 
     public void AssignRandomColors()
     {
         // 1. Wir packen alle drei Materialien in eine Liste (unseren "Beutel")
-        
         List<Material> availableMaterials = new List<Material>
         {
-            Resources.Load<Material>("redMaterial"), 
+            Resources.Load<Material>("redMaterial"),
             Resources.Load<Material>("blueMaterial"),
             Resources.Load<Material>("greenMaterial")
         };
@@ -178,8 +78,10 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
+
     //ex
-    private void SetupTower(GameObject towerObject)
+    // ACHTUNG: Das 'private' wurde entfernt, damit der SpawnManager zugreifen kann
+    public void SetupTower(GameObject towerObject)
     {
         // Sucht ALLE Blöcke im gesamten Turm auf einmal zusammen
         BlockIdentifier[] allBlocksInTower = towerObject.GetComponentsInChildren<BlockIdentifier>();
@@ -213,7 +115,6 @@ public class GameManager : MonoBehaviour
             {
                 renderer.material = mysteryMaterial;
             }
-          
         }
     }
 
@@ -245,42 +146,110 @@ public class GameManager : MonoBehaviour
             if (renderer != null) renderer.material = heavyMaterial;
             if (rb != null) rb.mass = 10f;
         }
+
         // Wenn sich die Masse ändert diesen Block nicht mehr schlafen zu lassen, damit die Waage den neuen Druck spürt.
         if (rb != null)
         {
             rb.WakeUp();
         }
     }
+
     //ex
     public void CheckBalance()
     {
         // Sicherheits-Check: Sind beide Waagschalen im Inspector zugewiesen?
-        if (leftScale == null || rightScale == null) return;
+        if (leftScale == null || rightScale == null || isTransitioning) return;
+
         //Gewichte reinholen
         weightLeft = leftScale.currentWeight;
         weightRight = rightScale.currentWeight;
+
         // Wir berechnen die absolute Differenz zwischen links und rechts
         float difference = Mathf.Abs(weightLeft - weightRight);
 
+        // GEFIXT: Der Klammerfehler am Ende der if-Abfrage wurde entfernt
         // Wenn die Differenz innerhalb unserer Toleranz liegt UND überhaupt Gewicht draufliegt
-        if (difference <= tolerance && (weightLeft > 0 || weightRight > 0))
+        if (difference <= tolerance && weightLeft > tolerance && weightRight > tolerance)
         {
-            if (!isBalanced)
+            currentBalanceTime += Time.deltaTime;
+            if (currentBalanceTime >= requiredBalanceTime && !isBalanced)
             {
                 isBalanced = true;
-                Debug.Log(" DIE WAAGE IST RECHNERISCH BALANCIERT!");
+                isTransitioning = true;
+                Debug.Log("DIE WAAGE IST FÜR 3 SEKUNDEN BALANCIERT!");
 
+                // GEFIXT: Hier speichern wir jetzt die Punkte, bevor wir die Szene wechseln!
+                CalculateAndSaveAccuracy(difference);
+
+                //Jetzt werden die blöcke dem Szenen Übergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
+                if (transitionManager != null)
+                {
+                    transitionManager.TransferTowerAndLoadScene();
+                }
                 // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
                 // z.B. GetComponent<PlayableDirector>().Play();
             }
         }
         else
         {
-            if (isBalanced)
+            if (currentBalanceTime > 0)
             {
                 isBalanced = false;
-                Debug.Log(" Waage wieder aus dem Gleichgewicht geraten.");
+                currentBalanceTime = 0f;
+                Debug.Log("Waage aus dem Gleichgewicht. Timer resettet.");
             }
         }
+    }
+
+    private void CalculateAndSaveAccuracy(float currentDifference)
+    {
+        // A. GEWICHTS-GENAUIGKEIT
+        float weightAccuracy = 100f - ((currentDifference / tolerance) * 100f);
+        weightAccuracy = Mathf.Clamp(weightAccuracy, 0f, 100f);
+
+        // B. VORGABE-BLÖCKE ZÄHLEN
+        GameObject targetTower = GameObject.FindWithTag("TargetTower");
+        int targetBlockCount = 0;
+
+        if (targetTower != null)
+        {
+            targetBlockCount = targetTower.transform.childCount;
+        }
+        else
+        {
+            Debug.LogWarning("Vorgabe-Turm nicht gefunden! Hast du den Tag 'TargetTower' gesetzt?");
+        }
+
+        // C. SPIELER-BLÖCKE ZÄHLEN
+        GameObject[] allTowerBlocks = GameObject.FindGameObjectsWithTag("TowerBlock");
+        int playerBlockCount = 0;
+
+        foreach (GameObject block in allTowerBlocks)
+        {
+            float distToLeft = Vector3.Distance(block.transform.position, leftScale.transform.position);
+            float distToRight = Vector3.Distance(block.transform.position, rightScale.transform.position);
+
+            if (distToRight < distToLeft)
+            {
+                playerBlockCount++;
+            }
+        }
+
+        // D. ANZAHL-GENAUIGKEIT
+        float blockAccuracy = 0f;
+        if (targetBlockCount > 0)
+        {
+            float blockDifference = Mathf.Abs(targetBlockCount - playerBlockCount);
+            blockAccuracy = 100f - ((blockDifference / targetBlockCount) * 100f);
+            blockAccuracy = Mathf.Clamp(blockAccuracy, 0f, 100f);
+        }
+
+        // E. GESAMTPUNKTZAHL
+        float finalAccuracyPercentage = (weightAccuracy + blockAccuracy) / 2f;
+
+        PlayerPrefs.SetFloat("TowerAccuracy", finalAccuracyPercentage);
+        PlayerPrefs.Save();
+
+        Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Blöcke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
     }
 }

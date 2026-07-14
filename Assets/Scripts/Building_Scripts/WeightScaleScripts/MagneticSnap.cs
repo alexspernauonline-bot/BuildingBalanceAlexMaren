@@ -12,14 +12,17 @@ public class MagneticSnap: MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!hasSnapped && collision.gameObject.CompareTag("Block"))
+        // Prüfen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
+        bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") || collision.gameObject.CompareTag("Scale");
+
+        if (!hasSnapped && hitValidTarget)
         {
             if (collision.contactCount > 0)
             {
                 Vector3 currentRotation = transform.rotation.eulerAngles;
                 ContactPoint contact = collision.GetContact(0);
 
-                if (contact.normal.y > 0.7f) 
+                if (contact.normal.y > 0.7f)
                 {
                     float snappedX = Mathf.Round(currentRotation.x / 90f) * 90f;
                     float snappedZ = Mathf.Round(currentRotation.z / 90f) * 90f;
@@ -31,6 +34,9 @@ public class MagneticSnap: MonoBehaviour
                     rb.angularVelocity = Vector3.zero;
 
                     hasSnapped = true;
+
+                    // ÄNDERUNG 2: Dieser Block ist jetzt offiziell Teil des Turms!
+                    gameObject.tag = "TowerBlock";
                 }
             }
         }

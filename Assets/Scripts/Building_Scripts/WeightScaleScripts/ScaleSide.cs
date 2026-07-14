@@ -51,7 +51,7 @@ public class ScaleSide : MonoBehaviour
 
     private void HandleCollision(Collision collision)
     {
-        if (collision.rigidbody != null && collision.gameObject.CompareTag("Block"))
+        if (collision.rigidbody != null && (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock")))
         {
             // Impuls durch die feste Zeit eines Physik-Frames teilen = Konstante Kraft
             float forceY = collision.impulse.y / Time.fixedDeltaTime;
