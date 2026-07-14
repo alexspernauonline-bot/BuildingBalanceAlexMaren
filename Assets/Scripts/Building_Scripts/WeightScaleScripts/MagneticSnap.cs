@@ -5,7 +5,7 @@ public class MagneticSnap: MonoBehaviour
     private bool hasSnapped = false;
     private Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }

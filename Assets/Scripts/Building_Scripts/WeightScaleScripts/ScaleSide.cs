@@ -66,7 +66,7 @@ public class ScaleSide : MonoBehaviour
     }
 
     // Die Kollisions-Trigger
-    private void OnCollisionEnter(Collision collision) => HandleCollision(collision);
+   
     private void OnCollisionStay(Collision collision) => HandleCollision(collision);
 
     private void OnCollisionExit(Collision collision)
