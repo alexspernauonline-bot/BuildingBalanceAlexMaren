@@ -6514,7 +6514,7 @@ Transform:
   m_GameObject: {fileID: 357616897}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.73, z: 0.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6532,7 +6532,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f33259978ccf624b87cb2efd348b526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseLook
-  mouseSensitivity: 100
+  mouseSensitivity: 300
   playerBody: {fileID: 1333846320}
 --- !u!43 &376559958
 Mesh:
@@ -27190,7 +27190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 1333846322}
-  speed: 12
+  speed: 8
   gravity: -9.81
   jumpHeight: 3
   groundCheck: {fileID: 609917856}
