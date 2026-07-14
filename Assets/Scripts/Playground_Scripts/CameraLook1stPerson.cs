@@ -20,7 +20,7 @@ public class CameraLook1stPerson : MonoBehaviour
 
         xRotation -= mouseX;
         xRotation = Mathf.Clamp(xRotation, -90f, -90f);
-        Transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
+        //Transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerRef.Rotate(Vector3.up * mouseX);
     }
 }
