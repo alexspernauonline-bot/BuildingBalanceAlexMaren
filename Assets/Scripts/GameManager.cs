@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public ScaleSide rightScale;
     //Rätsel-Einstellungen
     public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
+
     private bool isBalanced = false;
 
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blöcke spawnen.
