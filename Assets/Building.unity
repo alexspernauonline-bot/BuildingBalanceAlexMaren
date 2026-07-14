@@ -9039,7 +9039,7 @@ MonoBehaviour:
   - {fileID: 8643502007923208000, guid: 89ac6d6411ad0cd49b6694b9bfd86674, type: 3}
   - {fileID: 6944453012290899017, guid: e261c2c3bb3ba074e888f7fe3c817e3b, type: 3}
   towerSpawnArea: {fileID: 789198195}
-  mysteryMaterial: {fileID: 2100000, guid: de3ad29a88560064cbbbd2c2dd5b66b2, type: 2}
+  mysteryMaterial: {fileID: 2100000, guid: 47cf5dc2b42378944b0a5fd57bc0caec, type: 2}
   playerBlockPrefabs:
   - {fileID: 4398856457544336286, guid: d595b7b11d9b55d44be04c59a73ea713, type: 3}
   - {fileID: 180496886290586532, guid: c1ccc62bcd2607b4c8239d418da0e05f, type: 3}
