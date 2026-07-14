@@ -2,14 +2,17 @@ using UnityEngine;
 
 public class ScaleVisualizer : MonoBehaviour
 {
-    
     public Transform leftScaleTransform;
     public Transform rightScaleTransform;
-   
 
     public GameManager gameManager;
 
-   //Animationen
+    public MeshRenderer[] pillarRenderers;
+    public Material greenBlinkMaterial;
+    private Material[] originalMaterials;
+
+
+    //Animationen
     public float maxMovementY = 1.0f;
     public float maxWeightDifference = 10f;
     public float moveSpeed = 5.0f;
@@ -36,6 +39,45 @@ public class ScaleVisualizer : MonoBehaviour
             startYRight = rightScaleTransform.localPosition.y;
             targetYRight = startYRight;
         }
+        //für das Blinken der Säule
+        if (pillarRenderers != null && pillarRenderers.Length > 0)
+        {
+            originalMaterials = new Material[pillarRenderers.Length];
+            for (int i = 0; i < pillarRenderers.Length; i++)
+            {
+                if (pillarRenderers[i] != null)
+                {
+                    originalMaterials[i] = pillarRenderers[i].material;
+                }
+            }
+        }
+    }
+
+    public void UpdateBlink(bool isBlinking, float currentTime)
+    {
+        if (pillarRenderers == null || greenBlinkMaterial == null) return;
+
+        if (isBlinking)
+        {
+            bool showGreen = Mathf.Repeat(currentTime, 1f) < 0.5f;
+            for (int i = 0; i < pillarRenderers.Length; i++)
+            {
+                if (pillarRenderers[i] != null)
+                {
+                    pillarRenderers[i].material = showGreen ? greenBlinkMaterial : originalMaterials[i];
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < pillarRenderers.Length; i++)
+            {
+                if (pillarRenderers[i] != null && originalMaterials != null && i < originalMaterials.Length)
+                {
+                    pillarRenderers[i].material = originalMaterials[i];
+                }
+            }
+        }
     }
 
     void FixedUpdate()
@@ -44,7 +86,6 @@ public class ScaleVisualizer : MonoBehaviour
         if (leftScaleTransform == null || rightScaleTransform == null || gameManager == null) return;
 
         // 1. Wir lesen die Gewichte einfach aus dem GameManager ab
-        // (Voraussetzung: weightLeft und weightRight sind in deinem GameManager 'public')
         float currentRawDifference = gameManager.weightLeft - gameManager.weightRight;
 
         // 2. Den Wert normalisieren
@@ -58,7 +99,6 @@ public class ScaleVisualizer : MonoBehaviour
             targetYLeft = startYLeft - (normalizedDiff * maxMovementY);
             targetYRight = startYRight + (normalizedDiff * maxMovementY);
         }
-        
 
         // Vektoren bauen
         Vector3 targetPosLeft = new Vector3(leftScaleTransform.localPosition.x, targetYLeft, leftScaleTransform.localPosition.z);

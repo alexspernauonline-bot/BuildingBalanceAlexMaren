@@ -60,7 +60,7 @@ public class ScaleSide : MonoBehaviour
                 impulsePerRigidBody[collision.rigidbody] = forceY;
             else
                 impulsePerRigidBody.Add(collision.rigidbody, forceY);
-
+           
             UpdateWeight();
         }
     }

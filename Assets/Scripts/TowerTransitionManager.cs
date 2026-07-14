@@ -37,7 +37,7 @@ public class TowerTransitionManager : MonoBehaviour
             if (rb != null)
             {
                 // Er behält sein Gewicht, bewegt sich aber nicht mehr von selbst.
-                rb.isKinematic = true;
+               
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }

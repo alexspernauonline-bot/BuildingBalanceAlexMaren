@@ -13,7 +13,7 @@ public class MagneticSnap: MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         // Prüfen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
-        bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") || collision.gameObject.CompareTag("Scale");
+        bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") && collision.gameObject.CompareTag("Scale");
 
         if (!hasSnapped && hitValidTarget)
         {
@@ -35,8 +35,8 @@ public class MagneticSnap: MonoBehaviour
 
                     hasSnapped = true;
 
-                    // ÄNDERUNG 2: Dieser Block ist jetzt offiziell Teil des Turms!
                     gameObject.tag = "TowerBlock";
+
                 }
             }
         }

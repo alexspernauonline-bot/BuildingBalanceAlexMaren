@@ -26,7 +26,9 @@ public class GameManager : MonoBehaviour
     //Rätsel-Einstellungen
     public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
 
-    //Tower Transition Manager
+    //Tower Transition Manager und Blink Animation
+    public ScaleVisualizer leftVisualizer;
+    public ScaleVisualizer rightVisualizer;
     public TowerTransitionManager transitionManager;
     // Wie lange die Waage im Gleichgewicht bleiben muss timer
     public float requiredBalanceTime = 3.0f;
@@ -172,10 +174,16 @@ public class GameManager : MonoBehaviour
         if (difference <= tolerance && weightLeft > tolerance && weightRight > tolerance)
         {
             currentBalanceTime += Time.deltaTime;
+            //Blink starten 
+            if (leftVisualizer != null) leftVisualizer.UpdateBlink(true, currentBalanceTime);
+            if (rightVisualizer != null) rightVisualizer.UpdateBlink(true, currentBalanceTime);
+
             if (currentBalanceTime >= requiredBalanceTime && !isBalanced)
             {
                 isBalanced = true;
                 isTransitioning = true;
+                if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
+                if (rightVisualizer != null) rightVisualizer.UpdateBlink(false, 0f);
                 Debug.Log("DIE WAAGE IST FÜR 3 SEKUNDEN BALANCIERT!");
 
                 // GEFIXT: Hier speichern wir jetzt die Punkte, bevor wir die Szene wechseln!
@@ -196,6 +204,10 @@ public class GameManager : MonoBehaviour
             {
                 isBalanced = false;
                 currentBalanceTime = 0f;
+
+                if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
+                if (rightVisualizer != null) rightVisualizer.UpdateBlink(false, 0f);
+
                 Debug.Log("Waage aus dem Gleichgewicht. Timer resettet.");
             }
         }
