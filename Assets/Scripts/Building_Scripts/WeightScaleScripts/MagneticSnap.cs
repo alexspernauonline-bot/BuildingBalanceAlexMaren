@@ -2,16 +2,21 @@ using UnityEngine;
 
 public class MagneticSnap: MonoBehaviour
 {
+    public AudioClip placeSound;
+    public AudioClip crashSound;
     private bool hasSnapped = false;
     private Rigidbody rb;
-
+    private AudioSource blockAudioSource;
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+
+        blockAudioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        blockAudioSource.PlayOneShot(placeSound, 1);
         // Prüfen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
         bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") && collision.gameObject.CompareTag("Scale");
 
@@ -19,6 +24,7 @@ public class MagneticSnap: MonoBehaviour
         {
             if (collision.contactCount > 0)
             {
+               
                 Vector3 currentRotation = transform.rotation.eulerAngles;
                 ContactPoint contact = collision.GetContact(0);
 

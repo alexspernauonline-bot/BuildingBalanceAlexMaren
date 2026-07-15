@@ -10,11 +10,13 @@ public class ScaleSide : MonoBehaviour
     private Dictionary<Rigidbody, float> impulsePerRigidBody = new Dictionary<Rigidbody, float>();
 
     private float forceToMass;
-
+    private AudioSource blockAudioSource;
+    public AudioClip placeSound;
     private void Awake()
     {
         // Wandelt später die pure Kraft wieder in Kilo um (geteilt durch Erdbeschleunigung)
         forceToMass = 1f / Physics.gravity.magnitude;
+        blockAudioSource = GetComponent<AudioSource>();
     }
 
     public void UpdateWeight()
@@ -51,6 +53,7 @@ public class ScaleSide : MonoBehaviour
 
     private void HandleCollision(Collision collision)
     {
+        blockAudioSource.PlayOneShot(placeSound, 1);
         if (collision.rigidbody != null && (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock")))
         {
             // Impuls durch die feste Zeit eines Physik-Frames teilen = Konstante Kraft
