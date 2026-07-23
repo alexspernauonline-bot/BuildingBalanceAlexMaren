@@ -9326,6 +9326,8 @@ MonoBehaviour:
   leftScale: {fileID: 0}
   rightScale: {fileID: 0}
   tolerance: 0.1
+  leftVisualizer: {fileID: 0}
+  rightVisualizer: {fileID: 0}
   transitionManager: {fileID: 0}
   requiredBalanceTime: 3
 --- !u!4 &431639088
@@ -28486,6 +28488,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScaleSide
   currentWeight: 0
+  placeSound: {fileID: 0}
 --- !u!65 &1319116413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29401,9 +29404,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 1333846322}
-  speed: 8
+  normalSpeed: 8
   gravity: -9.81
-  jumpHeight: 3
+  jumpHeight: 2
   groundCheck: {fileID: 609917856}
   groundDistance: 0.4
   groundMask:
@@ -33006,6 +33009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScaleSide
   currentWeight: 0
+  placeSound: {fileID: 0}
 --- !u!65 &1467062379
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39461,6 +39465,8 @@ MonoBehaviour:
   leftScaleTransform: {fileID: 0}
   rightScaleTransform: {fileID: 0}
   gameManager: {fileID: 0}
+  pillarRenderers: []
+  greenBlinkMaterial: {fileID: 0}
   maxMovementY: 0.5
   maxWeightDifference: 10
   moveSpeed: 1
