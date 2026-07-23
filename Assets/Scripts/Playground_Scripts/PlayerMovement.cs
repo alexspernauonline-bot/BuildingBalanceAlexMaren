@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
     //Verbindung zum Character controller
     public CharacterController controller;
 
+    //Verbindung zum Spawn
+    public GameObject spawn;
+
     //Bewegungsvariablen
     public float normalSpeed = 12f;
     private float actualSpeed;
@@ -24,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        transform.position = spawn.transform.position;
     }
 
     // Update is called once per frame

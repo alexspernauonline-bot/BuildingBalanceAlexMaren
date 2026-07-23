@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8109572389933651766}
   - component: {fileID: 2345283578079743774}
   - component: {fileID: 3370215502113779181}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Rampe_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

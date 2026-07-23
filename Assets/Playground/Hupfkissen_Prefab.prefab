@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 201227705673416038}
   - component: {fileID: 7657534027417579918}
   - component: {fileID: 3644446015331351854}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hupfkissen_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3832400370642702282}
   - component: {fileID: 4561534531308923560}
   - component: {fileID: 3992167932845476652}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bruecke_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
