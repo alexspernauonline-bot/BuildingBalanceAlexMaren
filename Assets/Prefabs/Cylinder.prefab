@@ -169,6 +169,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BlockIdentifier
   myCategory: 0
   trueMaterial: {fileID: 0}
+  placeSound: {fileID: 8300000, guid: e545e7599a9987444965e82cb9a4e257, type: 3}
+  crashSound: {fileID: 8300000, guid: 039197a0fcbcf19499d1ea54f975413e, type: 3}
+  blockAudioSource: {fileID: -2296217594773278198}
 --- !u!82 &-2296217594773278198
 AudioSource:
   m_ObjectHideFlags: 0

@@ -2,22 +2,19 @@ using UnityEngine;
 
 public class MagneticSnap: MonoBehaviour
 {
-    public AudioClip placeSound;
-    public AudioClip crashSound;
+    
     private bool hasSnapped = false;
     private Rigidbody rb;
-    private AudioSource blockAudioSource;
+   
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-
-        blockAudioSource = GetComponent<AudioSource>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        blockAudioSource.PlayOneShot(placeSound, 1);
-        // Prüfen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
+       
+        // Prï¿½fen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
         bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") && collision.gameObject.CompareTag("Scale");
 
         if (!hasSnapped && hitValidTarget)
@@ -47,6 +44,8 @@ public class MagneticSnap: MonoBehaviour
             }
         }
     }
+  
+
     /*
     {
     private bool hasSnapped = false;
@@ -63,13 +62,13 @@ public class MagneticSnap: MonoBehaviour
         if (!hasSnapped && (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("Player") == false))
         {
             Vector3 currentRotation = transform.rotation.eulerAngles;
-            // Wir prüfen, ob der Aufprall hauptsächlich von OBEN kam (Normalen-Vektor zeigt nach oben)
-            // contact.normal zeigt von der getroffenen Oberfläche weg. Wenn sie nach oben zeigt, landen wir auf der Oberseite.
+            // Wir prï¿½fen, ob der Aufprall hauptsï¿½chlich von OBEN kam (Normalen-Vektor zeigt nach oben)
+            // contact.normal zeigt von der getroffenen Oberflï¿½che weg. Wenn sie nach oben zeigt, landen wir auf der Oberseite.
             ContactPoint contact = collision.GetContact(0);
 
-            if (contact.normal.y > 0.7f) // 1f wäre perfekt gerade von oben, 0.7f erlaubt leicht schräges Aufkommen
+            if (contact.normal.y > 0.7f) // 1f wï¿½re perfekt gerade von oben, 0.7f erlaubt leicht schrï¿½ges Aufkommen
             {
-                // Wir runden die X- und Z-Rotation auf die nächste 90-Grad-Kante (oder 0°, 180°, 270°)
+                // Wir runden die X- und Z-Rotation auf die nï¿½chste 90-Grad-Kante (oder 0ï¿½, 180ï¿½, 270ï¿½)
                 // Dadurch bleibt der Block auf der Seite liegen, wenn der Spieler ihn auf die Seite gedreht hat,
                 // wird aber trotzdem perfekt gerade ausgerichtet, damit er nicht wackelt!
                 float snappedX = Mathf.Round(currentRotation.x / 90f) * 90f;
@@ -79,11 +78,11 @@ public class MagneticSnap: MonoBehaviour
                 float snappedY = currentRotation.y;
                 transform.rotation = Quaternion.Euler(snappedX, snappedY, snappedZ);
 
-                // 3. ROTATIONS-SPERRE FÜR STABILITÄT
+                // 3. ROTATIONS-SPERRE Fï¿½R STABILITï¿½T
                 // Sobald er liegt, darf er nicht mehr um die X- und Z-Achse wegkippen.
                 rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
-                // 4. TRÄGHEIT UND BEWEGUNG STOPPEN
+                // 4. TRï¿½GHEIT UND BEWEGUNG STOPPEN
                 // Wir nehmen den kompletten Schwung aus dem Aufprall, damit es keine Mikro-Bouncer gibt.
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;

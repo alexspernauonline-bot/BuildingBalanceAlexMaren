@@ -14,7 +14,7 @@ public class ScaleSide : MonoBehaviour
     public AudioClip placeSound;
     private void Awake()
     {
-        // Wandelt später die pure Kraft wieder in Kilo um (geteilt durch Erdbeschleunigung)
+        // Wandelt spï¿½ter die pure Kraft wieder in Kilo um (geteilt durch Erdbeschleunigung)
         forceToMass = 1f / Physics.gravity.magnitude;
         blockAudioSource = GetComponent<AudioSource>();
     }
@@ -23,7 +23,7 @@ public class ScaleSide : MonoBehaviour
     {
         float combinedForce = 0f;
 
-        // Alle gespeicherten Kräfte zusammenrechnen
+        // Alle gespeicherten Krï¿½fte zusammenrechnen
         foreach (var force in impulsePerRigidBody.Values)
         {
             combinedForce += force;
@@ -33,13 +33,13 @@ public class ScaleSide : MonoBehaviour
         float calculatedMass = combinedForce * forceToMass;
 
         // WICHTIG: Physik zittert oft leicht (z.B. 5.00014f). 
-        // Wir runden das auf eine Nachkommastelle, damit deine Waage sauber prüfen kann!
+        // Wir runden das auf eine Nachkommastelle, damit deine Waage sauber prï¿½fen kann!
         calculatedMass = Mathf.Round(calculatedMass * 10f) / 10f;
 
         // Sicherheitsnetz gegen Werte unter 0
         calculatedMass = Mathf.Max(0f, calculatedMass);
 
-        // Nur dem Manager Bescheid geben, wenn sich das Gewicht WIRKLICH geändert hat
+        // Nur dem Manager Bescheid geben, wenn sich das Gewicht WIRKLICH geï¿½ndert hat
         if (Mathf.Abs(currentWeight - calculatedMass) > 0.01f)
         {
             currentWeight = calculatedMass;
@@ -53,7 +53,7 @@ public class ScaleSide : MonoBehaviour
 
     private void HandleCollision(Collision collision)
     {
-        blockAudioSource.PlayOneShot(placeSound, 1);
+       
         if (collision.rigidbody != null && (collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock")))
         {
             // Impuls durch die feste Zeit eines Physik-Frames teilen = Konstante Kraft
@@ -90,20 +90,20 @@ public float currentWeight = 0f;
 
 private void OnCollisionEnter(Collision collision)
 {
-    // Bei OnCollisionEnter holen wir uns den Rigidbody über collision.gameObject
+    // Bei OnCollisionEnter holen wir uns den Rigidbody ï¿½ber collision.gameObject
     Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
 
     if (rb != null)
     {
         // Masse dieses Objekts addieren
         currentWeight += rb.mass;
-        Debug.Log(gameObject.name + " Gewicht erhöht auf: " + currentWeight);
-        //Gibt dem Game Manager den Befehl das Gewicht neu zu Prüfen
+        Debug.Log(gameObject.name + " Gewicht erhï¿½ht auf: " + currentWeight);
+        //Gibt dem Game Manager den Befehl das Gewicht neu zu Prï¿½fen
         GameManager.Instance.CheckBalance();
     }
 }
 
-// Läuft automatisch, wenn ein Objekt von der Waage herabfällt oder weggenommen wird
+// Lï¿½uft automatisch, wenn ein Objekt von der Waage herabfï¿½llt oder weggenommen wird
 private void OnCollisionExit(Collision collision)
 {
     Rigidbody rb = collision.gameObject.GetComponent<Rigidbody>();
@@ -113,10 +113,10 @@ private void OnCollisionExit(Collision collision)
         // Wir subtrahieren die Masse
         currentWeight -= rb.mass;
 
-        // Sicherheitsmaßnahme gegen Rundungsfehler
+        // Sicherheitsmaï¿½nahme gegen Rundungsfehler
         currentWeight = Mathf.Max(0f, currentWeight);
         Debug.Log(gameObject.name + " Gewicht verringert auf: " + currentWeight);
-        //Gibt dem Game Manager den Befehl das Gewicht neu zu Prüfen
+        //Gibt dem Game Manager den Befehl das Gewicht neu zu Prï¿½fen
         GameManager.Instance.CheckBalance();
     }
 }
