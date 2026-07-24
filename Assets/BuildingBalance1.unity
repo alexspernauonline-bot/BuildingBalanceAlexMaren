@@ -31068,7 +31068,7 @@ PrefabInstance:
       objectReference: {fileID: 984440435}
     - target: {fileID: 1251693681782941190, guid: b45c405a01de4964c911827a1606f2b8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2444
+      value: 2456
       objectReference: {fileID: 0}
     - target: {fileID: 1984507544250040552, guid: b45c405a01de4964c911827a1606f2b8, type: 3}
       propertyPath: m_Name
@@ -53167,7 +53167,7 @@ GameObject:
   - component: {fileID: 1503300054}
   - component: {fileID: 1503300053}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Pauseplattform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -57315,7 +57315,7 @@ GameObject:
   - component: {fileID: 1615940161}
   - component: {fileID: 1615940160}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: Pauseplattform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78965,7 +78965,7 @@ PrefabInstance:
       objectReference: {fileID: 796302548}
     - target: {fileID: 1251693681782941190, guid: b45c405a01de4964c911827a1606f2b8, type: 3}
       propertyPath: m_VersionIndex
-      value: 2444
+      value: 2456
       objectReference: {fileID: 0}
     - target: {fileID: 1984507544250040552, guid: b45c405a01de4964c911827a1606f2b8, type: 3}
       propertyPath: m_Name
