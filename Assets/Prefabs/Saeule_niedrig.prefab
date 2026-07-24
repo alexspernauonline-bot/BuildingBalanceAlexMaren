@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8658000742166798851}
   - component: {fileID: 8935203301584493869}
   - component: {fileID: 2422168828784283709}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Saeule_niedrig
   m_TagString: Untagged
   m_Icon: {fileID: 0}

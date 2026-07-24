@@ -3,8 +3,8 @@ using UnityEngine;
 public class MovingPlattforms : MonoBehaviour
 {
     //Festgelegte Punkte
-    private int zA = -20;
-    private int zB = 10;
+    private int zA = -10;
+    private int zB = 1;
 
     private Vector3 pointA;
     private Vector3 pointB;
@@ -24,6 +24,6 @@ public class MovingPlattforms : MonoBehaviour
     void Update()
     {
         //Loop zwischen PointA und PointB für kontinuierliche Bewegung der Plattform
-        transform.position = Vector3.Lerp(pointA, pointB, Mathf.PingPong(Time.time / speed, 1));
+        transform.position = Vector3.Lerp(pointA, pointB, Mathf.PingPong(Time.time/speed, 1));
     }
 }

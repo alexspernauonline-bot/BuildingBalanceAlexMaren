@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6636822546440491620}
   - component: {fileID: 5518231987869656568}
   - component: {fileID: -8667146424159142034}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BewegePlattformen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -369,3 +369,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05b330ee94aa7b3488c37d0012282dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MovingPlattforms
+  speed: 3

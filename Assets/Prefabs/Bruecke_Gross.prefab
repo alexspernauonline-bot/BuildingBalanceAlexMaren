@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5224308862461227069}
   - component: {fileID: 976856964461701289}
   - component: {fileID: 7275816300543414}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bruecke_Gross
   m_TagString: Untagged
   m_Icon: {fileID: 0}

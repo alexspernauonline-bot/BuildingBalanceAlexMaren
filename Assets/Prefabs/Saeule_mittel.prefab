@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1374275354491962688}
   - component: {fileID: 6459960777640700720}
   - component: {fileID: 6262803390619747928}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Saeule_mittel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4527917996446146381}
   - component: {fileID: 2972682211934089774}
   - component: {fileID: 4973340960358882202}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Wuerfel_Gross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
