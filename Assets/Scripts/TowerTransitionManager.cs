@@ -43,6 +43,8 @@ public class TowerTransitionManager : MonoBehaviour
             }
         }
 
+        rightContainer.tag = "PlayerTower";
+
         DontDestroyOnLoad(leftContainer);
         DontDestroyOnLoad(rightContainer);
 

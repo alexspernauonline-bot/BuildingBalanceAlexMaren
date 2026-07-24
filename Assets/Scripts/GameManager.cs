@@ -44,7 +44,12 @@ public class GameManager : MonoBehaviour
     private bool isBalanced = false;
 
     //Referenz zum Player
-    public PlayerMovement playerRef;
+    public PlayerMovement playerScript;
+    public Transform playerPos;
+
+    private GameObject playerTower;
+
+    private Vector3 offset = new Vector3(0f, 0f, 2f);
 
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Bl�cke spawnen.
     void Awake()
@@ -59,12 +64,19 @@ public class GameManager : MonoBehaviour
         gameManagerAudioSource = GetComponent<AudioSource>();
     }
 
+    void Start()
+    {
+        playerTower = GameObject.FindWithTag("PlayerTower");
+        playerTower.transform.SetParent(playerPos, false);
+        playerTower.transform.localPosition += offset;
+    }
+
     // GEFIXT: Update-Methode hinzugef�gt, damit die Waage jeden Frame gepr�ft wird
     void Update()
     {
         CheckBalance();
 
-        if (playerRef.hasReachedFinish)
+        if (playerScript.hasReachedFinish)
         {
             GameFinished();
         }
