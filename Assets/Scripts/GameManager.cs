@@ -43,12 +43,7 @@ public class GameManager : MonoBehaviour
 
     private bool isBalanced = false;
 
-<<<<<<< Updated upstream
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blï¿½cke spawnen.
-=======
-    private float finishTime = 0;
-    // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blöcke spawnen.
->>>>>>> Stashed changes
     void Awake()
     {
         // Singleton initialisieren
@@ -276,21 +271,5 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Blï¿½cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
-    }
-
-    //Ende des Spiels
-    private void onTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Finish"))
-        {
-            FinishTime();
-            print("Finish");
-            print("finishTime");
-        }
-    }
-
-    private void FinishTime()
-    {
-        finishTime = Time.time;
     }
 }
