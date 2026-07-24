@@ -4,14 +4,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 
 {
-    // Das Material, das die Farben von der Lösung verdeckt
+    // Das Material, das die Farben von der Lï¿½sung verdeckt
     [SerializeField] private Material mysteryMaterial;
 
-    // Das ist das Singleton. Damit können alle anderen Skripte diesen Manager finden.
+    // Das ist das Singleton. Damit kï¿½nnen alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
    
 
-    // Hier speichern wir das fertige Ergebnis für diese Runde
+    // Hier speichern wir das fertige Ergebnis fï¿½r diese Runde
     public Material lightMaterial;
     public Material mediumMaterial;
     public Material heavyMaterial;
@@ -19,11 +19,11 @@ public class GameManager : MonoBehaviour
     //Aktuelle Gewichte der Waagschalen
     public float weightLeft = 0f;
     public float weightRight = 0f;
-    // Referenzen zu den Waagschalen, damit wir sie später ansprechen können
+    // Referenzen zu den Waagschalen, damit wir sie spï¿½ter ansprechen kï¿½nnen
     public ScaleSide leftScale;
     public ScaleSide rightScale;
 
-    //Rätsel-Einstellungen
+    //Rï¿½tsel-Einstellungen
     public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
 
     //Tower Transition Manager und Blink Animation
@@ -32,12 +32,18 @@ public class GameManager : MonoBehaviour
     public TowerTransitionManager transitionManager;
     // Wie lange die Waage im Gleichgewicht bleiben muss timer
     public float requiredBalanceTime = 3.0f;
+
+    //Gewinnton
+    public AudioClip winSound;
+    private AudioSource gameManagerAudioSource;
+
+    // Timer start
     private float currentBalanceTime = 0f;
     private bool isTransitioning = false;
 
     private bool isBalanced = false;
 
-    // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blöcke spawnen.
+    // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Blï¿½cke spawnen.
     void Awake()
     {
         // Singleton initialisieren
@@ -45,11 +51,12 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-
         AssignRandomColors();
+
+        gameManagerAudioSource = GetComponent<AudioSource>();
     }
 
-    // GEFIXT: Update-Methode hinzugefügt, damit die Waage jeden Frame geprüft wird
+    // GEFIXT: Update-Methode hinzugefï¿½gt, damit die Waage jeden Frame geprï¿½ft wird
     void Update()
     {
         CheckBalance();
@@ -65,17 +72,17 @@ public class GameManager : MonoBehaviour
             Resources.Load<Material>("greenMaterial")
         };
 
-        // 2. Wir ziehen eine zufällige Zahl für das LEICHTE Gewicht
+        // 2. Wir ziehen eine zufï¿½llige Zahl fï¿½r das LEICHTE Gewicht
         int randomIndex = Random.Range(0, availableMaterials.Count);
         lightMaterial = availableMaterials[randomIndex];
         availableMaterials.RemoveAt(randomIndex); // Farbe aus dem Beutel nehmen!
 
-        // 3. Wir ziehen aus den verbleibenden ZWEI Farben für das MITTLERE Gewicht
+        // 3. Wir ziehen aus den verbleibenden ZWEI Farben fï¿½r das MITTLERE Gewicht
         randomIndex = Random.Range(0, availableMaterials.Count);
         mediumMaterial = availableMaterials[randomIndex];
         availableMaterials.RemoveAt(randomIndex);
 
-        // 4. Das SCHWERE Gewicht bekommt automatisch die letzte übrig gebliebene Farbe
+        // 4. Das SCHWERE Gewicht bekommt automatisch die letzte ï¿½brig gebliebene Farbe
         heavyMaterial = availableMaterials[0];
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
@@ -85,7 +92,7 @@ public class GameManager : MonoBehaviour
     // ACHTUNG: Das 'private' wurde entfernt, damit der SpawnManager zugreifen kann
     public void SetupTower(GameObject towerObject)
     {
-        // Sucht ALLE Blöcke im gesamten Turm auf einmal zusammen
+        // Sucht ALLE Blï¿½cke im gesamten Turm auf einmal zusammen
         BlockIdentifier[] allBlocksInTower = towerObject.GetComponentsInChildren<BlockIdentifier>();
 
         foreach (BlockIdentifier block in allBlocksInTower)
@@ -93,7 +100,7 @@ public class GameManager : MonoBehaviour
             MeshRenderer renderer = block.GetComponentInChildren<MeshRenderer>();
             Rigidbody rb = block.GetComponent<Rigidbody>();
 
-            // Prüfen, welcher Ausweis vorgezeigt wird
+            // Prï¿½fen, welcher Ausweis vorgezeigt wird
             if (block.myCategory == BlockWeightCategory.Light)
             {
                 if (renderer != null) renderer.material = lightMaterial;
@@ -112,7 +119,7 @@ public class GameManager : MonoBehaviour
                 if (rb != null) rb.mass = 10f;
                 block.trueMaterial = heavyMaterial;
             }
-            //Lösung wird mit grau übermalt
+            //Lï¿½sung wird mit grau ï¿½bermalt
             if (renderer != null && mysteryMaterial != null)
             {
                 renderer.material = mysteryMaterial;
@@ -120,13 +127,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Das Placement-System übergibt hier den frisch gespawnten Block und dessen gewünschte Gewichtsklasse
+    // Das Placement-System ï¿½bergibt hier den frisch gespawnten Block und dessen gewï¿½nschte Gewichtsklasse
     public void ConfigurePlayerBlock(GameObject playerBlock, BlockWeightCategory category)
     {
         MeshRenderer renderer = playerBlock.GetComponentInChildren<MeshRenderer>();
         Rigidbody rb = playerBlock.GetComponent<Rigidbody>();
 
-        // WICHTIG: Das Spieler-Skript (z.B. für die Waage) braucht evtl. auch den Identifier
+        // WICHTIG: Das Spieler-Skript (z.B. fï¿½r die Waage) braucht evtl. auch den Identifier
         BlockIdentifier identifier = playerBlock.GetComponent<BlockIdentifier>();
         if (identifier != null)
         {
@@ -149,7 +156,7 @@ public class GameManager : MonoBehaviour
             if (rb != null) rb.mass = 10f;
         }
 
-        // Wenn sich die Masse ändert diesen Block nicht mehr schlafen zu lassen, damit die Waage den neuen Druck spürt.
+        // Wenn sich die Masse ï¿½ndert diesen Block nicht mehr schlafen zu lassen, damit die Waage den neuen Druck spï¿½rt.
         if (rb != null)
         {
             rb.WakeUp();
@@ -168,33 +175,34 @@ public class GameManager : MonoBehaviour
 
         // Wir berechnen die absolute Differenz zwischen links und rechts
         float difference = Mathf.Abs(weightLeft - weightRight);
-
-        // GEFIXT: Der Klammerfehler am Ende der if-Abfrage wurde entfernt
-        // Wenn die Differenz innerhalb unserer Toleranz liegt UND überhaupt Gewicht draufliegt
+        // Wenn die Differenz innerhalb unserer Toleranz liegt UND ï¿½berhaupt Gewicht draufliegt
         if (difference <= tolerance && weightLeft > tolerance && weightRight > tolerance)
         {
             currentBalanceTime += Time.deltaTime;
+
             //Blink starten 
             if (leftVisualizer != null) leftVisualizer.UpdateBlink(true, currentBalanceTime);
             if (rightVisualizer != null) rightVisualizer.UpdateBlink(true, currentBalanceTime);
 
             if (currentBalanceTime >= requiredBalanceTime && !isBalanced)
             {
+                gameManagerAudioSource.PlayOneShot(winSound, 1);
+                print("IsBalanced Starting Timer Sound");
                 isBalanced = true;
                 isTransitioning = true;
                 if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
                 if (rightVisualizer != null) rightVisualizer.UpdateBlink(false, 0f);
-                Debug.Log("DIE WAAGE IST FÜR 3 SEKUNDEN BALANCIERT!");
+                Debug.Log("DIE WAAGE IST Fï¿½R 3 SEKUNDEN BALANCIERT!");
 
                 // GEFIXT: Hier speichern wir jetzt die Punkte, bevor wir die Szene wechseln!
                 CalculateAndSaveAccuracy(difference);
 
-                //Jetzt werden die blöcke dem Szenen Übergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
+                //Jetzt werden die blï¿½cke dem Szenen ï¿½bergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
                 if (transitionManager != null)
                 {
                     transitionManager.TransferTowerAndLoadScene();
                 }
-                // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
+                // HIER kommt spï¿½ter der Aufruf fï¿½r deine Tï¿½r-Cutscene rein!
                 // z.B. GetComponent<PlayableDirector>().Play();
             }
         }
@@ -219,7 +227,7 @@ public class GameManager : MonoBehaviour
         float weightAccuracy = 100f - ((currentDifference / tolerance) * 100f);
         weightAccuracy = Mathf.Clamp(weightAccuracy, 0f, 100f);
 
-        // B. VORGABE-BLÖCKE ZÄHLEN
+        // B. VORGABE-BLï¿½CKE Zï¿½HLEN
         GameObject targetTower = GameObject.FindWithTag("TargetTower");
         int targetBlockCount = 0;
 
@@ -232,7 +240,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Vorgabe-Turm nicht gefunden! Hast du den Tag 'TargetTower' gesetzt?");
         }
 
-        // C. SPIELER-BLÖCKE ZÄHLEN
+        // C. SPIELER-BLï¿½CKE Zï¿½HLEN
         GameObject[] allTowerBlocks = GameObject.FindGameObjectsWithTag("TowerBlock");
         int playerBlockCount = 0;
 
@@ -262,6 +270,6 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("TowerAccuracy", finalAccuracyPercentage);
         PlayerPrefs.Save();
 
-        Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Blöcke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
+        Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Blï¿½cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
     }
 }
