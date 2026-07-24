@@ -43,6 +43,9 @@ public class GameManager : MonoBehaviour
 
     private bool isBalanced = false;
 
+    //Referenz zum Player
+    public PlayerMovement playerRef;
+
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Bl�cke spawnen.
     void Awake()
     {
@@ -60,6 +63,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CheckBalance();
+
+        if (playerRef.hasReachedFinish)
+        {
+            GameFinished();
+        }
     }
 
     public void AssignRandomColors()
@@ -271,5 +279,13 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.Save();
 
         Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Bl�cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
+    }
+
+    //Spielende
+    private void GameFinished()
+    {
+        print("Finished!)");
+        //add loading Finish Screen
+        //add measure points
     }
 }

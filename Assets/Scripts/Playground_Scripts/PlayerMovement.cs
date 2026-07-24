@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     //Geschwindigkeit
     Vector3 velocity;
 
+    public bool hasReachedFinish = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -82,5 +84,13 @@ public class PlayerMovement : MonoBehaviour
 
         //Schwerkraft beeinflusst Spieler
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Finish"))
+        {
+            hasReachedFinish = true;
+        }
     }
 }
