@@ -45,11 +45,9 @@ public class GameManager : MonoBehaviour
 
     //Referenz zum Player
     public PlayerMovement playerScript;
-    public Transform playerPos;
 
+    //Referenz zu gebauten Turm des Spielers
     private GameObject playerTower;
-
-    private Vector3 offset = new Vector3(0f, 0f, 2f);
 
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Bl�cke spawnen.
     void Awake()
@@ -62,13 +60,9 @@ public class GameManager : MonoBehaviour
         AssignRandomColors();
 
         gameManagerAudioSource = GetComponent<AudioSource>();
-    }
 
-    void Start()
-    {
         playerTower = GameObject.FindWithTag("PlayerTower");
-        playerTower.transform.SetParent(playerPos, false);
-        playerTower.transform.localPosition += offset;
+        playerTower.AddComponent<PlayerTowerControl>();
     }
 
     // GEFIXT: Update-Methode hinzugef�gt, damit die Waage jeden Frame gepr�ft wird
