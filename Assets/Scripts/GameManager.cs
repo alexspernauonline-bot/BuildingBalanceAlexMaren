@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public ScaleSide rightScale;
 
     //R�tsel-Einstellungen
-    public float tolerance = 0.1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
+    public float tolerance = 1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
 
     //Tower Transition Manager und Blink Animation
     public ScaleVisualizer leftVisualizer;
@@ -43,12 +43,6 @@ public class GameManager : MonoBehaviour
 
     private bool isBalanced = false;
 
-    //Referenz zum Player
-    public PlayerMovement playerScript;
-
-    //Referenz zu gebauten Turm des Spielers
-    private GameObject playerTower;
-
     // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Bl�cke spawnen.
     void Awake()
     {
@@ -60,20 +54,12 @@ public class GameManager : MonoBehaviour
         AssignRandomColors();
 
         gameManagerAudioSource = GetComponent<AudioSource>();
-
-        playerTower = GameObject.FindWithTag("PlayerTower");
-        playerTower.AddComponent<PlayerTowerControl>();
     }
 
     // GEFIXT: Update-Methode hinzugef�gt, damit die Waage jeden Frame gepr�ft wird
     void Update()
     {
         CheckBalance();
-
-        if (playerScript.hasReachedFinish)
-        {
-            GameFinished();
-        }
     }
 
     public void AssignRandomColors()
@@ -287,11 +273,5 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Bl�cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
     }
 
-    //Spielende
-    private void GameFinished()
-    {
-        print("Finished!)");
-        //add loading Finish Screen
-        //add measure points
-    }
+   
 }

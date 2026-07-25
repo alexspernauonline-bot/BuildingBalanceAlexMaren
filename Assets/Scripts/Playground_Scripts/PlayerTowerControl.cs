@@ -16,17 +16,20 @@ public class PlayerTowerControl : MonoBehaviour
     {
         //Verbindung zum Spieler
         playerRef = GameObject.FindWithTag("Player");
-        transform.SetParent(playerRef.transform, false);
+
+        //Vorbereiten der Blöcke im Turm
+        foreach (Transform block in this.transform)
+        {
+            Rigidbody blockRb = block.GetComponent<Rigidbody>();
+            blockRb.isKinematic = true;
+            block.transform.position = new Vector3(0f, block.transform.position.y, 0f);
+        }
+
 
         //Setzen von Position und Größe
+        transform.SetParent(playerRef.transform, false);
         transform.localPosition += offset;
         transform.localScale = scaleChange;
-
-        foreach (Transform childTransform in this.transform)
-        {
-            Rigidbody blockRb = childTransform.GetComponent<Rigidbody>();
-            blockRb.isKinematic = true;
-        }
     }
 
     // Update is called once per frame

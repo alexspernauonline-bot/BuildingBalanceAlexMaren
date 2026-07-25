@@ -13962,12 +13962,13 @@ MonoBehaviour:
   weightRight: 0
   leftScale: {fileID: 403647682}
   rightScale: {fileID: 556558994}
-  tolerance: 0.7
+  tolerance: 1
   leftVisualizer: {fileID: 0}
   rightVisualizer: {fileID: 0}
   transitionManager: {fileID: 1289805403}
   requiredBalanceTime: 3
   winSound: {fileID: 8300000, guid: 8213b6e307c8ab643ae54965c53abfa6, type: 3}
+  playerScript: {fileID: 0}
 --- !u!4 &1898478370
 Transform:
   m_ObjectHideFlags: 0
