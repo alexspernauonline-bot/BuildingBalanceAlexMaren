@@ -15,7 +15,7 @@ public class MagneticSnap: MonoBehaviour
     {
        
         // Pr�fen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
-        bool hitValidTarget = collision.gameObject.CompareTag("Block") || collision.gameObject.CompareTag("TowerBlock") && collision.gameObject.CompareTag("Scale");
+        bool hitValidTarget = /*collision.gameObject.CompareTag("Block") ||*/ collision.gameObject.CompareTag("TowerBlock") || collision.gameObject.CompareTag("Scale");
 
         if (!hasSnapped && hitValidTarget)
         {
@@ -37,11 +37,16 @@ public class MagneticSnap: MonoBehaviour
                     rb.angularVelocity = Vector3.zero;
 
                     hasSnapped = true;
-
+                    
                     gameObject.tag = "TowerBlock";
 
                 }
             }
+        }
+        else if (collision.gameObject.CompareTag("Boden"))
+        {
+            gameObject.tag = "Block";
+            hasSnapped = false;
         }
     }
   

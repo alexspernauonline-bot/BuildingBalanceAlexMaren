@@ -853,7 +853,7 @@ GameObject:
   - component: {fileID: 169464121}
   m_Layer: 0
   m_Name: PolyShape (1)
-  m_TagString: Untagged
+  m_TagString: Boden
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8479,6 +8479,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3865387857548848110, guid: a6127c022565ea946804415a1af07b12, type: 3}
+      propertyPath: m_TagString
+      value: Boden
+      objectReference: {fileID: 0}
     - target: {fileID: 4534928468571255124, guid: a6127c022565ea946804415a1af07b12, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.54
@@ -11417,7 +11421,7 @@ GameObject:
   - component: {fileID: 1646756452}
   m_Layer: 0
   m_Name: PolyShape
-  m_TagString: Untagged
+  m_TagString: Boden
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12309,7 +12313,7 @@ GameObject:
   - component: {fileID: 1836353086}
   m_Layer: 0
   m_Name: Cylinder
-  m_TagString: Untagged
+  m_TagString: Boden
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13968,7 +13972,6 @@ MonoBehaviour:
   transitionManager: {fileID: 1289805403}
   requiredBalanceTime: 3
   winSound: {fileID: 8300000, guid: 8213b6e307c8ab643ae54965c53abfa6, type: 3}
-  playerScript: {fileID: 0}
 --- !u!4 &1898478370
 Transform:
   m_ObjectHideFlags: 0
@@ -16628,6 +16631,10 @@ PrefabInstance:
     - target: {fileID: 2368901788415406592, guid: f0a4a3295e9f5db448b6e04347ab6da9, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2368901788415406592, guid: f0a4a3295e9f5db448b6e04347ab6da9, type: 3}
+      propertyPath: m_TagString
+      value: Boden
       objectReference: {fileID: 0}
     - target: {fileID: 3146845214358497466, guid: f0a4a3295e9f5db448b6e04347ab6da9, type: 3}
       propertyPath: m_LocalScale.x
