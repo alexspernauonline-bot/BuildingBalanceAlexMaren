@@ -19,7 +19,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundMask;
-    bool isGrounded;
+    private bool isGrounded;
+
+    public bool hasJumped = false;
+    public bool hitGround = false;
 
     //Variable für Checkpoints
     Vector3 savedCheckpoint;
@@ -42,6 +45,15 @@ public class PlayerMovement : MonoBehaviour
     {
         //Ground Check
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (isGrounded)
+        {
+            hitGround = true;
+        }
+        else
+        {
+            hitGround= false;
+        }
 
         //Zurücksetzen der Schwerkraft, wenn Player den Boden berührt (nach unten gerichtete Velocity)
         if(isGrounded && velocity.y < 0)
@@ -82,6 +94,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+            hasJumped = true;
         }
 
         //Erhöhung der Schwerkraft
@@ -105,7 +118,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Zurücksetzen der Position auf eine gespeicherte Startposition/Checkpoint
-    private void ResetPosition()
+    public void ResetPosition()
     {
         print(savedCheckpoint);
         //ISSUE LIES SOMEWHERE HERE IDKKK
