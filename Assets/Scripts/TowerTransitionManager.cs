@@ -48,7 +48,7 @@ public class TowerTransitionManager : MonoBehaviour
         DontDestroyOnLoad(leftContainer);
         DontDestroyOnLoad(rightContainer);
 
-        //SceneManager.LoadScene(nextSceneName);
+        SceneManager.LoadScene(nextSceneName);
     }
 
 }

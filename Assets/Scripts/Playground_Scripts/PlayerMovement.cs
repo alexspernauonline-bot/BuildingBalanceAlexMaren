@@ -21,6 +21,9 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     bool isGrounded;
 
+    //Variable für Checkpoints
+    Vector3 savedCheckpoint;
+
     //Geschwindigkeit
     Vector3 velocity;
 
@@ -29,7 +32,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //Setzen und speichern der Startposition
         transform.position = spawn.transform.position;
+        savedCheckpoint = transform.position;
     }
 
     // Update is called once per frame
@@ -86,11 +91,24 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Finish"))
         {
             hasReachedFinish = true;
         }
+        else if (other.CompareTag("Respawn"))
+        {
+            print("Respawn!");
+            ResetPosition();
+        }
+    }
+
+    //Zurücksetzen der Position auf eine gespeicherte Startposition/Checkpoint
+    private void ResetPosition()
+    {
+        print(savedCheckpoint);
+        //ISSUE LIES SOMEWHERE HERE IDKKK
+        transform.position = spawn.transform.position;
     }
 }

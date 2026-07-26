@@ -74,10 +74,10 @@ public class RespawnTrigger : MonoBehaviour
         }
 
         //AM BODEN RESETTEN:der Spieler darf wieder laufen 
-        ThirdPersonMovement movement = player.GetComponent<ThirdPersonMovement>();
+        /*PlayerMovement movement = player.GetComponent<PlayerMovement>();
         if (movement != null)
         {
             movement.PlayerIsGrounded();
-        }
+        }*/
     }
 }

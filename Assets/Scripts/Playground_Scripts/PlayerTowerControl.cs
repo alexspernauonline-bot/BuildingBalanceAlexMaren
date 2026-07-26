@@ -4,10 +4,10 @@ public class PlayerTowerControl : MonoBehaviour
 {
 
     //Referenz zum Spieler
-    private GameObject playerRef;
+    private GameObject camRef;
 
     //Offset für die Position des Spielerturms + Festlegen der Größe
-    private Vector3 offset = new Vector3(0f, 0f, 1.5f);
+    private Vector3 offset = new Vector3(0f, -0.5f, 1.5f);
     private Vector3 scaleChange = new Vector3(0.3f, 0.3f, 0.3f);
 
 
@@ -15,19 +15,18 @@ public class PlayerTowerControl : MonoBehaviour
     void Start()
     {
         //Verbindung zum Spieler
-        playerRef = GameObject.FindWithTag("Player");
+        camRef = GameObject.FindWithTag("MainCamera");
 
         //Vorbereiten der Blöcke im Turm
         foreach (Transform block in this.transform)
         {
             Rigidbody blockRb = block.GetComponent<Rigidbody>();
             blockRb.isKinematic = true;
-            block.transform.position = new Vector3(0f, block.transform.position.y, 0f);
         }
 
 
         //Setzen von Position und Größe
-        transform.SetParent(playerRef.transform, false);
+        transform.SetParent(camRef.transform, false);
         transform.localPosition += offset;
         transform.localScale = scaleChange;
     }
