@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7275816300543414}
   m_Layer: 8
   m_Name: Bruecke_Gross
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

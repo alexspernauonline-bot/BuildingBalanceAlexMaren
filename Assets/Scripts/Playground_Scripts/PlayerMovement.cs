@@ -23,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool hasJumped = false;
     public bool hitGround = false;
+    public bool hasCollided = false;
 
     //Variable für Checkpoints
     Vector3 savedCheckpoint;
@@ -104,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
+    //Überprüfen auf Contact mit Collidern
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Finish"))
@@ -114,6 +116,11 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Respawn!");
             ResetPosition();
+        }
+        else if (other.CompareTag("Obstacle"))
+        {
+            hasCollided = true;
+            print("hasCollided!");
         }
     }
 
