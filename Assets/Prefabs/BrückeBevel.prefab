@@ -247,6 +247,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 881f0941950f93341957fbaff45590e8, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8327487763221618189}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 881f0941950f93341957fbaff45590e8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6691322559447311942}
   m_SourcePrefab: {fileID: 100100000, guid: 881f0941950f93341957fbaff45590e8, type: 3}
 --- !u!4 &5957263273741591199 stripped
 Transform:
@@ -433,3 +436,16 @@ MonoBehaviour:
   placeSound: {fileID: 0}
   crashSound: {fileID: 8300000, guid: 039197a0fcbcf19499d1ea54f975413e, type: 3}
   blockAudioSource: {fileID: 3448798535338483779}
+--- !u!114 &6691322559447311942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478326698087118885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
+  myWeightType: 0

@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: eeb27030e1c3d804ea23eec539566399, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 38fd2fd70dfe9ef4a81d9834bfcd7766, type: 2}
     - target: {fileID: 919132149155446097, guid: eeb27030e1c3d804ea23eec539566399, type: 3}
       propertyPath: m_Name
       value: Quader Mat
@@ -79,6 +83,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eeb27030e1c3d804ea23eec539566399, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7615121686761595894}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: eeb27030e1c3d804ea23eec539566399, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -6657023328411158718}
   m_SourcePrefab: {fileID: 100100000, guid: eeb27030e1c3d804ea23eec539566399, type: 3}
 --- !u!1 &2244252114515049920 stripped
 GameObject:
@@ -259,3 +266,16 @@ MonoBehaviour:
   placeSound: {fileID: 8300000, guid: e545e7599a9987444965e82cb9a4e257, type: 3}
   crashSound: {fileID: 8300000, guid: 039197a0fcbcf19499d1ea54f975413e, type: 3}
   blockAudioSource: {fileID: 900882326939009481}
+--- !u!114 &-6657023328411158718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2244252114515049920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 247b8beab75a90e419e81ba81090ae17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ColorWeight
+  myWeightType: 0
