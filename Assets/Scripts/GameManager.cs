@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 
 {
@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     // Das ist das Singleton. Damit k�nnen alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
-   
+
 
     // Hier speichern wir das fertige Ergebnis f�r diese Runde
     public Material lightMaterial;
@@ -273,5 +273,17 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Bl�cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
     }
 
-   
+    //UI 
+
+    public void ResetGame()
+    {
+        // Setzt die gespeicherten Punkte auf 0
+        PlayerPrefs.SetFloat("TowerAccuracy", 0f);
+        PlayerPrefs.Save();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
 }

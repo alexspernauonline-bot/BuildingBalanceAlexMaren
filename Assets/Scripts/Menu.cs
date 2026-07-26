@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -12,5 +13,19 @@ public class Menu : MonoBehaviour
     void Update()
     {
         
+    }
+    public void QuitGame()
+    {
+        Debug.Log("Quit Game");
+        Application.Quit();
+    }
+    public void StartGame()
+    {
+        Debug.Log("Start Game");
+        // Test Modus Türme laden nach jedem start den nächsten (nicht random so wie für den Spieler)
+        PlayerPrefs.SetInt("TowerIndex", 0);
+        //Läd Bau -Modus Szene
+        SceneManager.LoadScene("Building");
+
     }
 }
