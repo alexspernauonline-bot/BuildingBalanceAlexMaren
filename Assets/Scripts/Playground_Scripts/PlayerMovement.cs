@@ -16,6 +16,7 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
     public float normalHeight = 2;
+    public Vector3 move;
 
     //Variablen für GroundCheck
     public Transform groundCheck;
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         //Bewegungsvektor
-        Vector3 move = transform.right * x + transform.forward * z;
+        move = transform.right * x + transform.forward * z;
 
         //Sprint Bewegung (Shift)
         if (Input.GetKey(KeyCode.LeftShift))
@@ -105,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             hasJumped = true;
-            //transform.SetParent(null);
         }
 
         //Erhöhung der Schwerkraft
@@ -135,20 +135,15 @@ public class PlayerMovement : MonoBehaviour
             hasCollided = true;
             print("hasCollided!");
         }
-        /*else if (hit.collider.CompareTag("MovePlatform"))
-        {
-            Transform currentPlatform = hit.collider.GetComponent<Transform>();
-            transform.SetParent(currentPlatform);
-        }*/
     }
 
     //Zurücksetzen der Position auf eine gespeicherte Startposition/Checkpoint
     public void ResetPosition()
     {
         print(savedCheckpoint);
-        //ISSUE LIES SOMEWHERE HERE IDKKK
-        controller.enabled = false;
+        
+        /*controller.enabled = false;
         transform.position = spawn.transform.position;
-        controller.enabled = true;
+        controller.enabled = true;*/
     }
 }
