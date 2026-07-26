@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class TowerTransitionManager : MonoBehaviour
 {
-    public string nextSceneName = "Level_02";
+    public string nextSceneName = "BuildingBalance 1";
     //Hier kommt der Name von der Parkour Szene rein
 
 
