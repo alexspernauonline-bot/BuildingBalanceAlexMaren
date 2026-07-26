@@ -47,6 +47,7 @@ public class PlayerTowerControl : MonoBehaviour
         }
 
         //Setzen von Position und Größe
+        transform.localPosition = new Vector3(0f, 0f, 0f);
         transform.SetParent(camRef.transform, false);
         transform.localPosition += offset;
         transform.localScale = scaleChange;

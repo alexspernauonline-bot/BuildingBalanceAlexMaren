@@ -17,6 +17,9 @@ public class TowerTransitionManager : MonoBehaviour
         GameObject leftContainer = new GameObject("SavedTower_Left");
         GameObject rightContainer = new GameObject("SavedTower_Right");
 
+        rightContainer.transform.position = rightScale.position;
+        leftContainer.transform.position = leftScale.position;
+
 
         GameObject[] allBlocks = GameObject.FindGameObjectsWithTag("TowerBlock");
 
