@@ -10,7 +10,6 @@ public class GameManagerPlayground : MonoBehaviour
 
     void Awake()
     {
-
         playerTower = GameObject.FindWithTag("PlayerTower");
         playerTower.AddComponent<PlayerTowerControl>();
     }

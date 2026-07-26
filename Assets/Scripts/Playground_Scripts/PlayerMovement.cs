@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Verbindung zum Spawn
     public GameObject spawn;
+    private Vector3 savedSpawnPos;
 
     private PlayerTowerControl towerSkript;
 
@@ -30,9 +31,6 @@ public class PlayerMovement : MonoBehaviour
     public bool hasCollided = false;
     public bool isSprinting = false;
 
-    //Variable für Checkpoints
-    Vector3 savedCheckpoint;
-
     //Geschwindigkeit
     Vector3 velocity;
 
@@ -43,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //Setzen und speichern der Startposition
         transform.position = spawn.transform.position;
-        savedCheckpoint = transform.position;
+        savedSpawnPos = spawn.transform.position;
 
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
     }
@@ -128,7 +126,6 @@ public class PlayerMovement : MonoBehaviour
         {
             print("Respawn!");
             towerSkript.TowerDestructionCount();
-            ResetPosition();
         }
         else if (hit.collider.CompareTag("Obstacle"))
         {
@@ -137,13 +134,12 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    //Zurücksetzen der Position auf eine gespeicherte Startposition/Checkpoint
-    public void ResetPosition()
+    void OnTriggerEnter (Collider other)
     {
-        print(savedCheckpoint);
-        
-        /*controller.enabled = false;
-        transform.position = spawn.transform.position;
-        controller.enabled = true;*/
+        if (other.CompareTag("CheckPoint"))
+        {
+            Debug.LogError("Checkpoint!");
+            spawn.transform.position = other.transform.position;
+        }
     }
 }

@@ -13,6 +13,7 @@ TagManager:
   - PlayerTower
   - Obstacle
   - MovePlatform
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

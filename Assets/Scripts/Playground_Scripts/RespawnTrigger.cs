@@ -33,7 +33,7 @@ public class RespawnTrigger : MonoBehaviour
         }
     }
 
-    private void TeleportPlayer(GameObject player)
+    public void TeleportPlayer(GameObject player)
     {
         PlayerMovement playerSkript = player.GetComponent<PlayerMovement>();
         CharacterController playerCc = player.GetComponent<CharacterController>();
@@ -43,16 +43,5 @@ public class RespawnTrigger : MonoBehaviour
         playerCc.enabled = false;
         player.transform.position = respawnPoint.transform.position;
         playerCc.enabled = true;
-
-        // RESET: alle Bewegungsenergien (Fallen, Rutschen) komplett auf 0 setzten
-        //playerCc.linearVelocity = Vector3.zero;
-        //playerCc.angularVelocity = Vector3.zero;
-
-        //AM BODEN RESETTEN:der Spieler darf wieder laufen 
-        /*PlayerMovement movement = player.GetComponent<PlayerMovement>();
-        if (movement != null)
-        {
-            movement.PlayerIsGrounded();
-        }*/
     }
 }

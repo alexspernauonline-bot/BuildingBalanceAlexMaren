@@ -7,6 +7,8 @@ public class PlayerTowerControl : MonoBehaviour
     //Referenz zum Spieler
     private GameObject camRef;
     private PlayerMovement playerSkript;
+    private GameObject playerRef;
+    private RespawnTrigger respawn;
 
     //Offset für die Position des Spielerturms + Festlegen der Größe
     private Vector3 offset = new Vector3(0f, -0.5f, 1.5f);
@@ -32,6 +34,10 @@ public class PlayerTowerControl : MonoBehaviour
         //Verbindung zum Spieler
         camRef = GameObject.FindWithTag("MainCamera");
         playerSkript = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
+        playerRef = GameObject.FindWithTag("Player");
+
+        //Verbindung zum Respawn-Skript
+        respawn = GameObject.FindWithTag("Respawn").GetComponent<RespawnTrigger>();
 
         //Vorbereiten der Blöcke im Turm
         foreach (Transform block in this.transform)
@@ -39,7 +45,6 @@ public class PlayerTowerControl : MonoBehaviour
             Rigidbody blockRb = block.GetComponent<Rigidbody>();
             blockRb.isKinematic = true;
         }
-
 
         //Setzen von Position und Größe
         transform.SetParent(camRef.transform, false);
@@ -75,19 +80,22 @@ public class PlayerTowerControl : MonoBehaviour
         }
         else if (wobbleSpeed >= 10 || playerSkript.hasCollided)
         {
-            foreach (Transform block in this.transform)
+            /*foreach (Transform block in this.transform)
             {
                 Rigidbody blockRb = block.GetComponent<Rigidbody>();
                 blockRb.isKinematic = false;
-                playerSkript.hasJumped = false;
-                playerSkript.hasCollided = false;
-                isWobbly = false;
 
                 print("Umgefallen!");
-                TowerDestructionCount();
+            }*/
 
-                //playerSkript.ResetPosition();
-            }
+            playerSkript.hasJumped = false;
+            playerSkript.hasCollided = false;
+            isWobbly = false;
+            wobbleSpeed = 2f;
+
+            TowerDestructionCount();
+
+            respawn.TeleportPlayer(playerRef);
         }
     }
 
