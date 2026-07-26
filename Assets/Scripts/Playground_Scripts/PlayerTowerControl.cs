@@ -86,7 +86,7 @@ public class PlayerTowerControl : MonoBehaviour
                 print("Umgefallen!");
                 TowerDestructionCount();
 
-                playerSkript.ResetPosition();
+                //playerSkript.ResetPosition();
             }
         }
     }

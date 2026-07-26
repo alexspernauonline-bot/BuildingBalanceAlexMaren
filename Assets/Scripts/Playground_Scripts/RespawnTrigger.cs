@@ -18,60 +18,35 @@ public class RespawnTrigger : MonoBehaviour
             Debug.LogError("No Collider component found on this GameObject. Please add a Collider and set it as a trigger.");
         }
     }
+
     //Methode wird aufgerufen, wenn ein Collider in den Trigger eintritt
     void OnTriggerEnter(Collider other)
     {
-        // �berpr�ft, ob das Objekt, das den Trigger betreten hat, ein Gegner oder der Spieler ist
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Destroy(other.gameObject); // Der Gegner wird zerst�rt, wenn er in den Trigger f�llt
-            Debug.Log("Enemy has died!");
-
-        }
+        //Überprüft, ob Collider der Player ist
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player has fallen into the ball Pit! Respawning...");
 
-            // HIER STARTET DER RESPAWN-PROZESS:
-            if (respawnPoint != null)
-            {
-                TeleportPlayer(other.gameObject);
-            }
-            else
-            {
-                Debug.LogWarning("Kein RespawnPoint im Inspector zugewiesen!");
-            }
-
+            TeleportPlayer(other.gameObject);
 
             //Hier kannst du Code hinzufügen um einen Game-Over-Bildschirm anzuzeigen.
         }
     }
-    void TeleportPlayer(GameObject player)
+
+    private void TeleportPlayer(GameObject player)
     {
-        //Rigidbody vom Spieler
-        Rigidbody rb = player.GetComponent<Rigidbody>();
+        PlayerMovement playerSkript = player.GetComponent<PlayerMovement>();
+        CharacterController playerCc = player.GetComponent<CharacterController>();
 
-        if (rb != null)
-        {
-            //KINETIC die Physik f�r einen winzigen Moment auf "kinematic" geschalten.
-            
-            rb.isKinematic = true;
+        playerSkript.move = Vector3.zero;
 
-            // TELEPORT: neue Position setzten, damit der Spieler sofort am RespawnPoint steht
-            player.transform.position = respawnPoint.transform.position;
+        playerCc.enabled = false;
+        player.transform.position = respawnPoint.transform.position;
+        playerCc.enabled = true;
 
-            // RESET: alle Bewegungsenergien (Fallen, Rutschen) komplett auf 0 setzten
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            //PHYSIK WIEDER AN:
-            rb.isKinematic = false;
-        }
-        else
-        {
-            // Falls der Rigidbody auf einem Kind-Objekt liegt
-            player.transform.position = respawnPoint.transform.position;
-        }
+        // RESET: alle Bewegungsenergien (Fallen, Rutschen) komplett auf 0 setzten
+        //playerCc.linearVelocity = Vector3.zero;
+        //playerCc.angularVelocity = Vector3.zero;
 
         //AM BODEN RESETTEN:der Spieler darf wieder laufen 
         /*PlayerMovement movement = player.GetComponent<PlayerMovement>();
