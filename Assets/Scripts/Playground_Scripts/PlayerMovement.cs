@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     //Verbindung zum Spawn
     public GameObject spawn;
 
+    private PlayerTowerControl towerSkript;
+
     //Bewegungsvariablen
     public float normalSpeed = 12f;
     private float actualSpeed;
@@ -21,9 +23,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     private bool isGrounded;
 
+    //Variablen für Wobbly Tower
     public bool hasJumped = false;
     public bool hitGround = false;
     public bool hasCollided = false;
+    public bool isSprinting = false;
 
     //Variable für Checkpoints
     Vector3 savedCheckpoint;
@@ -39,6 +43,8 @@ public class PlayerMovement : MonoBehaviour
         //Setzen und speichern der Startposition
         transform.position = spawn.transform.position;
         savedCheckpoint = transform.position;
+
+        towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
     }
 
     // Update is called once per frame
@@ -74,18 +80,21 @@ public class PlayerMovement : MonoBehaviour
         {
             actualSpeed = normalSpeed * 1.5f;
             controller.height = normalHeight;
+            isSprinting = true;
         }
         //Crouch Bewegung (Ctrl)
         else if (Input.GetKey(KeyCode.LeftControl))
         {
             actualSpeed = normalSpeed * 0.5f;
             controller.height = normalHeight * 0.5f;
+            isSprinting = false;
         }
         //Normale Bewegung
         else
         {
             actualSpeed = normalSpeed;
             controller.height = normalHeight;
+            isSprinting = false;
         }
 
         //Bewegung des Players
@@ -96,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             hasJumped = true;
+            //transform.SetParent(null);
         }
 
         //Erhöhung der Schwerkraft
@@ -106,22 +116,30 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Überprüfen auf Contact mit Collidern
-    void OnTriggerEnter(Collider other)
+    void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        if (other.CompareTag("Finish"))
+        //print(other.name);
+
+        if (hit.collider.CompareTag("Finish"))
         {
             hasReachedFinish = true;
         }
-        else if (other.CompareTag("Respawn"))
+        else if (hit.collider.CompareTag("Respawn"))
         {
             print("Respawn!");
+            towerSkript.TowerDestructionCount();
             ResetPosition();
         }
-        else if (other.CompareTag("Obstacle"))
+        else if (hit.collider.CompareTag("Obstacle"))
         {
             hasCollided = true;
             print("hasCollided!");
         }
+        /*else if (hit.collider.CompareTag("MovePlatform"))
+        {
+            Transform currentPlatform = hit.collider.GetComponent<Transform>();
+            transform.SetParent(currentPlatform);
+        }*/
     }
 
     //Zurücksetzen der Position auf eine gespeicherte Startposition/Checkpoint
@@ -129,6 +147,8 @@ public class PlayerMovement : MonoBehaviour
     {
         print(savedCheckpoint);
         //ISSUE LIES SOMEWHERE HERE IDKKK
+        controller.enabled = false;
         transform.position = spawn.transform.position;
+        controller.enabled = true;
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - TargetTower
   - PlayerTower
   - Obstacle
+  - MovePlatform
   layers:
   - Default
   - TransparentFX

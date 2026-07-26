@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 8866648554544905823}
   - component: {fileID: 4044715358217595071}
   - component: {fileID: 6808768499966952630}
-  - component: {fileID: 7758785437438498744}
   m_Layer: 0
   m_Name: Cylinder_Gross
   m_TagString: Obstacle
@@ -678,24 +677,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!65 &7758785437438498744
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6654927597402074515}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3, y: 6, z: 2.5980763}
-  m_Center: {x: 0, y: 0, z: 0}

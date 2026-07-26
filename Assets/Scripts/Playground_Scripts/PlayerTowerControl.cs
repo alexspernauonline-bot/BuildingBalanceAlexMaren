@@ -53,7 +53,7 @@ public class PlayerTowerControl : MonoBehaviour
     void Update()
     {
         //Turm wackelt nach dem Springen
-        if (playerSkript.hasJumped && playerSkript.hitGround)
+        if ((playerSkript.hasJumped || playerSkript.isSprinting) && playerSkript.hitGround)
         {
             Wobble();
             isWobbly = true;
@@ -84,7 +84,7 @@ public class PlayerTowerControl : MonoBehaviour
                 isWobbly = false;
 
                 print("Umgefallen!");
-                towerDestructions++;
+                TowerDestructionCount();
 
                 playerSkript.ResetPosition();
             }
@@ -109,5 +109,10 @@ public class PlayerTowerControl : MonoBehaviour
         {
             wobbleSpeed += 2f;
         }
+    }
+
+    public void TowerDestructionCount()
+    {
+        towerDestructions++;
     }
 }
