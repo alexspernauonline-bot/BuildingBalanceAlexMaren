@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
         float weightAccuracy = 100f - ((currentDifference / tolerance) * 100f);
         weightAccuracy = Mathf.Clamp(weightAccuracy, 0f, 100f);
 
-        // B. VORGABE-BL�CKE Z�HLEN
+        // B. VORGABE-BLÖCKE ZÄHLEN
         GameObject targetTower = GameObject.FindWithTag("TargetTower");
         int targetBlockCount = 0;
 
@@ -240,7 +240,7 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Vorgabe-Turm nicht gefunden! Hast du den Tag 'TargetTower' gesetzt?");
         }
 
-        // C. SPIELER-BL�CKE Z�HLEN
+        // C. SPIELER-BLÖCKE ZÄHLEN
         GameObject[] allTowerBlocks = GameObject.FindGameObjectsWithTag("TowerBlock");
         int playerBlockCount = 0;
 
@@ -270,7 +270,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetFloat("TowerAccuracy", finalAccuracyPercentage);
         PlayerPrefs.Save();
 
-        Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Bl�cke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
+        Debug.Log($"Punkte berechnet! Gewicht: {weightAccuracy}% | Blöcke: {blockAccuracy}% | Gesamt: {finalAccuracyPercentage}%");
     }
 
     //UI 

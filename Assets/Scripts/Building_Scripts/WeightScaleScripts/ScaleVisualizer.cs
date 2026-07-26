@@ -17,7 +17,7 @@ public class ScaleVisualizer : MonoBehaviour
     public float maxWeightDifference = 10f;
     public float moveSpeed = 5.0f;
 
-    public float weightChangeThreshold = 0.5f;
+    public float weightChangeThreshold = 0.4f;
 
     private float startYLeft;
     private float startYRight;

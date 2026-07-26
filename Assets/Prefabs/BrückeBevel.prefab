@@ -237,9 +237,6 @@ PrefabInstance:
       addedObject: {fileID: -4164421922794831398}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 881f0941950f93341957fbaff45590e8, type: 3}
       insertIndex: 2
-      addedObject: {fileID: -4415178164512963373}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 881f0941950f93341957fbaff45590e8, type: 3}
-      insertIndex: 3
       addedObject: {fileID: 3448798535338483779}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 881f0941950f93341957fbaff45590e8, type: 3}
       insertIndex: -1
@@ -288,28 +285,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!64 &-4415178164512963373
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6478326698087118885}
-  m_Material: {fileID: 13400000, guid: 7b45c41118e0b404cb0ad621c7d878d2, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 1
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 0
-  m_Mesh: {fileID: -4773484329399892239, guid: 881f0941950f93341957fbaff45590e8, type: 3}
 --- !u!82 &3448798535338483779
 AudioSource:
   m_ObjectHideFlags: 0
