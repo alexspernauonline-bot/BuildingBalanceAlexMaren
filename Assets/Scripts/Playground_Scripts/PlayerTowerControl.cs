@@ -25,7 +25,7 @@ public class PlayerTowerControl : MonoBehaviour
     public float maxRot = 50f;
     private bool isWobbly = false;
 
-    private int towerDestructions = 0;
+    public int towerDestructions = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
