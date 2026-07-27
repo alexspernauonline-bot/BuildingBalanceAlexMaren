@@ -25,6 +25,7 @@ public class PlayerTowerControl : MonoBehaviour
     public float maxRot = 50f;
     private bool isWobbly = false;
 
+    //Variable für Turm-Punkte
     public int towerDestructions = 0;
 
 
@@ -46,6 +47,10 @@ public class PlayerTowerControl : MonoBehaviour
             blockRb.isKinematic = true;
         }
 
+        BoxCollider bc = gameObject.AddComponent<BoxCollider>();
+        bc.size = new Vector3(1f, 2f, 1f);
+        bc.center = new Vector3(0f, 1f, 0f);
+
         //Setzen von Position und Größe
         transform.localPosition = new Vector3(0f, 0f, 0f);
         transform.SetParent(camRef.transform, false);
@@ -61,7 +66,6 @@ public class PlayerTowerControl : MonoBehaviour
         //Turm wackelt nach dem Springen
         if ((playerSkript.hasJumped || playerSkript.isSprinting) && playerSkript.hitGround)
         {
-            Wobble();
             isWobbly = true;
 
             //Spieler kann Turm wieder ins Gleichgewicht bringen (E)
@@ -69,6 +73,12 @@ public class PlayerTowerControl : MonoBehaviour
             {
                 wobbleSpeed--;
             }
+        }
+
+        //Das Wackeln des Turms wird nicht durch erneutes Springen unterbrochen
+        if (isWobbly)
+        {
+            Wobble();
         }
 
         //Turm ist wieder im Gleichgewicht
@@ -120,6 +130,7 @@ public class PlayerTowerControl : MonoBehaviour
         }
     }
 
+    //Zählt, wie oft der Turm umgefallen ist => wichtig für Punkte-Vergabe
     public void TowerDestructionCount()
     {
         towerDestructions++;

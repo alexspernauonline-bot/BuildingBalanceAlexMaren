@@ -15570,6 +15570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerPlayground
   playerScript: {fileID: 1333846321}
+  respawnPoint: {fileID: 0}
 --- !u!1001 &434122833
 PrefabInstance:
   m_ObjectHideFlags: 0

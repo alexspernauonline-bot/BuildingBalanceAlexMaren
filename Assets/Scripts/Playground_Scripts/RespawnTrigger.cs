@@ -33,15 +33,18 @@ public class RespawnTrigger : MonoBehaviour
 
             //Open Respawn Menue
 
+            //Beginn Respawn 
             StartRespawn();
         }
     }
 
+    //Started Coroutine für Delay + Zugriff von anderen Skripten möglich
     public void StartRespawn()
     {
         StartCoroutine(RespawnPlayer(playerRef));
     }
 
+    //Tatsächliche Respawn nach 3 Sekunden
     IEnumerator RespawnPlayer(GameObject player)
     {
         yield return new WaitForSeconds(3);
@@ -49,6 +52,7 @@ public class RespawnTrigger : MonoBehaviour
         PlayerMovement playerSkript = player.GetComponent<PlayerMovement>();
         CharacterController playerCc = player.GetComponent<CharacterController>();
 
+        //Bewegung durch Character Controller des Spielers verhindert
         playerSkript.move = Vector3.zero;
 
         playerCc.enabled = false;
