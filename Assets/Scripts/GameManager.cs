@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 public class GameManager : MonoBehaviour
 
 {
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     public float requiredBalanceTime = 3.0f;
     // Level Ende UI
     public GameObject levelEndPromptPanel;
+    public TextMeshProUGUI scoreText;
     private bool hasLevelEnded = false;
     private bool waitForUnbalance = false;
     //Gewinnton
@@ -244,6 +246,15 @@ public class GameManager : MonoBehaviour
                     if (levelEndPromptPanel != null)
                     {
                         levelEndPromptPanel.SetActive(true);
+                        //SCORE AUSLESEN UND ANZEIGEN ---
+                        if (scoreText != null)
+                        {
+                            //CalculateAndSaveAccuracy 
+                            float currentScore = PlayerPrefs.GetFloat("TowerAccuracy", 0f);
+
+                            // screibt den Score in HUD (F1 rundet auf 1 Nachkommastelle, z.B. "85.5")
+                            scoreText.text = "Genauigkeit: " + currentScore.ToString("F1") + " %";
+                        }
                     }
                 }
                 // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
