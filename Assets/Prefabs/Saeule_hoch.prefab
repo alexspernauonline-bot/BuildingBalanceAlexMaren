@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 9114935401740090232}
   - component: {fileID: 9071985648477493509}
   - component: {fileID: 5227646788079498524}
-  - component: {fileID: 8332314339335923362}
   m_Layer: 8
   m_Name: Saeule_hoch
   m_TagString: Untagged
@@ -678,16 +677,3 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
---- !u!114 &8332314339335923362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2316460545939168654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5fd18a17e255a24fb815a2e46f8fe6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RisingSteps
-  speed: 3
