@@ -67,18 +67,18 @@ public class PlayerTowerControl : MonoBehaviour
         if ((playerSkript.hasJumped || playerSkript.isSprinting) && playerSkript.hitGround)
         {
             isWobbly = true;
-
-            //Spieler kann Turm wieder ins Gleichgewicht bringen (E)
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                wobbleSpeed--;
-            }
         }
 
         //Das Wackeln des Turms wird nicht durch erneutes Springen unterbrochen
         if (isWobbly)
         {
             Wobble();
+
+            //Spieler kann Turm wieder ins Gleichgewicht bringen (E)
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                wobbleSpeed--;
+            }
         }
 
         //Turm ist wieder im Gleichgewicht

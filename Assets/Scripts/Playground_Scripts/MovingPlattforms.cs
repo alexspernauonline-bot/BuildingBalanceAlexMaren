@@ -15,7 +15,7 @@ public class MovingPlattforms : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //Bewegung nur entlang der y-Achse
+        //Bewegung nur entlang der z-Achse
         pointA = new Vector3(transform.position.x, transform.position.y, zA);
         pointB = new Vector3(transform.position.x, transform.position.y, zB);
     }
