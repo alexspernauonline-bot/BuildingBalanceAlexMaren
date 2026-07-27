@@ -21,5 +21,10 @@ public class RotationResetArea : MonoBehaviour
                 rb.angularVelocity = Vector3.zero;
             }
         }
+        LiveTipps tutorial = FindFirstObjectByType<LiveTipps>();
+        if (tutorial != null)
+        {
+            tutorial.hasResetBlock = true;
+        }
     }
 }
