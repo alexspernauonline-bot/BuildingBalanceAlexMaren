@@ -4,16 +4,47 @@ using UnityEngine.SceneManagement;
 
 public class TowerTransitionManager : MonoBehaviour
 {
-    public string nextSceneName = "BuildingBalance 1";
+    //Spieler baut den Turm und drückt dann auf den Button, um in die Parkour Szene zu wechseln.
+    public GameObject levelEndPromptPanel;
     //Hier kommt der Name von der Parkour Szene rein
-
+    public string nextSceneName = "BuildingBalance 1";
+    
 
     // So weiß er welcher Turm welcher ist
     public Transform leftScale;
     public Transform rightScale;
+    void Start()
+    {
+        // Das Panel wird zu Beginn deaktiviert, damit es nicht sofort sichtbar ist
+        if (levelEndPromptPanel != null)
+        {
+            levelEndPromptPanel.SetActive(false);
+        }
+    }
+    public void ShowEndPrompt()
+    {
+        if (levelEndPromptPanel != null)
+        {
+            levelEndPromptPanel.SetActive(true);
+            //Turm friert ein
+            Time.timeScale = 0f; 
+        }
+    }
+    // Wird vom "Weiterbauen"-Button aufgerufen
+    public void ContinueBuilding()
+    {
+        levelEndPromptPanel.SetActive(false);
 
+        // Spielzeit wieder normal weiterlaufen lassen, falls pausiert wurde
+        // Time.timeScale = 1f;
+
+        Debug.Log("Spieler baut weiter für Highscore!");
+    }
+    // Wird vom "Nächste Szene"-Button aufgerufen
     public void TransferTowerAndLoadScene()
     {
+        //Turm darf wieder bewegen
+        Time.timeScale = 1f;
         GameObject leftContainer = new GameObject("SavedTower_Left");
         GameObject rightContainer = new GameObject("SavedTower_Right");
 
@@ -50,7 +81,7 @@ public class TowerTransitionManager : MonoBehaviour
 
         DontDestroyOnLoad(leftContainer);
         DontDestroyOnLoad(rightContainer);
-
+        Debug.Log("Lade nächste Szene: " + nextSceneName);
         SceneManager.LoadScene(nextSceneName);
     }
 

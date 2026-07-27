@@ -32,7 +32,10 @@ public class GameManager : MonoBehaviour
     public TowerTransitionManager transitionManager;
     // Wie lange die Waage im Gleichgewicht bleiben muss timer
     public float requiredBalanceTime = 3.0f;
-
+    // Level Ende UI
+    public GameObject levelEndPromptPanel;
+    private bool hasLevelEnded = false;
+    private bool waitForUnbalance = false;
     //Gewinnton
     public AudioClip winSound;
     private AudioSource gameManagerAudioSource;
@@ -87,6 +90,8 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
+
+
     // ACHTUNG: Das 'private' wurde entfernt, damit der SpawnManager zugreifen kann
     public void SetupTower(GameObject towerObject)
     {
@@ -101,6 +106,16 @@ public class GameManager : MonoBehaviour
         {
             MeshRenderer renderer = block.GetComponentInChildren<MeshRenderer>(true);
             Rigidbody rb = block.GetComponent<Rigidbody>();
+            // --- NEU: DER GAMEMANAGER WÜRFELT JETZT DIE GEWICHTE! ---
+            int randomWeight = Random.Range(0, 3); // Zieht eine Zahl: 0, 1 oder 2
+            block.myCategory = (BlockWeightCategory)randomWeight; // Weist Light, Medium oder Heavy zu
+
+            // Zur Sicherheit: Falls deine Waage noch auf das alte ColorWeight-Skript schaut
+            ColorWeight cw = block.GetComponent<ColorWeight>();
+            if (cw != null)
+            {
+                cw.myWeightType = (ColorWeight.BlockType)randomWeight;
+            }
 
             // Prüfen, welcher Ausweis vorgezeigt wird
             if (block.myCategory == BlockWeightCategory.Light)
@@ -190,6 +205,15 @@ public class GameManager : MonoBehaviour
 
         // Wir berechnen die absolute Differenz zwischen links und rechts
         float difference = Mathf.Abs(weightLeft - weightRight);
+        if (difference > tolerance)
+        {
+            waitForUnbalance = false;
+        }
+        // Wenn die Sperre noch aktiv ist, brechen wir hier für diesen Frame ab
+        if (waitForUnbalance)
+        {
+            return;
+        }
         // Wenn die Differenz innerhalb unserer Toleranz liegt UND �berhaupt Gewicht draufliegt
         if (difference <= tolerance && weightLeft > tolerance && weightRight > tolerance)
         {
@@ -213,9 +237,14 @@ public class GameManager : MonoBehaviour
                 CalculateAndSaveAccuracy(difference);
 
                 //Jetzt werden die blöcke dem Szenenübergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
-                if (transitionManager != null)
+                if (!hasLevelEnded)
                 {
-                    transitionManager.TransferTowerAndLoadScene();
+                    //Der spieler hat die Waage erfolgreich balanciert. Jetzt kann er entscheiden, ob er weiterbauen oder in die nächste Szene wechseln möchte.
+                    hasLevelEnded = true;
+                    if (levelEndPromptPanel != null)
+                    {
+                        levelEndPromptPanel.SetActive(true);
+                    }
                 }
                 // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
                 // z.B. GetComponent<PlayableDirector>().Play();
@@ -300,5 +329,30 @@ public class GameManager : MonoBehaviour
     public void BackToMenu()
     {
         SceneManager.LoadScene("Menu");
+    }
+    // Wird vom "Weiterbauen"-Button aufgerufen
+    public void ResetEndPromptState()
+    {
+        hasLevelEnded = false;
+        isBalanced = false;      // Gibt die Waage wieder frei
+        isTransitioning = false; // Hebt die Blockade für CheckBalance auf
+        currentBalanceTime = 0f; // Setzt den Timer zurück
+        waitForUnbalance = true; // Sperrt CheckBalance, bis die Waage wieder aus dem Gleichgewicht ist nachem der spieler auf "Weiterbauen" geklickt hat.
+        if (levelEndPromptPanel != null)
+        {
+            levelEndPromptPanel.SetActive(false); // Schaltet das Menü wieder AUS
+        }
+        Debug.Log("Spieler baut weiter! Waage misst wieder.");
+    }
+
+    // Wird vom "Nächste Szene"-Button aufgerufen
+    public void ExecuteSceneTransition()
+    {
+        // Holt deinen auskommentierten Code von oben nach und führt ihn jetzt aus!
+        if (transitionManager != null)
+        {
+            Debug.Log("Spieler ist fertig. Tower Transition Manager übernimmt!");
+            transitionManager.TransferTowerAndLoadScene();
+        }
     }
 }

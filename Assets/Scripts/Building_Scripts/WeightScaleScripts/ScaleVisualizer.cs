@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class ScaleVisualizer : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ScaleVisualizer : MonoBehaviour
     [Header("UI Barometer")]
     public RectTransform barometerNeedle; // Das RectTransform der Zeiger-Nadel
     public float maxNeedleAngle = 60f;    // Maximaler Ausschlagswinkel (z.B. -60° bis +60°)
+    private Quaternion startNeedleRotation; //Die Grund-Drehung der Nadel
 
     // 3D-Animationen der Indicator Säulen
     public float maxMovementY = 1.0f;
@@ -33,6 +35,10 @@ public class ScaleVisualizer : MonoBehaviour
 
     void Start()
     {
+        if (barometerNeedle != null)
+        {
+            startNeedleRotation = barometerNeedle.localRotation;
+        }
         // Startpositionen der 3D-Modelle merken
         if (leftScaleTransform != null)
         {
@@ -117,12 +123,15 @@ public class ScaleVisualizer : MonoBehaviour
         // 4. UI-BAROMETER ZEIGER DREHEN
         if (barometerNeedle != null)
         {
-            // Wandelt die Gewichts-Differenz (-1 bis 1) in einen Winkel um
-            float targetAngle = -normalizedDiff * maxNeedleAngle;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+            float tiltAngle = normalizedDiff * maxNeedleAngle;
+
+            // Quaternionen multipliziert man, um Rotationen zu addieren!
+            // Wir nehmen die gemerkte Start-Drehung und rechnen unseren Ausschlag obendrauf.
+            Quaternion targetRotation = startNeedleRotation * Quaternion.Euler(0, 0, tiltAngle);
 
             // Sanfte Drehung der Nadel
             barometerNeedle.localRotation = Quaternion.Lerp(barometerNeedle.localRotation, targetRotation, Time.deltaTime * moveSpeed);
         }
+    
     }
 }
