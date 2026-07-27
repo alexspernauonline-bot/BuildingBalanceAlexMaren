@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class MovingBall : MonoBehaviour
 {
+    //Platzhalter für die Vektoren
     private float vx;
     private float vz;
 
-    private float speed = 10f;
+    //Bewegungsgeschwindigkeit
+    private float speed = 7f;
 
+    //Vektor Bewegungsrichtung
     private Vector3 moveDirection;
 
     void Awake()
     {
+        //zufällige Festlegung der Bewegungsrichtung
         vx = Random.Range(-1f, 1f);
         vz = Random.Range(-1f, 1f);
 
@@ -23,7 +27,8 @@ public class MovingBall : MonoBehaviour
         Collider[] collidingBalls = Physics.OverlapSphere(transform.position, 1.5f);
 
         foreach (Collider hit in collidingBalls)
-        {
+        {   
+            //Falls ja, wird die Bewegungsrichtung geändert
             if (hit.gameObject != gameObject && hit.CompareTag("Obstacle"))
             {
                 Vector3 away = (transform.position - hit.transform.position).normalized;
@@ -35,9 +40,11 @@ public class MovingBall : MonoBehaviour
             }
         }
 
+        //Tatsächliche Positions- + Rotationsänderung
         transform.position += moveDirection.normalized * speed * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(moveDirection);
 
+        //Begrenzung des Bewegungsraumes
         if (transform.position.x <= -6 || transform.position.x >= 35)
         {
             moveDirection.x *= -1f;
