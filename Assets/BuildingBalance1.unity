@@ -83092,6 +83092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManagerPlayground
   playerScript: {fileID: 1333846321}
   respawnPoint: {fileID: 0}
+  timerText: {fileID: 1957178362}
 --- !u!1001 &434122833
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -376079,6 +376080,17 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!114 &1957178362 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3852309767804951571, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+  m_PrefabInstance: {fileID: 269891951}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1001 &1959926214
 PrefabInstance:
   m_ObjectHideFlags: 0

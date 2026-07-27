@@ -83,7 +83,7 @@ public class LiveTipps : MonoBehaviour
                     Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
                 {
                     tutorialStep = 1;
-                    tutorialText.text = "[ Space ] zum Springen, [ Shift ] zum Sprinten";
+                    tutorialText.text = "[ Space ] zum Springen, [ Shift ] zum Sprinten, [ Strg ] zum Schleichen";
                 }
             }
             else if (tutorialStep == 1) // Warten auf Space oder Shift

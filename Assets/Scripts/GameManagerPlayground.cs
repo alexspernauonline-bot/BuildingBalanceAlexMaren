@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManagerPlayground : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManagerPlayground : MonoBehaviour
 
     //Variable für den Timer
     private float timeTaken;
+    public TextMeshProUGUI timerText;
 
     //Variablen für Punkte-Vergabe
     private float maxPointsTower = 50f;
@@ -51,6 +53,13 @@ public class GameManagerPlayground : MonoBehaviour
             //Messeung der Zeit für die Parkour-Punkte
             timeTaken += Time.deltaTime;
         }
+
+        float timeRemaining = maxTime - timeTaken;
+        //Timer in Sekunden und Minuten umrechnen
+        float minutes = Mathf.FloorToInt(timeRemaining / 60);
+        float seconds = Mathf.FloorToInt(timeRemaining % 60);
+
+        timerText.text = minutes + " : " + seconds;
     }
 
     //Timer zurücksetzen
