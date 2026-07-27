@@ -115,6 +115,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: "Br\xFCckeBevel"
       objectReference: {fileID: 0}
+    - target: {fileID: 6691322559447311942, guid: 9d2b7198f26c9cb408e83a3954fe6b49, type: 3}
+      propertyPath: isPlayerBlock
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -133,6 +137,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9055480085639028760}
     m_Modifications:
+    - target: {fileID: -2333667406652610175, guid: 8492c15c3802f1942a8054b1d1ed8384, type: 3}
+      propertyPath: isPlayerBlock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2307550725087084628, guid: 8492c15c3802f1942a8054b1d1ed8384, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -195,6 +203,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9055480085639028760}
     m_Modifications:
+    - target: {fileID: -6657023328411158718, guid: 7a37bdd4036a55b4d86ebc6c2282f877, type: 3}
+      propertyPath: isPlayerBlock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1472395348741121914, guid: 7a37bdd4036a55b4d86ebc6c2282f877, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.4
@@ -257,6 +269,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9055480085639028760}
     m_Modifications:
+    - target: {fileID: -4437448279604440614, guid: ab024513cc5fe59418d9a172ca2c8ce8, type: 3}
+      propertyPath: isPlayerBlock
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3955469929993380970, guid: ab024513cc5fe59418d9a172ca2c8ce8, type: 3}
       propertyPath: m_Name
       value: Cube Mat

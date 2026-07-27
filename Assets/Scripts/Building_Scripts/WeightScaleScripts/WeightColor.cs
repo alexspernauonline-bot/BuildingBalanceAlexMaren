@@ -13,11 +13,18 @@ public class ColorWeight : MonoBehaviour
 
     //Damit kann man das Gewicht im Inspector auswählen, bevor das Spiel startet.
     public BlockType myWeightType;
+    public bool isPlayerBlock = true;
 
     void Start()
     {
-        /* //Randomiserung des Gewichtstyps, damit jedes Mal, wenn das Spiel gestartet wird, die Blöcke unterschiedliche Gewichte und Farben haben.
-         int randomPick = Random.Range(0, 3);
+        //Damit der Turm Grau bleibt
+        if (!isPlayerBlock)
+        {
+            return;
+        }
+
+        //Randomiserung des Gewichtstyps, damit jedes Mal, wenn das Spiel gestartet wird, die Blöcke unterschiedliche Gewichte und Farben haben.
+        int randomPick = Random.Range(0, 3);
          myWeightType = (BlockType)randomPick;
          // greift auf die Physik (Rigidbody) und die visuelle (MeshRenderer) Komponenten zu, die an diesem Block angehängt sind.
          Rigidbody rb = GetComponent<Rigidbody>();
@@ -41,7 +48,7 @@ public class ColorWeight : MonoBehaviour
             rb.mass = 10f;                                                      //setzt die Masse auf 10
             meshRenderer.material = GameManager.Instance.heavyMaterial;
          }
-        */
+        
     }
 
 }
