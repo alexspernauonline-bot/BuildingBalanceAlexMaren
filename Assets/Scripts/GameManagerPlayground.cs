@@ -10,7 +10,15 @@ public class GameManagerPlayground : MonoBehaviour
     private PlayerTowerControl towerSkript;
 
     //Variable für den Timer
-    private float timer;
+    private float timeTaken;
+
+    //Variablen für Punkte-Vergabe
+    private float maxPointsTower = 50f;
+    private float maxTowerDestructions = 10f;
+    private float maxPointsTimer = 50f;
+    private float graceTime = 120f;
+    private float maxTime = 300f;
+    private float finalPointsParkour;
 
     void Awake()
     {
@@ -39,18 +47,40 @@ public class GameManagerPlayground : MonoBehaviour
         else
         {
             //Messeung der Zeit für die Parkour-Punkte
-            timer += Time.deltaTime;
+            timeTaken += Time.deltaTime;
         }
     }
 
     //Timer zurücksetzen
     private void ResetTimer()
     {
-        timer = 0f;
+        timeTaken = 0f;
     }
 
-    private void CalculateFinalPoints(float timer, int towerDestructions)
+    private void CalculateFinalPoints(float timeTaken, int towerDestructions)
     {
+        float finalTimerPoints;
+        float finalTowerPoints;
+
+        //Punkte für die gebrauchte Zeit berechnen
+        if (timeTaken <= graceTime)
+        {
+            finalTimerPoints = maxPointsTimer;
+        }
+        else
+        {
+            float scoringTime = maxTime - graceTime;
+            float normalizedTime = Mathf.Clamp01((timeTaken - graceTime) / scoringTime);
+
+            finalTimerPoints = Mathf.RoundToInt(maxPointsTimer * (1f - normalizedTime));
+        }
+
+        //Punkte für den Transport des Turms berechnen
+        float normalizedTowerDestructs = Mathf.Clamp01(towerDestructions / maxTowerDestructions);
+        finalTowerPoints = Mathf.RoundToInt(maxPointsTower * (1f - normalizedTowerDestructs));
+
+        //Finale Punktzahl für Parkour
+        finalPointsParkour = finalTimerPoints + finalTowerPoints;
 
     }
 
@@ -58,16 +88,16 @@ public class GameManagerPlayground : MonoBehaviour
     private void GameFinished()
     {
         print("Finished!)");
-        print(timer);
 
         //Timer in Sekunden und Minuten umrechnen
-        float minutes = Mathf.FloorToInt(timer / 60);
-        float seconds = Mathf.FloorToInt(timer % 60);
+        float minutes = Mathf.FloorToInt(timeTaken / 60);
+        float seconds = Mathf.FloorToInt(timeTaken % 60);
 
         print(minutes + " : " + seconds);
 
-        CalculateFinalPoints(timer, towerSkript.towerDestructions);
+        CalculateFinalPoints(timeTaken, towerSkript.towerDestructions);
+
+        print(finalPointsParkour);
         //add loading Finish Screen
-        //add measure points
     }
 }
