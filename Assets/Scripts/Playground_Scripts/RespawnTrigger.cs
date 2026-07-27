@@ -1,11 +1,15 @@
 using UnityEngine;
+using System.Collections;
 
 public class RespawnTrigger : MonoBehaviour
 {
     public GameObject respawnPoint; // Das Ziel, zu dem der Spieler respawnen soll
 
+    private GameObject playerRef;
+
     void Start()
     {
+        playerRef = GameObject.FindWithTag("Player");
 
         // Stelle sicher, dass der Collider als Trigger eingestellt ist
         Collider collider = GetComponent<Collider>();
@@ -27,14 +31,21 @@ public class RespawnTrigger : MonoBehaviour
         {
             Debug.Log("Player has fallen into the ball Pit! Respawning...");
 
-            TeleportPlayer(other.gameObject);
+            //Open Respawn Menue
 
-            //Hier kannst du Code hinzufügen um einen Game-Over-Bildschirm anzuzeigen.
+            StartRespawn();
         }
     }
 
-    public void TeleportPlayer(GameObject player)
+    public void StartRespawn()
     {
+        StartCoroutine(RespawnPlayer(playerRef));
+    }
+
+    IEnumerator RespawnPlayer(GameObject player)
+    {
+        yield return new WaitForSeconds(3);
+
         PlayerMovement playerSkript = player.GetComponent<PlayerMovement>();
         CharacterController playerCc = player.GetComponent<CharacterController>();
 

@@ -9,6 +9,8 @@ public class GameManagerPlayground : MonoBehaviour
     private GameObject playerTower;
     private PlayerTowerControl towerSkript;
 
+    public GameObject respawnPoint;
+
     //Variable für den Timer
     private float timeTaken;
 

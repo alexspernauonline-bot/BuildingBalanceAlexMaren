@@ -96,7 +96,7 @@ public class PlayerTowerControl : MonoBehaviour
 
             TowerDestructionCount();
 
-            respawn.TeleportPlayer(playerRef);
+            respawn.StartRespawn();
         }
     }
 
