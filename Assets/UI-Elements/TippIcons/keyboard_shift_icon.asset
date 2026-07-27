@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-2128730761350574133
+--- !u!21 &-6111059891239046277
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: InputIcons
+  m_Name: keyboard_shift_icon
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_SpriteAsset
   m_Version: 1.1.0
   m_FaceInfo:
@@ -77,7 +77,7 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  m_Material: {fileID: -2128730761350574133}
+  m_Material: {fileID: -6111059891239046277}
   spriteSheet: {fileID: 2800000, guid: a0a08d7d50dc75e4582ab600beaf0242, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
@@ -103,16 +103,4 @@ MonoBehaviour:
     m_ClassDefinitionType: 0
     sprite: {fileID: 21300000, guid: a0a08d7d50dc75e4582ab600beaf0242, type: 3}
   spriteInfoList: []
-  fallbackSpriteAssets:
-  - {fileID: 11400000, guid: fe63cdfe92535b947aae586287448c45, type: 2}
-  - {fileID: 11400000, guid: 129223fe0d188ee4da31bfdfb0bca1ef, type: 2}
-  - {fileID: 11400000, guid: 577ad5d38b6c7914a98737ffccd71b1b, type: 2}
-  - {fileID: 11400000, guid: c72f2378a06ed4947a9ae14aace65406, type: 2}
-  - {fileID: 11400000, guid: c62f2a6ace0477e4d9bbf79052242851, type: 2}
-  - {fileID: 11400000, guid: 59369b011d06c5649a24c0514a558976, type: 2}
-  - {fileID: 11400000, guid: 5c6799bb4970fd645a7f5cbd5409d5b8, type: 2}
-  - {fileID: 11400000, guid: f392e2d3fde418a40acc6f0a94e8d240, type: 2}
-  - {fileID: 11400000, guid: 2e7c37aa9e41e1e4fa887d6bda5c2894, type: 2}
-  - {fileID: 11400000, guid: d6104157445baa946ae62e8376bf5b90, type: 2}
-  - {fileID: 11400000, guid: 2e2671e48fdd7ec46881917fa5ad92c1, type: 2}
-  - {fileID: 11400000, guid: bce9037523a959340a9b76c7c653e51d, type: 2}
+  fallbackSpriteAssets: []

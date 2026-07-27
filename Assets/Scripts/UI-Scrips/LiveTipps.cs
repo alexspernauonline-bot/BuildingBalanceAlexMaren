@@ -33,7 +33,7 @@ public class LiveTipps : MonoBehaviour
 
         if (currentMode == TutorialMode.Level1_Bauen)
         {
-            if (tutorialText != null) tutorialText.text = "Maus [ Links-Klick ] um einen Block zu greifen";
+            if (tutorialText != null) tutorialText.text = "Nutze <sprite name=\"mouse_left\"> Maus [ Links-Klick ] um einen Block zu greifen";
         }
         else // Level 2
         {
@@ -53,7 +53,7 @@ public class LiveTipps : MonoBehaviour
                 if (Input.GetMouseButton(0))
                 {
                     tutorialStep = 1;
-                    tutorialText.text = "Drücke [ R ] um den Block zu rotieren";
+                    tutorialText.text = "Drücke <sprite name=\"keyboard_r\"> um den Block zu rotieren";
                 }
             }
             if (tutorialStep == 1) // Warten auf R
@@ -67,6 +67,15 @@ public class LiveTipps : MonoBehaviour
             else if (tutorialStep == 2) // Warten auf Warten auf Reset Area
             {
                 if (hasResetBlock == true)
+                {
+                    tutorialStep = 99;
+                    tutorialText.text = "Super! Klicke blöcke mit <sprite name=\"mouse_right\"> Rechtsklick an um ihr gewicht zu wechseln";
+                    Invoke("HideTutorial", 2f); // Verschwindet nach 2 Sekunden
+                }
+            }
+            else if (tutorialStep == 3) // Warten auf Warten auf Rechtsklick
+            {
+                if (Input.GetMouseButtonUp(1))
                 {
                     tutorialStep = 99;
                     tutorialText.text = "Perfekt!";
@@ -83,7 +92,7 @@ public class LiveTipps : MonoBehaviour
                     Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))
                 {
                     tutorialStep = 1;
-                    tutorialText.text = "[ Space ] zum Springen, [ Shift ] zum Sprinten, [ Strg ] zum Schleichen";
+                    tutorialText.text = "<sprite name=\"keyboard_space\"> zum Springen, <sprite name=\"keyboard_shift\"> zum Sprinten, <sprite name=\"keyboard_ctrl\"> zum Schleichen";
                 }
             }
             else if (tutorialStep == 1) // Warten auf Space oder Shift
