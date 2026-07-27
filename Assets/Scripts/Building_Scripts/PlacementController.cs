@@ -15,7 +15,7 @@ public class PlacementController : MonoBehaviour
     void Start()
     {
 
-        interactableLayer = LayerMask.GetMask("placableBlock"); // zuweisung vom Layer.. Hier wei� dann der Raycast, welchen Layer er checken soll.
+        interactableLayer = LayerMask.GetMask("placableBlock"); // zuweisung vom Layer.. Hier weiß dann der Raycast, welchen Layer er checken soll.
     }
 
     void Update()

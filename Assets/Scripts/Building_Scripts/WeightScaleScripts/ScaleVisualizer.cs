@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ScaleVisualizer : MonoBehaviour
 {
@@ -11,8 +12,12 @@ public class ScaleVisualizer : MonoBehaviour
     public Material greenBlinkMaterial;
     private Material[] originalMaterials;
 
+    // UI BAROMETER 
+    [Header("UI Barometer")]
+    public RectTransform barometerNeedle; // Das RectTransform der Zeiger-Nadel
+    public float maxNeedleAngle = 60f;    // Maximaler Ausschlagswinkel (z.B. -60° bis +60°)
 
-    //Animationen
+    // 3D-Animationen der Indicator Säulen
     public float maxMovementY = 1.0f;
     public float maxWeightDifference = 10f;
     public float moveSpeed = 5.0f;
@@ -85,27 +90,39 @@ public class ScaleVisualizer : MonoBehaviour
         // Sicherheits-Check
         if (leftScaleTransform == null || rightScaleTransform == null || gameManager == null) return;
 
-        // 1. Wir lesen die Gewichte einfach aus dem GameManager ab
+        // 1. Differenz auslesen
         float currentRawDifference = gameManager.weightLeft - gameManager.weightRight;
 
-        // 2. Den Wert normalisieren
+        // 2. WICHTIG: normalizedDiff HIER deklarieren (damit es überall in FixedUpdate verfügbar ist!)
+        float normalizedDiff = Mathf.Clamp(currentRawDifference / maxWeightDifference, -1f, 1f);
+
+        // 3. 3D-Säulen Animation berechnen
         if (Mathf.Abs(currentRawDifference - lastStableDifference) > weightChangeThreshold)
         {
             // Neue stabile Differenz merken
             lastStableDifference = currentRawDifference;
-
             // Neue Ziel-Höhen berechnen
-            float normalizedDiff = Mathf.Clamp(lastStableDifference / maxWeightDifference, -1f, 1f);
             targetYLeft = startYLeft - (normalizedDiff * maxMovementY);
             targetYRight = startYRight + (normalizedDiff * maxMovementY);
         }
 
-        // Vektoren bauen
+        // Vektoren bauen & 3D-Modelle bewegen
         Vector3 targetPosLeft = new Vector3(leftScaleTransform.localPosition.x, targetYLeft, leftScaleTransform.localPosition.z);
         Vector3 targetPosRight = new Vector3(rightScaleTransform.localPosition.x, targetYRight, rightScaleTransform.localPosition.z);
 
-        // 5. Sanft animieren
         leftScaleTransform.localPosition = Vector3.Lerp(leftScaleTransform.localPosition, targetPosLeft, Time.deltaTime * moveSpeed);
         rightScaleTransform.localPosition = Vector3.Lerp(rightScaleTransform.localPosition, targetPosRight, Time.deltaTime * moveSpeed);
+
+
+        // 4. UI-BAROMETER ZEIGER DREHEN
+        if (barometerNeedle != null)
+        {
+            // Wandelt die Gewichts-Differenz (-1 bis 1) in einen Winkel um
+            float targetAngle = -normalizedDiff * maxNeedleAngle;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
+
+            // Sanfte Drehung der Nadel
+            barometerNeedle.localRotation = Quaternion.Lerp(barometerNeedle.localRotation, targetRotation, Time.deltaTime * moveSpeed);
+        }
     }
 }

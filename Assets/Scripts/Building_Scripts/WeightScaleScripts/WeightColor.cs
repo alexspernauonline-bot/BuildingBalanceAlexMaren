@@ -16,30 +16,32 @@ public class ColorWeight : MonoBehaviour
 
     void Start()
     {
-        //Randomiserung des Gewichtstyps, damit jedes Mal, wenn das Spiel gestartet wird, die Blöcke unterschiedliche Gewichte und Farben haben.
-        int randomPick = Random.Range(0, 3);
-        myWeightType = (BlockType)randomPick;
-        // greift auf die Physik (Rigidbody) und die visuelle (MeshRenderer) Komponenten zu, die an diesem Block angehängt sind.
-        Rigidbody rb = GetComponent<Rigidbody>();
-        
-        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        /* //Randomiserung des Gewichtstyps, damit jedes Mal, wenn das Spiel gestartet wird, die Blöcke unterschiedliche Gewichte und Farben haben.
+         int randomPick = Random.Range(0, 3);
+         myWeightType = (BlockType)randomPick;
+         // greift auf die Physik (Rigidbody) und die visuelle (MeshRenderer) Komponenten zu, die an diesem Block angehängt sind.
+         Rigidbody rb = GetComponent<Rigidbody>();
 
-        // überprüft, welches Gewicht ausgewählt wurde, und weiset die Farbe und Masse zu.
-        if (myWeightType == BlockType.Light)
-        {
-            rb.mass = 1f;                                                         //setzt die Masse auf 1
-            meshRenderer.material = GameManager.Instance.lightMaterial;
+         MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
 
-        }
-        else if (myWeightType == BlockType.Medium)
-        {
-            rb.mass = 5f;                                                       //setzt die Masse auf 5
-            meshRenderer.material = GameManager.Instance.mediumMaterial;
-        }
-        else if (myWeightType == BlockType.Heavy)
-        {
-           rb.mass = 10f;                                                      //setzt die Masse auf 10
-           meshRenderer.material = GameManager.Instance.heavyMaterial;
-        }
+         // überprüft, welches Gewicht ausgewählt wurde, und weiset die Farbe und Masse zu.
+         if (myWeightType == BlockType.Light)
+         {
+             rb.mass = 1f;                                                         //setzt die Masse auf 1
+             meshRenderer.material = GameManager.Instance.lightMaterial;
+
+         }
+         else if (myWeightType == BlockType.Medium)
+         {
+             rb.mass = 5f;                                                       //setzt die Masse auf 5
+             meshRenderer.material = GameManager.Instance.mediumMaterial;
+         }
+         else if (myWeightType == BlockType.Heavy)
+         {
+            rb.mass = 10f;                                                      //setzt die Masse auf 10
+            meshRenderer.material = GameManager.Instance.heavyMaterial;
+         }
+        */
     }
+
 }

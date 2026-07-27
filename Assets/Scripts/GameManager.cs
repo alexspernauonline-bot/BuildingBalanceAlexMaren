@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
 
     private bool isBalanced = false;
 
-    // Awake wird noch VOR Start() aufgerufen. Perfekt, um die Regeln festzulegen,bevor die Bl�cke spawnen.
+    // Awake wird noch VOR Start() aufgerufen bevor die Blöcke spawnen.
     void Awake()
     {
         // Singleton initialisieren
@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         gameManagerAudioSource = GetComponent<AudioSource>();
     }
 
-    // GEFIXT: Update-Methode hinzugef�gt, damit die Waage jeden Frame gepr�ft wird
+   
     void Update()
     {
         CheckBalance();
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void AssignRandomColors()
     {
-        // 1. Wir packen alle drei Materialien in eine Liste (unseren "Beutel")
+        // Wir packen alle drei Materialien in eine Liste 
         List<Material> availableMaterials = new List<Material>
         {
             Resources.Load<Material>("redMaterial"),
@@ -72,35 +72,37 @@ public class GameManager : MonoBehaviour
             Resources.Load<Material>("greenMaterial")
         };
 
-        // 2. Wir ziehen eine zuf�llige Zahl f�r das LEICHTE Gewicht
+        //  ziehen einer zufälligen Zahl für das LEICHTE Gewicht
         int randomIndex = Random.Range(0, availableMaterials.Count);
         lightMaterial = availableMaterials[randomIndex];
         availableMaterials.RemoveAt(randomIndex); // Farbe aus dem Beutel nehmen!
 
-        // 3. Wir ziehen aus den verbleibenden ZWEI Farben f�r das MITTLERE Gewicht
+        // 3. Wir ziehen aus den verbleibenden ZWEI Farben für das MITTLERE Gewicht
         randomIndex = Random.Range(0, availableMaterials.Count);
         mediumMaterial = availableMaterials[randomIndex];
         availableMaterials.RemoveAt(randomIndex);
 
-        // 4. Das SCHWERE Gewicht bekommt automatisch die letzte �brig gebliebene Farbe
+        // 4. Das SCHWERE Gewicht bekommt automatisch die letzte übrig gebliebene Farbe
         heavyMaterial = availableMaterials[0];
 
         Debug.Log("Neue Runde! Farben wurden frisch gemischt.");
     }
-
-    //ex
     // ACHTUNG: Das 'private' wurde entfernt, damit der SpawnManager zugreifen kann
     public void SetupTower(GameObject towerObject)
     {
-        // Sucht ALLE Bl�cke im gesamten Turm auf einmal zusammen
+        // LOG 1: Prüfen, ob die Methode überhaupt ankommt
+        Debug.Log("SetupTower wurde aufgerufen für: " + towerObject.name);
+        // Sucht ALLE Blöcke im gesamten Turm auf einmal zusammen
         BlockIdentifier[] allBlocksInTower = towerObject.GetComponentsInChildren<BlockIdentifier>();
+        // LOG 2: Prüfen, wie viele Blöcke überhaupt gefunden werden
+        Debug.Log("Gefundene Blöcke im Turm: " + allBlocksInTower.Length);
 
         foreach (BlockIdentifier block in allBlocksInTower)
         {
-            MeshRenderer renderer = block.GetComponentInChildren<MeshRenderer>();
+            MeshRenderer renderer = block.GetComponentInChildren<MeshRenderer>(true);
             Rigidbody rb = block.GetComponent<Rigidbody>();
 
-            // Pr�fen, welcher Ausweis vorgezeigt wird
+            // Prüfen, welcher Ausweis vorgezeigt wird
             if (block.myCategory == BlockWeightCategory.Light)
             {
                 if (renderer != null) renderer.material = lightMaterial;
@@ -119,11 +121,24 @@ public class GameManager : MonoBehaviour
                 if (rb != null) rb.mass = 10f;
                 block.trueMaterial = heavyMaterial;
             }
-            //L�sung wird mit grau �bermalt
-            if (renderer != null && mysteryMaterial != null)
+            // 2. Fehler-Check für den Renderer
+            if (renderer == null)
+            {
+                Debug.LogWarning($"[WARNUNG] Auf dem Block '{block.gameObject.name}' wurde KEIN MeshRenderer gefunden!");
+                continue; // Springt zum nächsten Block
+            }
+
+            // 3. Lösung mit Versteck-Material übermalen
+            if (mysteryMaterial != null)
             {
                 renderer.material = mysteryMaterial;
+                Debug.Log($"Block '{block.gameObject.name}' wurde erfolgreich grau übermalt!");
             }
+            else
+            {
+                Debug.LogError("[FEHLER] mysteryMaterial ist NULL auf dem GameManager!");
+            }
+            
         }
     }
 
@@ -133,7 +148,7 @@ public class GameManager : MonoBehaviour
         MeshRenderer renderer = playerBlock.GetComponentInChildren<MeshRenderer>();
         Rigidbody rb = playerBlock.GetComponent<Rigidbody>();
 
-        // WICHTIG: Das Spieler-Skript (z.B. f�r die Waage) braucht evtl. auch den Identifier
+        // WICHTIG: Das Spieler-Skript (z.B. für die Waage) braucht evtl. auch den Identifier
         BlockIdentifier identifier = playerBlock.GetComponent<BlockIdentifier>();
         if (identifier != null)
         {
@@ -192,17 +207,17 @@ public class GameManager : MonoBehaviour
                 isTransitioning = true;
                 if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
                 if (rightVisualizer != null) rightVisualizer.UpdateBlink(false, 0f);
-                Debug.Log("DIE WAAGE IST F�R 3 SEKUNDEN BALANCIERT!");
+                Debug.Log("DIE WAAGE IST FÜR 3 SEKUNDEN BALANCIERT!");
 
-                // GEFIXT: Hier speichern wir jetzt die Punkte, bevor wir die Szene wechseln!
+                // Hier werden  die Punkte gespeichert, bevor  die Szene gewechselt wird!
                 CalculateAndSaveAccuracy(difference);
 
-                //Jetzt werden die bl�cke dem Szenen �bergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
+                //Jetzt werden die blöcke dem Szenenübergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
                 if (transitionManager != null)
                 {
                     transitionManager.TransferTowerAndLoadScene();
                 }
-                // HIER kommt sp�ter der Aufruf f�r deine T�r-Cutscene rein!
+                // HIER kommt später der Aufruf für deine Tür-Cutscene rein!
                 // z.B. GetComponent<PlayableDirector>().Play();
             }
         }
@@ -220,7 +235,7 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
+    //Wie der Score berechnet wird
     private void CalculateAndSaveAccuracy(float currentDifference)
     {
         // A. GEWICHTS-GENAUIGKEIT
