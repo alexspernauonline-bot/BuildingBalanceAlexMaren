@@ -9,17 +9,15 @@ public class PauseGame : MonoBehaviour
     //Verbindung zu den Buttons
     public Button resumeBtn;
     public Button mainMenuBtn;
-   // public Button retryBtn;
+    public Button retryBtn;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       // retryBtn.onClick.AddListener(RestartCurrentLevel);
-        mainMenuBtn.onClick.AddListener(LoadMainMenu);
-       // resumeBtn.onClick.AddListener(ResumePlaythrough);
+       
     }
 
-    /*public void RestartCurrentLevel()
+    public void RestartCurrentLevel()
     {
         Debug.Log("Restart");
         // 1. Die Zeit wieder auf normal stellen (falls das Spiel pausiert war!)
@@ -30,7 +28,7 @@ public class PauseGame : MonoBehaviour
 
         // 3. Diese Szene genau jetzt neu laden
         SceneManager.LoadScene(currentSceneName);
-    }*/
+    }
 
     public void LoadMainMenu()
     {
@@ -44,10 +42,10 @@ public class PauseGame : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
-    /*public void ResumePlaythrough()
+    public void ResumePlaythrough()
     {
         Debug.Log("Resume");
         Time.timeScale = 1f;
         gameObject.SetActive(false);
-    }*/ 
+    }
 }
