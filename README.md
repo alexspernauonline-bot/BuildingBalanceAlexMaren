@@ -1,47 +1,52 @@
-# BuildingBalanceAlexMaren
-Creative Coding Projekt
-# Projectname
-Ein kurze Beschreibung des Projektes / Spiels
+# BuildingBalance
+A Creative Coding Project
 
-## Description
-Ein Physikbasiertes Bau und Parkourspiel, bei dem Balance und geschcklichkeit im Fokus stehen.
+## Beschreibung
+In diesem physikbasierten Bau- und Parkourspiel, bei dem Balance und Geschicklichkeit im Fokus stehen, musst du einen selbst gebauten Turm sicher durch einen bunten Indoor-Playground bringen. 
+Find das richtige Turm-Gewicht heraus, aber pass auf, dass deine Konstruktion nicht umfällt!
 
 ### Features
-* Feature 1
-* Feature 2
+* Baue deinen eigenen Turm
+* Bringe diesen sicher zum Ausgang
+* Bewältige eine spannende Parkour
 
 ### Controls
 Parkour Level:
 WASD für Bewegung
 [Space] Springen
 [Shift] Sprinten
-[] Ducken
+[Strg] Ducken
+E für Balancieren
 
 Bau Level:
-links-klick für aufheben und platzieren
-rechts-klick um Farbe (Gewicht) des Blocks zu wechseln
-R Rotieren eines Blocks
+Links-Klick für das Aufheben und Platzieren
+Rechts-Klick, um die Farbe (Gewicht) des Blocks zu wechseln
+R für das Rotieren eines Blocks
 
 ## Author(s)
-
+Alex Spernau [acloudscapes](https://acloudscapes.itch.io/)
+Maren Rautmann [silverf1ower](https://silverf1ower.itch.io/)
 
 ## itch.io
-[itch-Seite](https://vis-hs-ansbach.itch.io/interactive-illustration-template)
+[itch-Seite](https://acloudscapes.itch.io/building-balance)
 
 
 ## Credits
 This game was created at the Visualization and Interaction in Digital Media (VIS) program of HS Ansbach. 
 Alex Spernau
-Maren
+Maren Rautmann
 
 Supervised by Prof. Florian Machill (Creative Coding SS 26)
 
 ## Third Party Credits
 
 ### Sound
-* Asset-Pack XY [Assetstore](https://assetstore.unity.com/)
-* Asset-Pack YZ [Assetstore](https://assetstore.unity.com/)
+* Lizenzfreie Sounds von [Freesound](https://freesound.org/)
+* Fall-Sound [101Soundboards](ttps://www.101soundboards.com/sounds/27543066-ball-pit-jump-and-impact-9)
+* Hints Stars Points & Rewards Sound Effects - Lite Pack [AssetStore](https://assetstore.unity.com/packages/audio/sound-fx/hints-stars-points-rewards-sound-effects-lite-pack-295538)
 
 ### 3D Assets
-* Asset-Pack XY [Assetstore](https://assetstore.unity.com/)
-* Asset-Pack YZ [Assetstore](https://assetstore.unity.com/)
+* Playground Asset Pack [Siennafay33](https://siennafay33.itch.io/playground-asset-pack)
+* Simple Sky - Cartoon Assets [Assetstore](https://assetstore.unity.com/packages/3d/environments/simple-sky-cartoon-assets-42373)
+* Interiors FREE - Cozy Cartoon Pack [Assetstore](https://assetstore.unity.com/packages/3d/environments/simple-sky-cartoon-assets-42373)
+* Playground Low Poly [Assetstore](https://assetstore.unity.com/packages/3d/environments/playground-low-poly-191533)
