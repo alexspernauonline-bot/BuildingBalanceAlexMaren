@@ -31,6 +31,8 @@ public class GameManagerPlayground : MonoBehaviour
     public GameObject endScreen;
     public GameObject pauseScreen;
 
+    public TextMeshProUGUI finalPointsText;
+
     void Awake()
     {
         //Tower-Skript auf den aus der Building-Szene übergebenen Turm legen
@@ -116,6 +118,8 @@ public class GameManagerPlayground : MonoBehaviour
 
         //Finale Punktzahl für Parkour
         finalPoints = finalTimerPoints + finalTowerPoints + towerAccuracy;
+
+        finalPointsText.text = "Erreichte Punkte: " + finalPoints;
 
     }
 

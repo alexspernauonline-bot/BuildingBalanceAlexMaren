@@ -59,6 +59,8 @@ public class RespawnTrigger : MonoBehaviour
     {
         audioSource.PlayOneShot(fallSound, 0.35f);
         respawnScreen.SetActive(true);
+
+        //Player Movement während Respawn Cooldown verhindern
         PlayerMovement playerSkript = playerRef.GetComponent<PlayerMovement>();
         playerSkript.enabled = false;
 
@@ -69,6 +71,8 @@ public class RespawnTrigger : MonoBehaviour
     IEnumerator RespawnPlayer(GameObject player)
     {
         yield return new WaitForSeconds(respawnDelay);
+
+        Debug.Log("Should Respawn");
 
         //Erhöht Zähler für den Turm => wichtig für finale Punkte
         towerSkript.TowerDestructionCount();
