@@ -111,11 +111,11 @@ public class GameManager : MonoBehaviour
     public void SetupTower(GameObject towerObject)
     {
         // LOG 1: Prüfen, ob die Methode überhaupt ankommt
-        Debug.Log("SetupTower wurde aufgerufen für: " + towerObject.name);
+        //Debug.Log("SetupTower wurde aufgerufen für: " + towerObject.name); CHECK
         // Sucht ALLE Blöcke im gesamten Turm auf einmal zusammen
         BlockIdentifier[] allBlocksInTower = towerObject.GetComponentsInChildren<BlockIdentifier>();
         // LOG 2: Prüfen, wie viele Blöcke überhaupt gefunden werden
-        Debug.Log("Gefundene Blöcke im Turm: " + allBlocksInTower.Length);
+       // Debug.Log("Gefundene Blöcke im Turm: " + allBlocksInTower.Length); CHECK
 
         foreach (BlockIdentifier block in allBlocksInTower)
         {
@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
             if (mysteryMaterial != null)
             {
                 renderer.material = mysteryMaterial;
-                Debug.Log($"Block '{block.gameObject.name}' wurde erfolgreich grau übermalt!");
+                //Debug.Log($"Block '{block.gameObject.name}' wurde erfolgreich grau übermalt!");CHECK
             }
             else
             {
@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Das Placement-System �bergibt hier den frisch gespawnten Block und dessen gew�nschte Gewichtsklasse
+    // Das Placement-System übergibt hier den frisch gespawnten Block und dessen gewünschte Gewichtsklasse
     public void ConfigurePlayerBlock(GameObject playerBlock, BlockWeightCategory category)
     {
         MeshRenderer renderer = playerBlock.GetComponentInChildren<MeshRenderer>();
@@ -252,14 +252,16 @@ public class GameManager : MonoBehaviour
                 // Hier werden  die Punkte gespeichert, bevor  die Szene gewechselt wird!
                 CalculateAndSaveAccuracy(difference);
 
-                //Jetzt werden die blöcke dem Szenenübergang gegeben, damit der spieler den Selbstgebauten Turm balancieren kann.
+
+                //Der spieler hat die Waage erfolgreich balanciert. Jetzt kann er entscheiden, ob er weiterbauen oder in die nächste Szene wechseln möchte.
                 if (!hasLevelEnded)
                 {
-                    //Der spieler hat die Waage erfolgreich balanciert. Jetzt kann er entscheiden, ob er weiterbauen oder in die nächste Szene wechseln möchte.
                     hasLevelEnded = true;
                     if (levelEndPromptPanel != null)
                     {
                         levelEndPromptPanel.SetActive(true);
+                        Time.timeScale = 0f;
+
                         //SCORE AUSLESEN UND ANZEIGEN ---
                         if (scoreText != null)
                         {
@@ -363,6 +365,7 @@ public class GameManager : MonoBehaviour
         isBalanced = false;      // Gibt die Waage wieder frei
         isTransitioning = false; // Hebt die Blockade für CheckBalance auf
         currentBalanceTime = 0f; // Setzt den Timer zurück
+        Time.timeScale = 1f;
         waitForUnbalance = true; // Sperrt CheckBalance, bis die Waage wieder aus dem Gleichgewicht ist nachem der spieler auf "Weiterbauen" geklickt hat.
         if (levelEndPromptPanel != null)
         {
@@ -374,11 +377,12 @@ public class GameManager : MonoBehaviour
     // Wird vom "Nächste Szene"-Button aufgerufen
     public void ExecuteSceneTransition()
     {
-        // Holt deinen auskommentierten Code von oben nach und führt ihn jetzt aus!
+        Time.timeScale = 1f;//Setzt die Zeit wieder auf normal
+
         if (transitionManager != null)
         {
             Debug.Log("Spieler ist fertig. Tower Transition Manager übernimmt!");
-            transitionManager.TransferTowerAndLoadScene();
+            transitionManager.TransferTowerAndLoadScene(); //Gibt den Befehl an den Tower Transition Manager weiter, der die Szene wechselt und den Turm übergibt.
         }
     }
 }
