@@ -125858,7 +125858,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8027059694393600278, guid: e3502d9369191d04a84f5f6bf71482ec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: RestartCurrentLevel
+      value: ResumePlaythrough
       objectReference: {fileID: 0}
     - target: {fileID: 8027059694393600278, guid: e3502d9369191d04a84f5f6bf71482ec, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
