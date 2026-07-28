@@ -3,12 +3,10 @@ using System.Collections;
 
 public class PlayerTowerControl : MonoBehaviour
 {
-
     //Referenz zum Spieler
     private GameObject camRef;
     private PlayerMovement playerSkript;
     private GameObject playerRef;
-    private RespawnTrigger respawn;
 
     //Offset für die Position des Spielerturms + Festlegen der Größe
     private Vector3 offset = new Vector3(0f, -0.5f, 1.5f);
@@ -24,11 +22,11 @@ public class PlayerTowerControl : MonoBehaviour
     public float wobbleSpeed = 2f;
     public float maxRot = 50f;
     public bool isWobbly = false;
+    public bool towerHasFallen;
 
     //Variable für Turm-Punkte
     public int towerDestructions = 0;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //Verbindung zum Spieler
@@ -36,8 +34,8 @@ public class PlayerTowerControl : MonoBehaviour
         playerSkript = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         playerRef = GameObject.FindWithTag("Player");
 
-        //Verbindung zum Respawn-Skript
-        respawn = GameObject.FindWithTag("Respawn").GetComponent<RespawnTrigger>();
+        //Start-Sitaution setzen
+        towerHasFallen = false;
 
         //Vorbereiten der Blöcke im Turm
         foreach (Transform block in this.transform)
@@ -46,10 +44,6 @@ public class PlayerTowerControl : MonoBehaviour
             blockRb.isKinematic = true;
         }
 
-        BoxCollider bc = gameObject.AddComponent<BoxCollider>();
-        bc.size = new Vector3(1f, 2f, 1f);
-        bc.center = new Vector3(0f, 1f, 0f);
-
         //Setzen von Position und Größe
         transform.localPosition = new Vector3(0f, 0f, 0f);
         transform.SetParent(camRef.transform, false);
@@ -57,6 +51,7 @@ public class PlayerTowerControl : MonoBehaviour
         transform.localScale = scaleChange;
 
         InvokeRepeating("TimeTillFalldown", 1, 2);
+
     }
 
     // Update is called once per frame
@@ -90,14 +85,14 @@ public class PlayerTowerControl : MonoBehaviour
         }
         else if (wobbleSpeed >= 10 || playerSkript.hasCollided)
         {
+            towerHasFallen = true;
+
             playerSkript.hasJumped = false;
             playerSkript.hasCollided = false;
             isWobbly = false;
             wobbleSpeed = 2f;
 
             TowerDestructionCount();
-
-            respawn.StartRespawn();
         }
     }
 

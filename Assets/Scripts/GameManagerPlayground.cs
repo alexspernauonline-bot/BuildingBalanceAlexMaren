@@ -27,6 +27,7 @@ public class GameManagerPlayground : MonoBehaviour
     private float graceTime = 120f;
     private float maxTime = 300f;
     private float finalPoints;
+    private float highScore;
 
     public GameObject endScreen;
     public GameObject pauseScreen;
@@ -54,6 +55,8 @@ public class GameManagerPlayground : MonoBehaviour
 
         pauseScreen.SetActive(false);
         endScreen.SetActive(false);
+
+        highScore = PlayerPrefs.GetFloat("highScore");
 
     }
 
@@ -119,6 +122,13 @@ public class GameManagerPlayground : MonoBehaviour
         //Finale Punktzahl für Parkour
         finalPoints = finalTimerPoints + finalTowerPoints + towerAccuracy;
 
+        //Überprüfung nach neuem Highscore
+        if (finalPoints > highScore)
+        {
+            PlayerPrefs.SetFloat("highScore", finalPoints);
+        }
+
+        //Ausgabe der erreichten Punkte
         finalPointsText.text = "Erreichte Punkte: " + finalPoints;
 
     }
@@ -126,6 +136,7 @@ public class GameManagerPlayground : MonoBehaviour
     //Spielende
     private void GameFinished()
     {
+        Cursor.lockState = CursorLockMode.None;
         endScreen.SetActive(true);
 
         //Timer in Sekunden und Minuten umrechnen

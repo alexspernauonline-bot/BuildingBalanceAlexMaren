@@ -40,6 +40,14 @@ public class RespawnTrigger : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (towerSkript.towerHasFallen == true)
+        {
+            StartRespawn();
+        }
+    }
+
     //Methode wird aufgerufen, wenn ein Collider in den Trigger eintritt
     void OnTriggerEnter(Collider other)
     {
@@ -57,8 +65,9 @@ public class RespawnTrigger : MonoBehaviour
     //Started Coroutine für Delay + Zugriff von anderen Skripten möglich
     public void StartRespawn()
     {
-        audioSource.PlayOneShot(fallSound, 0.35f);
+        audioSource.PlayOneShot(fallSound, 0.25f);
         respawnScreen.SetActive(true);
+        towerSkript.towerHasFallen = false;
 
         //Player Movement während Respawn Cooldown verhindern
         PlayerMovement playerSkript = playerRef.GetComponent<PlayerMovement>();

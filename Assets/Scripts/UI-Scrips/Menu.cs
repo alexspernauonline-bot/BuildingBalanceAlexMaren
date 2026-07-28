@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
+    public TextMeshProUGUI highscoreText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        float savedHighscore = PlayerPrefs.GetFloat("highScore");
+        highscoreText.text = "Highscore: " + savedHighscore;
     }
 
     // Update is called once per frame

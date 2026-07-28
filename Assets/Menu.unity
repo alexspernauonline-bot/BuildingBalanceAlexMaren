@@ -3697,6 +3697,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e884e3ac5c95044d8ecd5bcede478b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Menu
+  highscoreText: {fileID: 1211067100}
 --- !u!4 &1112980618
 Transform:
   m_ObjectHideFlags: 0
@@ -3940,6 +3941,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1183328378}
   m_CullTransparentMesh: 1
+--- !u!114 &1211067100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8599164976489361082, guid: 97f5adf86eff5f64ba1ee94767be35b8, type: 3}
+  m_PrefabInstance: {fileID: 1637060391}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1261063766
 GameObject:
   m_ObjectHideFlags: 0
