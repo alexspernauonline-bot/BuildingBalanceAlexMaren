@@ -242,7 +242,7 @@ public class GameManager : MonoBehaviour
 
             if (currentBalanceTime >= requiredBalanceTime && !isBalanced)
             {
-                gameManagerAudioSource.PlayOneShot(winSound, 1);
+                gameManagerAudioSource.PlayOneShot(winSound, 2f);
                 print("IsBalanced Starting Timer Sound");
                 isBalanced = true;
                 explosionParticles.Play();
