@@ -32,6 +32,7 @@ public class ScaleVisualizer : MonoBehaviour
     private float targetYLeft;
     private float targetYRight;
     private float lastStableDifference = 0f;
+  
 
     void Start()
     {

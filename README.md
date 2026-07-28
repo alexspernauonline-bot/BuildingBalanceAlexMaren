@@ -4,22 +4,26 @@ Creative Coding Projekt
 Ein kurze Beschreibung des Projektes / Spiels
 
 ## Description
-Eine allgemeine und längere Beschreibung des Projektes / Spiels.
+Ein Physikbasiertes Bau und Parkourspiel, bei dem Balance und geschcklichkeit im Fokus stehen.
 
 ### Features
 * Feature 1
 * Feature 2
 
 ### Controls
+Parkour Level:
 WASD für Bewegung
+[Space] Springen
+[Shift] Sprinten
+[] Ducken
 
-Baumodus:
+Bau Level:
 links-klick für aufheben und platzieren
 rechts-klick um Farbe (Gewicht) des Blocks zu wechseln
 R Rotieren eines Blocks
 
 ## Author(s)
-Florian Machill
+
 
 ## itch.io
 [itch-Seite](https://vis-hs-ansbach.itch.io/interactive-illustration-template)
