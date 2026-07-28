@@ -30,11 +30,19 @@ public class PlayerMovement : MonoBehaviour
     public bool hitGround = false;
     public bool hasCollided = false;
     public bool isSprinting = false;
+    public bool isMoving = false;
 
     //Geschwindigkeit
     Vector3 velocity;
 
+    //Variable für Spiel-Ende
     public bool hasReachedFinish = false;
+
+    //Clips für Audio
+    private AudioSource audioSource;
+    public AudioClip walkSound;
+    public AudioClip jumpSound;
+    public AudioClip fallSound;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +51,9 @@ public class PlayerMovement : MonoBehaviour
         transform.position = spawn.transform.position;
         savedSpawnPos = spawn.transform.position;
 
+        //Zuordnen von Komponenten
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -74,6 +84,11 @@ public class PlayerMovement : MonoBehaviour
         //Bewegungsvektor
         move = transform.right * x + transform.forward * z;
 
+        if (move.magnitude > 0)
+        {
+            isMoving = true;
+        }
+
         //Sprint Bewegung (Shift)
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -99,11 +114,17 @@ public class PlayerMovement : MonoBehaviour
         //Bewegung des Players
         controller.Move(move * actualSpeed * Time.deltaTime);
 
+        if (isMoving)
+        {
+            audioSource.PlayOneShot(walkSound, 0.5f);
+        }
+
         //Jump Funktion (Leertaste)
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             hasJumped = true;
+            audioSource.PlayOneShot(jumpSound, 0.5f);
         }
 
         //Erhöhung der Schwerkraft
@@ -116,21 +137,18 @@ public class PlayerMovement : MonoBehaviour
     //Überprüfen auf Contact mit Collidern
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-        //print(other.name);
-
         if (hit.collider.CompareTag("Finish"))
         {
             hasReachedFinish = true;
         }
         else if (hit.collider.CompareTag("Respawn"))
         {
-            print("Respawn!");
+            audioSource.PlayOneShot(fallSound, 0.5f);
             towerSkript.TowerDestructionCount();
         }
         else if (hit.collider.CompareTag("Obstacle"))
         {
             hasCollided = true;
-            print("hasCollided!");
         }
     }
 
@@ -138,7 +156,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("CheckPoint"))
         {
-            Debug.LogError("Checkpoint!");
+            //Setzen von Chekcpoints in der Parkour
             spawn.transform.position = other.transform.position;
         }
     }
