@@ -328,7 +328,7 @@ public class GameManager : MonoBehaviour
         }
 
         // E. GESAMTPUNKTZAHL
-        float finalAccuracyPercentage = (weightAccuracy + blockAccuracy) / 2f;
+       float finalAccuracyPercentage = (weightAccuracy + blockAccuracy) / 2f;
 
         PlayerPrefs.SetFloat("TowerAccuracy", finalAccuracyPercentage);
         PlayerPrefs.Save();

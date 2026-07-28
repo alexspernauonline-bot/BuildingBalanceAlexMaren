@@ -1,5 +1,8 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections;
 
 public class GameManagerPlayground : MonoBehaviour
 {
@@ -22,7 +25,9 @@ public class GameManagerPlayground : MonoBehaviour
     private float maxPointsTimer = 50f;
     private float graceTime = 120f;
     private float maxTime = 300f;
-    private float finalPointsParkour;
+    private float finalPoints;
+
+    public GameObject endScreen;
 
     void Awake()
     {
@@ -42,6 +47,7 @@ public class GameManagerPlayground : MonoBehaviour
 
         //Referenz zum Tower-Skript
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
+
     }
 
     // Update is called once per frame
@@ -77,6 +83,8 @@ public class GameManagerPlayground : MonoBehaviour
         float finalTimerPoints;
         float finalTowerPoints;
 
+        float towerAccuracy = PlayerPrefs.GetFloat("TowerAccuracy");
+
         //Punkte für die gebrauchte Zeit berechnen
         if (timeTaken <= graceTime)
         {
@@ -95,14 +103,14 @@ public class GameManagerPlayground : MonoBehaviour
         finalTowerPoints = Mathf.RoundToInt(maxPointsTower * (1f - normalizedTowerDestructs));
 
         //Finale Punktzahl für Parkour
-        finalPointsParkour = finalTimerPoints + finalTowerPoints;
+        finalPoints = finalTimerPoints + finalTowerPoints + towerAccuracy;
 
     }
 
     //Spielende
     private void GameFinished()
     {
-        print("Finished!)");
+        endScreen.SetActive(true);
 
         //Timer in Sekunden und Minuten umrechnen
         float minutes = Mathf.FloorToInt(timeTaken / 60);
@@ -112,7 +120,6 @@ public class GameManagerPlayground : MonoBehaviour
 
         CalculateFinalPoints(timeTaken, towerSkript.towerDestructions);
 
-        print(finalPointsParkour);
-        //add loading Finish Screen
+        print(finalPoints);
     }
 }
