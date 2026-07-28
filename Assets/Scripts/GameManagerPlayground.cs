@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameManagerPlayground : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManagerPlayground : MonoBehaviour
     private float finalPoints;
 
     public GameObject endScreen;
+    public GameObject pauseScreen;
 
     void Awake()
     {
@@ -48,11 +50,20 @@ public class GameManagerPlayground : MonoBehaviour
         //Referenz zum Tower-Skript
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
 
+        pauseScreen.SetActive(false);
+        endScreen.SetActive(false);
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
         if (playerScript.hasReachedFinish)
         {
             //Ende des Spiels
