@@ -37,7 +37,6 @@ public class RespawnTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player has fallen into the ball Pit! Respawning...");
-            audioSource.PlayOneShot(fallSound, 0.35f);
             //Open Respawn Menue
 
             //Beginn Respawn 
@@ -48,6 +47,7 @@ public class RespawnTrigger : MonoBehaviour
     //Started Coroutine für Delay + Zugriff von anderen Skripten möglich
     public void StartRespawn()
     {
+        audioSource.PlayOneShot(fallSound, 0.35f);
         StartCoroutine(RespawnPlayer(playerRef));
     }
 
