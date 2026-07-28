@@ -90,14 +90,6 @@ public class PlayerTowerControl : MonoBehaviour
         }
         else if (wobbleSpeed >= 10 || playerSkript.hasCollided)
         {
-            /*foreach (Transform block in this.transform)
-            {
-                Rigidbody blockRb = block.GetComponent<Rigidbody>();
-                blockRb.isKinematic = false;
-
-                print("Umgefallen!");
-            }*/
-
             playerSkript.hasJumped = false;
             playerSkript.hasCollided = false;
             isWobbly = false;

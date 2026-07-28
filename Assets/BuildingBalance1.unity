@@ -87969,6 +87969,11 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &551802659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4041346746460708051, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+  m_PrefabInstance: {fileID: 269891951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &553112063
 Mesh:
   m_ObjectHideFlags: 0
@@ -202924,6 +202929,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
+  respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &904898579
 AudioSource:
@@ -209346,6 +209353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
+  respawnScreen: {fileID: 0}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 0}
 --- !u!1 &1123081321
 GameObject:
@@ -334733,7 +334742,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Respawnig in...
+  m_text: Respawning...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c4c054440e891aa4f99ff2b75df01461, type: 2}
   m_sharedMaterial: {fileID: 8062899616697717170, guid: c4c054440e891aa4f99ff2b75df01461, type: 2}
@@ -380184,6 +380193,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
+  respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &2029534162
 AudioSource:
@@ -381717,6 +381728,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
+  respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &2048842118
 AudioSource:

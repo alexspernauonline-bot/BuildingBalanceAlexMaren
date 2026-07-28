@@ -1,15 +1,23 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class RespawnTrigger : MonoBehaviour
 {
     public GameObject respawnPoint; // Das Ziel, zu dem der Spieler respawnen soll
     private PlayerTowerControl towerSkript;
+    public GameObject respawnScreen;
+    public TextMeshProUGUI countdownText;
 
     private GameObject playerRef;
     private AudioSource audioSource;
 
     public AudioClip fallSound;
+
+    private float respawnDelay = 2f;
 
     void Start()
     {
@@ -17,6 +25,8 @@ public class RespawnTrigger : MonoBehaviour
         playerRef = GameObject.FindWithTag("Player");
         audioSource = GetComponent<AudioSource>();
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
+
+        respawnScreen.SetActive(false);
 
         // Stelle sicher, dass der Collider als Trigger eingestellt ist
         Collider collider = GetComponent<Collider>();
@@ -48,13 +58,14 @@ public class RespawnTrigger : MonoBehaviour
     public void StartRespawn()
     {
         audioSource.PlayOneShot(fallSound, 0.35f);
+        respawnScreen.SetActive(true);
         StartCoroutine(RespawnPlayer(playerRef));
     }
 
     //Tatsächliche Respawn nach 3 Sekunden
     IEnumerator RespawnPlayer(GameObject player)
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(respawnDelay);
 
         //Erhöht Zähler für den Turm => wichtig für finale Punkte
         towerSkript.TowerDestructionCount();
@@ -68,5 +79,7 @@ public class RespawnTrigger : MonoBehaviour
         playerCc.enabled = false;
         player.transform.position = respawnPoint.transform.position;
         playerCc.enabled = true;
+
+        respawnScreen.SetActive(false);
     }
 }
