@@ -5763,6 +5763,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7737518056488612885, guid: f4d7c9d8e42871044aec6d9bd142c5c2, type: 3}
+      propertyPath: m_TagString
+      value: Boden
+      objectReference: {fileID: 0}
+    - target: {fileID: -5568371526223589888, guid: f4d7c9d8e42871044aec6d9bd142c5c2, type: 3}
+      propertyPath: m_TagString
+      value: Boden
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f4d7c9d8e42871044aec6d9bd142c5c2, type: 3}
       propertyPath: m_Name
       value: Waage 1
@@ -5775,6 +5783,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: ff78c15a2f2752d4e91df3c1b04d1883, type: 2}
+    - target: {fileID: 6071182438809320146, guid: f4d7c9d8e42871044aec6d9bd142c5c2, type: 3}
+      propertyPath: m_TagString
+      value: Boden
+      objectReference: {fileID: 0}
     - target: {fileID: 8107352965745751115, guid: f4d7c9d8e42871044aec6d9bd142c5c2, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

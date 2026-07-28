@@ -943,7 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1074,6 +1074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7386e8f75ff90d34788d77eadf6d2edb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PauseGame
+  resumeBtn: {fileID: 0}
+  mainMenuBtn: {fileID: 0}
 --- !u!1 &7106041938983425371
 GameObject:
   m_ObjectHideFlags: 0

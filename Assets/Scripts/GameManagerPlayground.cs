@@ -60,6 +60,7 @@ public class GameManagerPlayground : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            Cursor.lockState = CursorLockMode.None;
             pauseScreen.SetActive(true);
             Time.timeScale = 0f;
         }
