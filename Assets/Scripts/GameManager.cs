@@ -10,8 +10,8 @@ public class GameManager : MonoBehaviour
 
     // Das ist das Singleton. Damit k�nnen alle anderen Skripte diesen Manager finden.
     public static GameManager Instance;
-
-
+    //Ref zu PauseScreen
+    public GameObject pauseScreen;
     // Hier speichern wir das fertige Ergebnis f�r diese Runde
     public Material lightMaterial;
     public Material mediumMaterial;
@@ -71,6 +71,13 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CheckBalance();
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Cursor.lockState = CursorLockMode.None;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0f;
+        }
     }
 
     public void AssignRandomColors()
