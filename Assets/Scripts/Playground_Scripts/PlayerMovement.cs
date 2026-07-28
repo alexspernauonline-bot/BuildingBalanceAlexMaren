@@ -84,9 +84,13 @@ public class PlayerMovement : MonoBehaviour
         //Bewegungsvektor
         move = transform.right * x + transform.forward * z;
 
-        if (move.magnitude > 0)
+        if (move.magnitude > 0 && isGrounded)
         {
             isMoving = true;
+        }
+        else
+        {
+            isMoving= false;
         }
 
         //Sprint Bewegung (Shift)
@@ -116,7 +120,14 @@ public class PlayerMovement : MonoBehaviour
 
         if (isMoving)
         {
-            audioSource.PlayOneShot(walkSound, 0.5f);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(walkSound, 0.2f);
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
 
         //Jump Funktion (Leertaste)
@@ -124,7 +135,8 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             hasJumped = true;
-            audioSource.PlayOneShot(jumpSound, 0.5f);
+            audioSource.Stop();
+            audioSource.PlayOneShot(jumpSound, 0.1f);
         }
 
         //Erhöhung der Schwerkraft
@@ -140,11 +152,6 @@ public class PlayerMovement : MonoBehaviour
         if (hit.collider.CompareTag("Finish"))
         {
             hasReachedFinish = true;
-        }
-        else if (hit.collider.CompareTag("Respawn"))
-        {
-            audioSource.PlayOneShot(fallSound, 0.5f);
-            towerSkript.TowerDestructionCount();
         }
         else if (hit.collider.CompareTag("Obstacle"))
         {

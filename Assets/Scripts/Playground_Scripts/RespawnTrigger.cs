@@ -4,12 +4,19 @@ using System.Collections;
 public class RespawnTrigger : MonoBehaviour
 {
     public GameObject respawnPoint; // Das Ziel, zu dem der Spieler respawnen soll
+    private PlayerTowerControl towerSkript;
 
     private GameObject playerRef;
+    private AudioSource audioSource;
+
+    public AudioClip fallSound;
 
     void Start()
     {
+        //Zuordnen der Komponenten
         playerRef = GameObject.FindWithTag("Player");
+        audioSource = GetComponent<AudioSource>();
+        towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
 
         // Stelle sicher, dass der Collider als Trigger eingestellt ist
         Collider collider = GetComponent<Collider>();
@@ -30,7 +37,7 @@ public class RespawnTrigger : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player has fallen into the ball Pit! Respawning...");
-
+            audioSource.PlayOneShot(fallSound, 0.35f);
             //Open Respawn Menue
 
             //Beginn Respawn 
@@ -48,6 +55,9 @@ public class RespawnTrigger : MonoBehaviour
     IEnumerator RespawnPlayer(GameObject player)
     {
         yield return new WaitForSeconds(3);
+
+        //Erhöht Zähler für den Turm => wichtig für finale Punkte
+        towerSkript.TowerDestructionCount();
 
         PlayerMovement playerSkript = player.GetComponent<PlayerMovement>();
         CharacterController playerCc = player.GetComponent<CharacterController>();
