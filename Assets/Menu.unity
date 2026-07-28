@@ -3548,6 +3548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlVolume
   volumeSlider: {fileID: 1993306457}
+  muteToggle: {fileID: 1748944058}
   setVolume: 0
 --- !u!1 &1171663730
 GameObject:
