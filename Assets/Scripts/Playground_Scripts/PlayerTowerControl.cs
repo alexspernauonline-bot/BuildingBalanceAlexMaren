@@ -23,11 +23,10 @@ public class PlayerTowerControl : MonoBehaviour
     Quaternion targetRot;
     public float wobbleSpeed = 2f;
     public float maxRot = 50f;
-    private bool isWobbly = false;
+    public bool isWobbly = false;
 
     //Variable für Turm-Punkte
     public int towerDestructions = 0;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

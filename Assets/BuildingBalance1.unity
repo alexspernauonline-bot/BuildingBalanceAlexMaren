@@ -41777,7 +41777,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1112234963829120692, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 720334569}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2018379870915943372, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 314292168}
   m_SourcePrefab: {fileID: 100100000, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
 --- !u!224 &269891952 stripped
 RectTransform:
@@ -43209,6 +43212,25 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1 &314292164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2018379870915943372, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+  m_PrefabInstance: {fileID: 269891951}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &314292168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 314292164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7923a08dd2f662149b33cf88b39e6d54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WarningOverlayBlink
+  towerSkript: {fileID: 0}
+  warningScreen: {fileID: 1223763981}
 --- !u!1001 &319213543
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -214140,6 +214162,11 @@ Transform:
   - {fileID: 1497681453}
   m_Father: {fileID: 1270288738}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1223763981 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8361231562970732895, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+  m_PrefabInstance: {fileID: 269891951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1224774519
 PrefabInstance:
   m_ObjectHideFlags: 0
