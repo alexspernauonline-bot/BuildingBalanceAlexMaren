@@ -59,6 +59,9 @@ public class RespawnTrigger : MonoBehaviour
     {
         audioSource.PlayOneShot(fallSound, 0.35f);
         respawnScreen.SetActive(true);
+        PlayerMovement playerSkript = playerRef.GetComponent<PlayerMovement>();
+        playerSkript.enabled = false;
+
         StartCoroutine(RespawnPlayer(playerRef));
     }
 
@@ -74,6 +77,7 @@ public class RespawnTrigger : MonoBehaviour
         CharacterController playerCc = player.GetComponent<CharacterController>();
 
         //Bewegung durch Character Controller des Spielers verhindert
+        playerSkript.enabled = true;
         playerSkript.move = Vector3.zero;
 
         playerCc.enabled = false;
