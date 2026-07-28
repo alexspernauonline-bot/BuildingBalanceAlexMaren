@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioClip walkSound;
     public AudioClip jumpSound;
     public AudioClip fallSound;
+  
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         //Zuordnen von Komponenten
         towerSkript = GameObject.FindWithTag("PlayerTower").GetComponent<PlayerTowerControl>();
         audioSource = GetComponent<AudioSource>();
+        
     }
 
     // Update is called once per frame

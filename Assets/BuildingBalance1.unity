@@ -140725,7 +140725,7 @@ MonoBehaviour:
   - {fileID: 837566297}
   - {fileID: 1039411574}
   - {fileID: 228863143}
-  - {fileID: 0}
+  - {fileID: 288651307}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -140740,11 +140740,11 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 15c0e009e5a88834f99ce3b490baaa52, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

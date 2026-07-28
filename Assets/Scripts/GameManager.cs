@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public ScaleSide leftScale;
     public ScaleSide rightScale;
 
-    //R�tsel-Einstellungen
+    //Rätsel-Einstellungen
     public float tolerance = 1f; // Erlaubte Abweichung (z.B. falls die Physik leicht zittert)
 
     //Tower Transition Manager und Blink Animation
@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     private bool hasLevelEnded = false;
     private bool waitForUnbalance = false;
+    //GameMusic
+    public AudioSource gameMusic;
     //Gewinnton
     public AudioClip winSound;
     private AudioSource gameManagerAudioSource;
