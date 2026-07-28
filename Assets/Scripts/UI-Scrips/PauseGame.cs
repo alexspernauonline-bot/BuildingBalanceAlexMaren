@@ -39,7 +39,7 @@ public class PauseGame : MonoBehaviour
 
         // 2. Lade die Szene mit dem Namen deines Hauptmenüs.
         // ACHTUNG: Trage hier exakt den Namen deiner Hauptmenü-Szene ein!
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ResumePlaythrough()
