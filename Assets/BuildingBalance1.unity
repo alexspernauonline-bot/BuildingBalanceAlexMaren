@@ -43645,6 +43645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sandpit
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: e6cf33aad28b61b46808ec7d690d0bdc, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83793,6 +83797,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ShapedBridge
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98fbebc90e71ad94fa7a9672117cff83, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83959,6 +83967,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 98fbebc90e71ad94fa7a9672117cff83, type: 3}
       propertyPath: m_Name
       value: ShapedBridge (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 98fbebc90e71ad94fa7a9672117cff83, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
