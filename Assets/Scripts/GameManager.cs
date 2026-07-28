@@ -41,6 +41,8 @@ public class GameManager : MonoBehaviour
     //Gewinnton
     public AudioClip winSound;
     private AudioSource gameManagerAudioSource;
+    //Win particle effect
+    public ParticleSystem explosionParticles;
 
     // Timer start
     private float currentBalanceTime = 0f;
@@ -230,6 +232,7 @@ public class GameManager : MonoBehaviour
                 gameManagerAudioSource.PlayOneShot(winSound, 1);
                 print("IsBalanced Starting Timer Sound");
                 isBalanced = true;
+                explosionParticles.Play();
                 isTransitioning = true;
                 if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
                 if (rightVisualizer != null) rightVisualizer.UpdateBlink(false, 0f);
@@ -266,6 +269,7 @@ public class GameManager : MonoBehaviour
             if (currentBalanceTime > 0)
             {
                 isBalanced = false;
+                explosionParticles.Stop();
                 currentBalanceTime = 0f;
 
                 if (leftVisualizer != null) leftVisualizer.UpdateBlink(false, 0f);
