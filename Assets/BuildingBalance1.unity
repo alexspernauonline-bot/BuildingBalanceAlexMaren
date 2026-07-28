@@ -83201,7 +83201,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431639088}
-  - component: {fileID: 431639087}
   - component: {fileID: 431639089}
   m_Layer: 0
   m_Name: GameManager
@@ -83210,35 +83209,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &431639087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 431639086}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc9250acb83a7884f8ee8281d8a38ae9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  mysteryMaterial: {fileID: 0}
-  lightMaterial: {fileID: 0}
-  mediumMaterial: {fileID: 0}
-  heavyMaterial: {fileID: 0}
-  weightLeft: 0
-  weightRight: 0
-  leftScale: {fileID: 0}
-  rightScale: {fileID: 0}
-  tolerance: 0.1
-  leftVisualizer: {fileID: 0}
-  rightVisualizer: {fileID: 0}
-  transitionManager: {fileID: 0}
-  requiredBalanceTime: 3
-  levelEndPromptPanel: {fileID: 0}
-  scoreText: {fileID: 0}
-  winSound: {fileID: 0}
-  explosionParticles: {fileID: 0}
 --- !u!4 &431639088
 Transform:
   m_ObjectHideFlags: 0

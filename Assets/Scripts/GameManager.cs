@@ -61,6 +61,10 @@ public class GameManager : MonoBehaviour
         AssignRandomColors();
 
         gameManagerAudioSource = GetComponent<AudioSource>();
+
+        //Mögliche gespeicherte Lautstärke-Preferenzen
+        float volume = PlayerPrefs.GetFloat("Volume", 1f);
+        AudioListener.volume = volume;
     }
 
    

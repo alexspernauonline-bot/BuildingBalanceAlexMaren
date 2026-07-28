@@ -29,6 +29,10 @@ public class GameManagerPlayground : MonoBehaviour
         //Tower-Skript auf den aus der Building-Szene übergebenen Turm legen
         playerTower = GameObject.FindWithTag("PlayerTower");
         playerTower.AddComponent<PlayerTowerControl>();
+
+        //Mögliche gespeicherte Lautstärke-Preferenzen
+        float volume = PlayerPrefs.GetFloat("Volume", 1f);
+        AudioListener.volume = volume;
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
