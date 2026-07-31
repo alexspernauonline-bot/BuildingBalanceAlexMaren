@@ -12618,6 +12618,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  currentBlock: {fileID: 0}
 --- !u!4 &891992351
 Transform:
   m_ObjectHideFlags: 0
@@ -26943,6 +26944,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2708908739030993494, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
+      propertyPath: myPlacementController
+      value: 
+      objectReference: {fileID: 891992350}
     - target: {fileID: 3196254221333144234, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

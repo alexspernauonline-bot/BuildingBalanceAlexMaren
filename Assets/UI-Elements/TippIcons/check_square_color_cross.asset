@@ -1,13 +1,13 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!21 &-2128730761350574133
+--- !u!21 &-7457032342518609208
 Material:
   serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: keyboard_shift_icon Material
+  m_Name: check_square_color_cross Material
   m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: a0a08d7d50dc75e4582ab600beaf0242, type: 3}
+        m_Texture: {fileID: 2800000, guid: 084ef1ed23cc4fe43a7b7e8ff76219d1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
-  m_Name: InputIcons
+  m_Name: check_square_color_cross
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TMP_SpriteAsset
   m_Version: 1.1.0
   m_FaceInfo:
@@ -60,7 +60,7 @@ MonoBehaviour:
     m_FamilyName: 
     m_StyleName: 
     m_PointSize: 0
-    m_Scale: 5
+    m_Scale: 0
     m_UnitsPerEM: 0
     m_LineHeight: 0
     m_AscentLine: 0
@@ -77,17 +77,12 @@ MonoBehaviour:
     m_StrikethroughOffset: 0
     m_StrikethroughThickness: 0
     m_TabWidth: 0
-  m_Material: {fileID: -2128730761350574133}
+  m_Material: {fileID: -7457032342518609208}
   spriteSheet: {fileID: 2800000, guid: 084ef1ed23cc4fe43a7b7e8ff76219d1, type: 3}
   m_SpriteCharacterTable:
   - m_ElementType: 2
     m_Unicode: 65534
     m_GlyphIndex: 0
-    m_Scale: 1
-    m_Name: keyboard_shift_icon
-  - m_ElementType: 2
-    m_Unicode: 65534
-    m_GlyphIndex: 1
     m_Scale: 1
     m_Name: check_square_color_cross
   m_GlyphTable:
@@ -106,35 +101,6 @@ MonoBehaviour:
     m_Scale: 1
     m_AtlasIndex: 0
     m_ClassDefinitionType: 0
-    sprite: {fileID: 21300000, guid: a0a08d7d50dc75e4582ab600beaf0242, type: 3}
-  - m_Index: 1
-    m_Metrics:
-      m_Width: 64
-      m_Height: 64
-      m_HorizontalBearingX: -32
-      m_HorizontalBearingY: 32
-      m_HorizontalAdvance: 64
-    m_GlyphRect:
-      m_X: 0
-      m_Y: 0
-      m_Width: 64
-      m_Height: 64
-    m_Scale: 1
-    m_AtlasIndex: 0
-    m_ClassDefinitionType: 0
     sprite: {fileID: 21300000, guid: 084ef1ed23cc4fe43a7b7e8ff76219d1, type: 3}
   spriteInfoList: []
-  fallbackSpriteAssets:
-  - {fileID: 11400000, guid: fe63cdfe92535b947aae586287448c45, type: 2}
-  - {fileID: 11400000, guid: 129223fe0d188ee4da31bfdfb0bca1ef, type: 2}
-  - {fileID: 11400000, guid: c72f2378a06ed4947a9ae14aace65406, type: 2}
-  - {fileID: 11400000, guid: 577ad5d38b6c7914a98737ffccd71b1b, type: 2}
-  - {fileID: 11400000, guid: c62f2a6ace0477e4d9bbf79052242851, type: 2}
-  - {fileID: 11400000, guid: 59369b011d06c5649a24c0514a558976, type: 2}
-  - {fileID: 11400000, guid: 5c6799bb4970fd645a7f5cbd5409d5b8, type: 2}
-  - {fileID: 11400000, guid: f392e2d3fde418a40acc6f0a94e8d240, type: 2}
-  - {fileID: 11400000, guid: 2e7c37aa9e41e1e4fa887d6bda5c2894, type: 2}
-  - {fileID: 11400000, guid: 129223fe0d188ee4da31bfdfb0bca1ef, type: 2}
-  - {fileID: 11400000, guid: d6104157445baa946ae62e8376bf5b90, type: 2}
-  - {fileID: 11400000, guid: 65552332abcc9dc4eace68aeea57f2e1, type: 2}
-  - {fileID: 11400000, guid: 2e2671e48fdd7ec46881917fa5ad92c1, type: 2}
+  fallbackSpriteAssets: []

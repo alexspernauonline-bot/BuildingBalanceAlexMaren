@@ -41477,23 +41477,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 728044344580247148, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 728044344580247148, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 728044344580247148, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 141.66501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 728044344580247148, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -483.85
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1926095469331218165, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2018379870915943372, guid: 61c4bde4aab53c845a65874478d85b17, type: 3}
       propertyPath: m_Name
@@ -134013,6 +134013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
   respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &904898579
 AudioSource:
@@ -140688,6 +140689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
   respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &1119181853
 AudioSource:
@@ -149327,7 +149329,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
   controller: {fileID: 1333846322}
   spawn: {fileID: 23327210}
-  savedSpawnPos: {x: 0, y: 0, z: 0}
   normalSpeed: 8
   gravity: -9.81
   jumpHeight: 2
@@ -310266,6 +310267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
   respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &2029534162
 AudioSource:
@@ -311800,6 +311802,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RespawnTrigger
   respawnPoint: {fileID: 23327210}
   respawnScreen: {fileID: 551802659}
+  countdownText: {fileID: 0}
   fallSound: {fileID: 8300000, guid: 60279e72cb2b240c7b4ecca517e7080c, type: 3}
 --- !u!82 &2048842118
 AudioSource:

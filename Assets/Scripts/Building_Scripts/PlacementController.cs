@@ -7,7 +7,8 @@ public class PlacementController : MonoBehaviour
     [SerializeField] private float ghostTransparency = 0.4f; // 40% Sichtbarkeit für den Geist
     [SerializeField] private LayerMask interactableLayer;// Layer, auf dem die Blöcke liegen, die wir aufheben können
 
-    private GameObject currentBlock = null;
+    public GameObject currentBlock = null;
+
     private Rigidbody currentRb = null;
     private MeshRenderer currentRenderer = null;
     private Color originalColor;
@@ -21,7 +22,7 @@ public class PlacementController : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+         
         // ZUSTAND A: Wir tragen gerade den "Geist" des Blocks
         if (currentBlock != null)
         {
