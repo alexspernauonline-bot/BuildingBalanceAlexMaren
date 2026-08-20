@@ -16,7 +16,7 @@ public class RotationResetArea : MonoBehaviour
                 // X und Z auf exakt 0, damit er perfekt aufrecht steht
                 collision.transform.rotation = Quaternion.Euler(0f, currentYRotation, 0f);
 
-               
+                // Setzt die Geschwindigkeit auf 0, damit er nicht weiter rollt oder fällt
                 rb.linearVelocity = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
             }

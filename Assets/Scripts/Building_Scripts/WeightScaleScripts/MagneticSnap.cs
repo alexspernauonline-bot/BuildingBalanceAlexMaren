@@ -14,7 +14,7 @@ public class MagneticSnap: MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
        
-        // Pr�fen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
+        // Prüfen, ob wir auf ein anderes Bauobjekt treffen (Block oder TowerBlock) 
         bool hitValidTarget = /*collision.gameObject.CompareTag("Block") ||*/ collision.gameObject.CompareTag("TowerBlock") || collision.gameObject.CompareTag("Scale");
 
         if (!hasSnapped && hitValidTarget)
